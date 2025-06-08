@@ -308,15 +308,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="flex justify-center space-x-2">
               {product.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
+                  className={`w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
                     selectedImage === index
-                      ? 'border-green-500'
-                      : 'border-transparent hover:border-green-300'
+                      ? 'border-green-500 ring-2 ring-green-200'
+                      : 'border-gray-200 hover:border-green-300'
                   }`}
                 >
                   <img

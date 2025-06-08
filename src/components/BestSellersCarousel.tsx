@@ -24,12 +24,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const [selectedImage, setSelectedImage] = useState(0);
   const calculatePixPrice = (price: number) => price * 0.9;
 
-  // Simulated product images for the gallery
-  const productImages = [
-    product.image,
-    product.image,
-  ];
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in">
@@ -46,20 +40,20 @@ const ProductModal: React.FC<ProductModalProps> = ({
           <div className="p-6 space-y-4">
             <div className="relative aspect-square overflow-hidden rounded-lg">
               <img
-                src={productImages[selectedImage]}
+                src={product.images[selectedImage]}
                 alt={product.name}
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              {productImages.map((image, index) => (
+            <div className="flex justify-center space-x-2">
+              {product.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
+                  className={`w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
                     selectedImage === index
-                      ? 'border-green-500'
-                      : 'border-transparent hover:border-green-300'
+                      ? 'border-green-500 ring-2 ring-green-200'
+                      : 'border-gray-200 hover:border-green-300'
                   }`}
                 >
                   <img
