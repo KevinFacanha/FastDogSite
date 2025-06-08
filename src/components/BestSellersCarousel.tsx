@@ -22,7 +22,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const calculatePixPrice = (price: number) => price * 0.9;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -94,9 +93,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <div>
                 <p className="text-2xl font-bold text-green-600">
                   R$ {product.price.toFixed(2)}
-                </p>
-                <p className="text-gray-600">
-                  Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
                 </p>
               </div>
               
@@ -204,10 +200,6 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
     }
   };
 
-  const calculatePixPrice = (price: number) => {
-    return price * 0.9;
-  };
-
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -261,12 +253,9 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                           : 'Natuka'}
                       </p>
                       <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                      <div className="space-y-1">
+                      <div className="mb-4">
                         <p className="text-lg font-bold text-green-600">
                           R$ {product.price.toFixed(2)}
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
                         </p>
                       </div>
                       <button

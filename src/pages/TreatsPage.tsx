@@ -285,7 +285,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const calculatePixPrice = (price: number) => price * 0.9;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -351,9 +350,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
             <div>
               <p className="text-2xl font-bold text-green-600">
                 R$ {product.price.toFixed(2)}
-              </p>
-              <p className="text-gray-600">
-                Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
               </p>
             </div>
             
@@ -435,10 +431,6 @@ const TreatsPage: React.FC = () => {
     }
   };
 
-  const calculatePixPrice = (price: number) => {
-    return price * 0.9;
-  };
-
   return (
     <div className="container mx-auto px-4 py-8 md:py-16">
       <h1 className="text-3xl md:text-4xl font-bold text-green-800 mb-6 md:mb-8">
@@ -473,12 +465,9 @@ const TreatsPage: React.FC = () => {
               </div>
               <div className="p-4">
                 <h3 className="text-lg sm:text-xl font-semibold mb-2">{product.name}</h3>
-                <div className="space-y-1 mb-4">
+                <div className="mb-4">
                   <p className="text-lg font-bold text-green-600">
                     R$ {product.price.toFixed(2)}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
                   </p>
                 </div>
                 <button
