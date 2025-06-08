@@ -285,7 +285,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const calculatePixPrice = (price: number) => price * 0.9;
+  const calculatePixPrice = (price: number) => price - 1.10;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -436,7 +436,7 @@ const ChewablesPage: React.FC = () => {
   };
 
   const calculatePixPrice = (price: number) => {
-    return price * 0.9;
+    return price - 1.10;
   };
 
   return (
