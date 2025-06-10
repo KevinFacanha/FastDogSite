@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
-  const [buttonText, setButtonText] = useState('Ver Catálogos');
+  const [buttonText, setButtonText] = useState('Confira');
   const [hasClicked, setHasClicked] = useState(false);
 
   const scrollToBestSellers = () => {
@@ -12,9 +12,8 @@ const HeroSection: React.FC = () => {
       bestSellersSection.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // Atualiza o texto do botão após o primeiro clique
+    // Mantém o texto "Confira" após o clique
     if (!hasClicked) {
-      setButtonText('Confira');
       setHasClicked(true);
     }
   };
