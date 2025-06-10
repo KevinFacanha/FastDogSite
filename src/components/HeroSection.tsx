@@ -28,21 +28,21 @@ const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative bg-gradient-to-br from-green-50 to-yellow-50 py-20 md:py-28"
+      className="relative bg-gradient-to-br from-green-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 py-20 md:py-28 transition-colors duration-200"
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-10 md:mb-0">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 dark:text-green-400 mb-4">
               Petiscos de qualidade para o seu melhor amigo
             </h1>
-            <p className="text-lg text-green-700 mb-8 max-w-lg">
+            <p className="text-lg text-green-700 dark:text-green-300 mb-8 max-w-lg">
               A FastDog traz para você os melhores petiscos para o seu cão. Distribuidora
               oficial de marcas como Luv, Alecrim, GoodLoving e Natuka.
             </p>
             <button
               onClick={scrollToBestSellers}
-              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition-transform hover:scale-105"
+              className="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition-all hover:scale-105"
             >
               {buttonText}
             </button>
@@ -61,10 +61,10 @@ const HeroSection: React.FC = () => {
       <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 animate-bounce">
         <button
           onClick={scrollToCatalogs}
-          className="flex items-center justify-center h-10 w-10 rounded-full bg-white shadow-md"
+          className="flex items-center justify-center h-10 w-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow"
           aria-label="Scroll to catalogs"
         >
-          <ChevronDown className="h-6 w-6 text-green-600" />
+          <ChevronDown className="h-6 w-6 text-green-600 dark:text-green-400" />
         </button>
       </div>
     </section>

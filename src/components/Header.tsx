@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Dog, ShoppingCart, Heart, ChevronDown, Menu, X } from 'lucide-react';
 import CartModal from './CartModal';
 import FavoritesModal from './FavoritesModal';
+import DarkModeToggle from './DarkModeToggle';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
 
@@ -32,21 +33,24 @@ const Header: React.FC = () => {
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled 
+          ? 'bg-white dark:bg-gray-900 shadow-md py-2' 
+          : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-      <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
-      <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-10 w-10" />
-      <span className="text-2xl font-bold text-green-700">FastDog</span>
-      </Link>
+          <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
+            <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-10 w-10" />
+            <span className="text-2xl font-bold text-green-700 dark:text-green-400">FastDog</span>
+          </Link>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-4 md:hidden">
+          <div className="flex items-center space-x-2 md:hidden">
+            <DarkModeToggle />
             <button
               onClick={() => setIsFavoritesOpen(true)}
-              className="relative text-green-800 hover:text-green-600 transition-colors p-2"
+              className="relative text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 transition-colors p-2"
             >
               <Heart className="h-6 w-6" />
               {favorites.length > 0 && (
@@ -57,7 +61,7 @@ const Header: React.FC = () => {
             </button>
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative text-green-800 hover:text-green-600 transition-colors p-2"
+              className="relative text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 transition-colors p-2"
             >
               <ShoppingCart className="h-6 w-6" />
               {items.length > 0 && (
@@ -68,7 +72,7 @@ const Header: React.FC = () => {
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-green-800 p-2"
+              className="text-green-800 dark:text-green-400 p-2"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -84,14 +88,14 @@ const Header: React.FC = () => {
               <li>
                 <Link
                   to="/"
-                  className="text-green-800 hover:text-green-600 font-medium transition-colors"
+                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
                 >
                   Home
                 </Link>
               </li>
               <li className="relative">
                 <button
-                  className="flex items-center space-x-1 text-green-800 hover:text-green-600 font-medium transition-colors"
+                  className="flex items-center space-x-1 text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
                   onClick={() => setIsProductsMenuOpen(!isProductsMenuOpen)}
                   onMouseEnter={() => setIsProductsMenuOpen(true)}
                   onMouseLeave={() => setIsProductsMenuOpen(false)}
@@ -101,27 +105,27 @@ const Header: React.FC = () => {
                 </button>
                 {isProductsMenuOpen && (
                   <div
-                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2"
+                    className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 border dark:border-gray-700"
                     onMouseEnter={() => setIsProductsMenuOpen(true)}
                     onMouseLeave={() => setIsProductsMenuOpen(false)}
                   >
                     <Link
                       to="/treats"
-                      className="block px-4 py-2 text-green-800 hover:bg-green-50 transition-colors"
+                      className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                       onClick={closeMobileMenu}
                     >
                       Petiscos de Agrado
                     </Link>
                     <Link
                       to="/chewables"
-                      className="block px-4 py-2 text-green-800 hover:bg-green-50 transition-colors"
+                      className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                       onClick={closeMobileMenu}
                     >
                       Petiscos Mastigáveis
                     </Link>
                     <Link
                       to="/chewers"
-                      className="block px-4 py-2 text-green-800 hover:bg-green-50 transition-colors"
+                      className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                       onClick={closeMobileMenu}
                     >
                       Mordedores
@@ -132,7 +136,7 @@ const Header: React.FC = () => {
               <li>
                 <a
                   href="#catalogs"
-                  className="text-green-800 hover:text-green-600 font-medium transition-colors"
+                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
                 >
                   Catálogos
                 </a>
@@ -140,15 +144,18 @@ const Header: React.FC = () => {
               <li>
                 <a
                   href="#about"
-                  className="text-green-800 hover:text-green-600 font-medium transition-colors"
+                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
                 >
                   Sobre
                 </a>
               </li>
               <li>
+                <DarkModeToggle />
+              </li>
+              <li>
                 <button
                   onClick={() => setIsFavoritesOpen(true)}
-                  className="relative text-green-800 hover:text-green-600 transition-colors p-2"
+                  className="relative text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 transition-colors p-2"
                 >
                   <Heart className="h-6 w-6" />
                   {favorites.length > 0 && (
@@ -161,7 +168,7 @@ const Header: React.FC = () => {
               <li>
                 <button
                   onClick={() => setIsCartOpen(true)}
-                  className="relative text-green-800 hover:text-green-600 transition-colors p-2"
+                  className="relative text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 transition-colors p-2"
                 >
                   <ShoppingCart className="h-6 w-6" />
                   {items.length > 0 && (
@@ -177,12 +184,12 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 bg-white rounded-lg shadow-lg">
+          <nav className="md:hidden mt-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg border dark:border-gray-700">
             <ul className="py-2">
               <li>
                 <Link
                   to="/"
-                  className="block px-4 py-2 text-green-800 hover:bg-green-50 transition-colors"
+                  className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                   onClick={closeMobileMenu}
                 >
                   Home
@@ -190,31 +197,31 @@ const Header: React.FC = () => {
               </li>
               <li>
                 <button
-                  className="flex items-center justify-between w-full px-4 py-2 text-green-800 hover:bg-green-50 transition-colors"
+                  className="flex items-center justify-between w-full px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                   onClick={() => setIsProductsMenuOpen(!isProductsMenuOpen)}
                 >
                   <span>Produtos</span>
                   <ChevronDown className={`h-4 w-4 transform transition-transform ${isProductsMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isProductsMenuOpen && (
-                  <div className="bg-green-50 py-2">
+                  <div className="bg-green-50 dark:bg-gray-700 py-2">
                     <Link
                       to="/treats"
-                      className="block px-8 py-2 text-green-800 hover:bg-green-100 transition-colors"
+                      className="block px-8 py-2 text-green-800 dark:text-green-400 hover:bg-green-100 dark:hover:bg-gray-600 transition-colors"
                       onClick={closeMobileMenu}
                     >
                       Petiscos de Agrado
                     </Link>
                     <Link
                       to="/chewables"
-                      className="block px-8 py-2 text-green-800 hover:bg-green-100 transition-colors"
+                      className="block px-8 py-2 text-green-800 dark:text-green-400 hover:bg-green-100 dark:hover:bg-gray-600 transition-colors"
                       onClick={closeMobileMenu}
                     >
                       Petiscos Mastigáveis
                     </Link>
                     <Link
                       to="/chewers"
-                      className="block px-8 py-2 text-green-800 hover:bg-green-100 transition-colors"
+                      className="block px-8 py-2 text-green-800 dark:text-green-400 hover:bg-green-100 dark:hover:bg-gray-600 transition-colors"
                       onClick={closeMobileMenu}
                     >
                       Mordedores
@@ -225,7 +232,7 @@ const Header: React.FC = () => {
               <li>
                 <a
                   href="#catalogs"
-                  className="block px-4 py-2 text-green-800 hover:bg-green-50 transition-colors"
+                  className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                   onClick={closeMobileMenu}
                 >
                   Catálogos
@@ -234,7 +241,7 @@ const Header: React.FC = () => {
               <li>
                 <a
                   href="#about"
-                  className="block px-4 py-2 text-green-800 hover:bg-green-50 transition-colors"
+                  className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                   onClick={closeMobileMenu}
                 >
                   Sobre

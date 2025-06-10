@@ -41,19 +41,19 @@ const ProductModal: React.FC<ProductModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in">
         <div className="absolute top-4 right-4 z-10">
           <button
             onClick={onClose}
-            className="bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+            className="bg-white dark:bg-gray-700 rounded-full p-2 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
           >
-            <X className="h-6 w-6 text-gray-600" />
+            <X className="h-6 w-6 text-gray-600 dark:text-gray-300" />
           </button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-6 space-y-4">
-            <div className="relative aspect-square overflow-hidden rounded-lg">
+            <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-50 dark:bg-gray-700">
               <img
                 src={product.images[selectedImage]}
                 alt={product.name}
@@ -67,35 +67,35 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   onClick={() => setSelectedImage(index)}
                   className={`w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
                     selectedImage === index
-                      ? 'border-green-500 ring-2 ring-green-200'
-                      : 'border-gray-200 hover:border-green-300'
+                      ? 'border-green-500 ring-2 ring-green-200 dark:ring-green-800'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
                   }`}
                 >
                   <img
                     src={image}
                     alt={`${product.name} view ${index + 1}`}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain bg-gray-50 dark:bg-gray-700"
                   />
                 </button>
               ))}
             </div>
           </div>
           
-          <div className="p-6 border-t md:border-t-0 md:border-l border-gray-200">
+          <div className="p-6 border-t md:border-t-0 md:border-l border-gray-200 dark:border-gray-600">
             <div className="mb-6">
-              <p className="text-sm text-green-600 font-medium mb-1">
+              <p className="text-sm text-green-600 dark:text-green-400 font-medium mb-1">
                 {getBrandName(product.brand)}
               </p>
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
                 {product.name}
               </h2>
-              <p className="text-gray-600 mb-4">{product.details}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{product.details}</p>
               
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                 <Package className="h-4 w-4" />
                 <span>Estoque disponível</span>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                 <Clock className="h-4 w-4" />
                 <span>Entrega em até 3 dias úteis</span>
               </div>
@@ -103,34 +103,34 @@ const ProductModal: React.FC<ProductModalProps> = ({
             
             <div className="space-y-6 mb-6">
               <div>
-                <p className="text-2xl font-bold text-green-600">
+                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
                   R$ {product.price.toFixed(2)}
                 </p>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
                 </p>
-                <p className="text-sm text-green-600 font-medium">
+                <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                   👉 Economize R$ 1,26 no Pix
                 </p>
               </div>
               
               <div className="flex items-center space-x-4">
-                <label className="text-gray-700">Quantidade:</label>
-                <div className="flex items-center border rounded-lg">
+                <label className="text-gray-700 dark:text-gray-300">Quantidade:</label>
+                <div className="flex items-center border dark:border-gray-600 rounded-lg">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 hover:bg-gray-100 transition-colors"
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
-                    <Minus className="h-4 w-4" />
+                    <Minus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                   </button>
-                  <span className="px-4 py-2 border-x min-w-[3rem] text-center">
+                  <span className="px-4 py-2 border-x dark:border-gray-600 min-w-[3rem] text-center text-gray-800 dark:text-gray-200">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:bg-gray-100 transition-colors"
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                   </button>
                 </div>
               </div>
@@ -142,22 +142,22 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   onAddToCart(quantity);
                   toast.success('Produto adicionado ao carrinho');
                 }}
-                className="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
               >
                 <Plus className="h-5 w-5 mr-2" />
                 Adicionar ao Carrinho
               </button>
               <button
                 onClick={onToggleFavorite}
-                className={`p-3 rounded-lg border ${
+                className={`p-3 rounded-lg border transition-colors ${
                   isFavorite
-                    ? 'bg-red-50 border-red-200'
-                    : 'border-gray-200 hover:bg-gray-50'
-                } transition-colors`}
+                    ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                    : 'border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
               >
                 <Heart
                   className={`h-6 w-6 ${
-                    isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-400'
+                    isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-400 dark:text-gray-500'
                   }`}
                 />
               </button>
@@ -244,9 +244,9 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white dark:bg-gray-800 transition-colors duration-200">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Mais Vendidos</h2>
+        <h2 className="text-3xl font-bold text-green-800 dark:text-green-400 mb-8 text-center">Mais Vendidos</h2>
         
         <div className="relative">
           <div className="overflow-hidden">
@@ -262,41 +262,43 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                   className={`flex-none ${getCardWidth()} px-2`}
                   onClick={() => setSelectedProduct(product)}
                 >
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full flex flex-col">
+                  <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full flex flex-col">
                     <div className="relative">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-110"
-                      />
+                      <div className="bg-gray-50 dark:bg-gray-600">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-110"
+                        />
+                      </div>
                       <button
                         onClick={(e) => toggleFavorite(product, e)}
-                        className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors z-10"
+                        className="absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
                       >
                         <Heart
                           className={`h-5 w-5 ${
                             isFavorite(product.id)
                               ? 'fill-red-500 text-red-500'
-                              : 'text-gray-400'
+                              : 'text-gray-400 dark:text-gray-500'
                           }`}
                         />
                       </button>
                     </div>
                     <div className="p-4 flex-1 flex flex-col">
-                      <p className="text-sm text-green-600 font-medium mb-1">
+                      <p className="text-sm text-green-600 dark:text-green-400 font-medium mb-1">
                         {getBrandName(product.brand)}
                       </p>
-                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center">
+                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center text-gray-800 dark:text-gray-200">
                         {product.name}
                       </h3>
                       <div className="space-y-1 mb-4 text-center">
-                        <p className="text-lg font-bold text-green-600">
+                        <p className="text-lg font-bold text-green-600 dark:text-green-400">
                           R$ {product.price.toFixed(2)}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
                           👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
                         </p>
-                        <p className="text-xs text-green-600 font-medium">
+                        <p className="text-xs text-green-600 dark:text-green-400 font-medium">
                           👉 Economize R$ 1,26 no Pix
                         </p>
                       </div>
@@ -306,7 +308,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                           addItem(product);
                           toast.success('Produto adicionado ao carrinho');
                         }}
-                        className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
+                        className="w-full bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
                       >
                         <Plus className="h-5 w-5 mr-2" />
                         Adicionar
@@ -322,10 +324,10 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
           {currentIndex > 0 && (
             <button
               onClick={handlePrevious}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors z-10 border"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10 border dark:border-gray-600"
               aria-label="Produtos anteriores"
             >
-              <ChevronLeft className="h-6 w-6 text-green-600" />
+              <ChevronLeft className="h-6 w-6 text-green-600 dark:text-green-400" />
             </button>
           )}
           
@@ -333,10 +335,10 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
           {currentIndex < maxIndex && (
             <button
               onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors z-10 border"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10 border dark:border-gray-600"
               aria-label="Próximos produtos"
             >
-              <ChevronRight className="h-6 w-6 text-green-600" />
+              <ChevronRight className="h-6 w-6 text-green-600 dark:text-green-400" />
             </button>
           )}
         </div>

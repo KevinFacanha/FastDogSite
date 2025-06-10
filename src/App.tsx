@@ -11,7 +11,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-cream">
+      <div className="min-h-screen flex flex-col bg-cream dark:bg-gray-900 transition-colors duration-200">
         <Header />
         <main className="flex-grow">
           <Routes>
