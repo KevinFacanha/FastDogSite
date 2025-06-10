@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Heart, Plus, X, Minus, Package, Clock, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
@@ -252,6 +252,7 @@ const ChewersPage: React.FC = () => {
   const productsPerPage = 6;
   const addItem = useCartStore((state) => state.addItem);
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
+  const productsGridRef = useRef<HTMLDivElement>(null);
 
   // Filtrar produtos baseado no termo de busca
   const filteredChewers = chewers.filter(product =>
@@ -268,24 +269,31 @@ const ChewersPage: React.FC = () => {
     setCurrentPage(1);
   }, [searchTerm]);
 
-  // Função para scroll suave para o topo
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  // Função para detectar se é mobile
+  const isMobile = () => {
+    return window.innerWidth <= 768;
+  };
+
+  // Função para scroll suave para o grid de produtos (apenas mobile)
+  const scrollToProductsGrid = () => {
+    if (isMobile() && productsGridRef.current) {
+      productsGridRef.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   // Função para navegar para página anterior
   const handlePreviousPage = () => {
     setCurrentPage(prev => Math.max(1, prev - 1));
-    scrollToTop();
+    scrollToProductsGrid();
   };
 
   // Função para navegar para próxima página
   const handleNextPage = () => {
     setCurrentPage(prev => Math.min(totalPages, prev + 1));
-    scrollToTop();
+    scrollToProductsGrid();
   };
 
   const toggleFavorite = (product: Product, event?: React.MouseEvent) => {
@@ -333,7 +341,7 @@ const ChewersPage: React.FC = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div ref={productsGridRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {currentProducts.map((product) => (
               <div
                 key={product.id}
