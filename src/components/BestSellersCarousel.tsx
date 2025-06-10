@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Heart, ChevronLeft, ChevronRight, Plus, X, Minus, Package, Clock } from 'lucide-react';
 import { Product } from '../types/product';
 import { useCartStore } from '../store/useCartStore';
@@ -163,6 +163,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   const [currentIndex, setCurrentIndex] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(5);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const addItem = useCartStore((state) => state.addItem);
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
 
@@ -184,12 +185,25 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
 
   const maxIndex = Math.max(0, products.length - productsPerPage);
 
+  const scrollToTop = () => {
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   const handlePrevious = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
+    // Pequeno delay para permitir que a animação do carrossel comece antes da rolagem
+    setTimeout(scrollToTop, 100);
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+    // Pequeno delay para permitir que a animação do carrossel comece antes da rolagem
+    setTimeout(scrollToTop, 100);
   };
 
   const toggleFavorite = (product: Product, event?: React.MouseEvent) => {
@@ -215,7 +229,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section ref={sectionRef} id="mais-vendidos" className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Mais Vendidos</h2>
         
