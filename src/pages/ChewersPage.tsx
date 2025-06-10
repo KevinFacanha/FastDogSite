@@ -96,6 +96,19 @@ const chewers: Product[] = [
       './catalogs/mordedores/Orelha de boi com ouvido.JPG'
     ],
     details: 'Petisco 100% natural feito de orelha de boi (com duto auditivo), higienizada, esterilizada e desidratada lentamente. Textura crocante e mais resistente, ideal para distração prolongada, enriquecimento ambiental e controle de ansiedade de separação. Auxilia na limpeza dental e redução de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
+  },
+    {
+    id: 'fictional-1',
+    brand: 'Alecrim',
+    name: 'Crush Pet Alecrim',
+    description: 'Mordedor natural de pele bovina desidratada',
+    price: 34.90,
+    image: './catalogs/crush pet.JPG',
+    images: [
+      './catalogs/crush pet.JPG',
+      './catalogs/pet crush.JPG'
+    ],
+    details: 'Feito com 100% de pele bovina enrolada e desidratada, sem conservantes, corantes ou aditivos. Alta resistência para proporcionar longas sessões de mastigação, auxiliando na limpeza dental e alívio de estresse. Recomendado para cães de todos os portes, especialmente os com mordida potente. Cada embalagem contém 1 unidade. Oferecer sempre sob supervisão.'
   }
 
 

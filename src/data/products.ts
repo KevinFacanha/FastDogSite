@@ -44,7 +44,7 @@ export const products: Product[] = [
   
     {
     id: 'chewable-20',
-    brand: 'natuka',
+    brand: 'Alecrim',
     name: 'Rosquinha Mineira',
     description: 'Mastigável natural de pele bovina enrolada',
     price: 28.49,
@@ -113,29 +113,29 @@ export const products: Product[] = [
   // Produtos fictícios Natuka
   {
     id: 'fictional-1',
-    brand: 'natuka',
-    name: 'Natuka Snack Mix',
-    description: 'Mix de petiscos naturais variados',
-    price: 32.90,
-    image: './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
+    brand: 'Alecrim',
+    name: 'Crush Pet Alecrim',
+    description: 'Mordedor natural de pele bovina desidratada',
+    price: 34.90,
+    image: './catalogs/crush pet.JPG',
     images: [
-      './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
-      './catalogs/petiscosMastigaveis/puff natuka.JPG'
+      './catalogs/crush pet.JPG',
+      './catalogs/pet crush.JPG'
     ],
-    details: 'Mix especial de petiscos naturais Natuka com diferentes texturas e sabores. Ideal para variar a alimentação do seu pet com opções saudáveis e nutritivas. Contém pedaços de carne desidratada, vegetais e frutas. Embalagem com 100g.'
+    details: 'Feito com 100% de pele bovina enrolada e desidratada, sem conservantes, corantes ou aditivos. Alta resistência para proporcionar longas sessões de mastigação, auxiliando na limpeza dental e alívio de estresse. Recomendado para cães de todos os portes, especialmente os com mordida potente. Cada embalagem contém 1 unidade. Oferecer sempre sob supervisão.'
   },
-  {
-    id: 'fictional-2',
-    brand: 'natuka',
-    name: 'Natuka CrocBites',
-    description: 'Petiscos crocantes para treino',
+    {
+    id: 'chewable-22',
+    brand: 'Alecrim',
+    name: 'Rocambole Mineiro Miúdo Alecrim Pet',
+    description: 'Mastigável natural de pele bovina enrolada',
     price: 29.90,
-    image: './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
+    image: './catalogs/petiscosMastigaveis/rocambole mineiro.JPG',
     images: [
-      './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
-      './catalogs/petiscosMastigaveis/buba natuka.JPG'
+      './catalogs/petiscosMastigaveis/rocambole mineiro.JPG',
+      './catalogs/petiscosMastigaveis/mineiro rocambole.JPG'
     ],
-    details: 'Petiscos pequenos e crocantes, perfeitos para treinamento e recompensas. Feitos com ingredientes naturais selecionados, são facilmente digeríveis e altamente palatáveis. Formato ideal para cães de todos os portes. Embalagem com 150g.'
+    details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental e alívio da ansiedade. Indicado para cães de todos os portes e idades — ideal para mordida forte. Embalagem com 1 unidade.'
   },
 
   // Good Lovin Products

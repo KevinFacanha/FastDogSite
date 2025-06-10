@@ -97,6 +97,19 @@ const chewables: Product[] = [
     ],
     details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
   },
+    {
+    id: 'chewable-7',
+    brand: 'natuka',
+    name: 'Natuka Vergalho Stick',
+    description: 'Mastigável natural feito de vergalho bovino',
+    price: 58.90,
+    image: './catalogs/petiscosMastigaveis/natuka vergalho.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/natuka vergalho.JPG',
+      './catalogs/petiscosMastigaveis/vergalho natuka.JPG'
+    ],
+    details: "Feito exclusivamente de vergalho bovino 100% natural, sem aditivos, conservantes ou corantes. Textura firme que estimula a mastigação e ajuda na saúde dental. Produto de alta palatabilidade e durabilidade. Recomendado para cães de médio a grande porte. Embalagem contém 1 unidade. Oferecer com supervisão."
+  },
   {
     id: 'chewable-8',
     brand: 'natuka',
