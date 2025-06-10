@@ -2,137 +2,125 @@ import { Product } from '../types/product';
 
 export const products: Product[] = [
   // Natuka Products
-{
-  id: 'natuka-1',
-  brand: 'natuka',
-  name: 'Palitinho Bovino',
-  description: 'Petisco funcional para saúde bucal',
-  price: 30.90,
-  image: '/catalogs/Natuka Palitinho Bovino.JPG',
-  images: [
-    '/catalogs/Natuka Palitinho Bovino.JPG',
-    '/catalogs/palitinho bovino.jpeg'
-  ],
-  details: 'Palitinho natural de bovino que promove a mastigação saudável, auxiliando na higiene bucal e no combate ao mau hálito do seu pet.'
-},
   {
-    id: 'natuka-2',
+    id: 'chewable-7',
     brand: 'natuka',
-    name: 'Snack Articular',
-    description: 'Petisco funcional para saúde das articulações',
-    price: 32.90,
-    image: 'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg',
+    name: 'Natuka Trança Bovina',
+    description: 'Rica em glucosamina natural',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
     images: [
-      'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg',
-      'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
+      './catalogs/petiscosMastigaveis/natuka tranca.JPG'
     ],
-    details: 'Suplemento em forma de petisco para auxiliar na saúde das articulações do seu pet.'
+    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
+  },
+ {
+    id: 'chewable-15',
+    brand: 'natuka',
+    name: 'Traqueia Bovina Luv',
+    description: 'Mastigável natural de cartilagem bovina',
+    price: 44.90,
+    image: './catalogs/petiscosMastigaveis/Traqueia Bovina.jpeg',
+    images: [
+      './catalogs/petiscosMastigaveis/Traqueia Bovina.jpeg',
+      './catalogs/petiscosMastigaveis/bovina traqueia.JPG',
+    ],
+    details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em temperatura controlada. Rico em glucosamina e condroitina, favorece articulações e limpeza dental. Mastigável leve (nível fácil), adequado para cães de todos os portes. Embalagem com 200g.'
   },
   {
-    id: 'natuka-3',
+    id: 'chewable-16',
     brand: 'natuka',
-    name: 'Petisco Probiótico',
-    description: 'Suplemento para saúde intestinal',
-    price: 36.90,
-    image: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
+    name: 'Traqueia Redonda Luv',
+    description: 'Mastigável natural de traqueia bovina em formato redondo',
+    price: 39.44,
+    image: './catalogs/petiscosMastigaveis/Traqueia Redonda.jpeg',
     images: [
-      'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
-      'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg'
+      './catalogs/petiscosMastigaveis/Traqueia Redonda.jpeg',
+      './catalogs/petiscosMastigaveis/redonda traqueia.JPG'
     ],
-    details: 'Petisco funcional com probióticos para melhorar a saúde intestinal do seu pet.'
+    details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em baixa temperatura. Seu formato redondo dificulta a posição de mordida, tornando a mastigação mais eficiente na limpeza dos dentes caninos. Rico em glucosamina e condroitina, auxilia na saúde articular e na higiene bucal. Dificuldade: fácil; indicado para cães saudáveis de todos os portes. Embalagem com 1 unidade.'
   },
-  {
-    id: 'natuka-4',
+  
+    {
+    id: 'chewable-20',
     brand: 'natuka',
-    name: 'Snack Calmante Natural',
-    description: 'Petisco relaxante para cães',
-    price: 34.90,
-    image: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg',
+    name: 'Rosquinha Mineira',
+    description: 'Mastigável natural de pele bovina enrolada',
+    price: 28.49,
+    image: './catalogs/petiscosMastigaveis/Rosquinha Mineira.JPG',
     images: [
-      'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg',
-      'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg'
+      './catalogs/petiscosMastigaveis/Rosquinha Mineira.JPG',
+      './catalogs/petiscosMastigaveis/mineira rosquinha.JPG'
     ],
-    details: 'Petisco natural com camomila e valeriana para ajudar seu pet a relaxar.'
-  },
-  {
-    id: 'natuka-5',
-    brand: 'natuka',
-    name: 'Biscoito Hipoalergênico',
-    description: 'Para cães com sensibilidade alimentar',
-    price: 39.90,
-    image: 'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg',
-    images: [
-      'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg',
-      'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg'
-    ],
-    details: 'Biscoito especial para cães com alergias ou sensibilidades alimentares.'
+    details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona distração prolongada, enriquece o ambiente e exercita a mandíbula. Auxilia na limpeza dental. Embalagem com 4 unidades.'
   },
 
-  // Luv e Alecrim Products
-  {
-    id: 'luv-alecrim-1',
-    brand: 'luv-alecrim',
-    name: 'Snack Natural',
-    description: 'Petisco 100% natural',
-    price: 34.90,
-    image: 'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg',
+
+    {
+    id: 'chewable-20',
+    brand: 'natuka',
+    name: 'Rocambole Mineiro Graúdo Alecrim Pet',
+    description: 'Mastigável natural de pele bovina enrolada',
+    price: 41.90,
+    image: './catalogs/petiscosMastigaveis/Mineiro Graúdo.JPG',
     images: [
-      'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg',
-      'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg'
+      './catalogs/petiscosMastigaveis/Mineiro Graúdo.JPG',
+      './catalogs/petiscosMastigaveis/graudo mineiro.JPG',
     ],
-    details: 'Petisco natural sem conservantes, feito com ingredientes selecionados.'
+    details: 'Petisco 100% natural feito de pele bovina desidratada e enrolada artesanalmente. Super resistente — indicado para cães com energia e mordida forte. Proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental, combate tártaro e promove bem-estar. Embalagem com 1 unidade.'
   },
   {
-    id: 'luv-alecrim-2',
-    brand: 'luv-alecrim',
-    name: 'Biscoito Orgânico',
-    description: 'Petisco orgânico certificado',
-    price: 39.90,
-    image: 'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg',
+    id: 'chewer-7',
+    brand: 'natuka',
+    name: 'Orelha de Boi Jumbo com Ouvido Good Lovin',
+    description: 'Mastigável natural de orelha bovina com ouvido',
+    price: 13.90,
+    image: './catalogs/mordedores/com ouvido.JPG',
     images: [
-      'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg',
-      'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg'
+      './catalogs/mordedores/com ouvido.JPG',
+      './catalogs/mordedores/Orelha de boi com ouvido.JPG'
     ],
-    details: 'Biscoito feito com ingredientes orgânicos certificados, ideal para cães com sensibilidade alimentar.'
+    details: 'Petisco 100% natural feito de orelha de boi (com duto auditivo), higienizada, esterilizada e desidratada lentamente. Textura crocante e mais resistente, ideal para distração prolongada, enriquecimento ambiental e controle de ansiedade de separação. Auxilia na limpeza dental e redução de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
   },
   {
-    id: 'luv-alecrim-3',
-    brand: 'luv-alecrim',
-    name: 'Cookie Integral',
-    description: 'Biscoito integral nutritivo',
-    price: 29.90,
-    image: 'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg',
+    id: 'chewable-2',
+    brand: 'natuka',
+    name: 'Natuka Buba',
+    description: 'Mastigável natural de couro de búfalo',
+    price: 41.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
     images: [
-      'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg',
-      'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
+      './catalogs/petiscosMastigaveis/buba natuka.JPG'
     ],
-    details: 'Cookie integral rico em fibras e nutrientes essenciais.'
+    details: 'Mastigável 100% natural feito de couro de búfalo sem pelos, em formato espiral para maior resistência e segurança. Rico em estímulo para limpeza bucal, entretenimento e gasto de energia. Embalagem com 1 unidade.'
   },
   {
-    id: 'luv-alecrim-4',
-    brand: 'luv-alecrim',
-    name: 'Petisco de Frutas',
-    description: 'Mix de frutas desidratadas',
-    price: 32.90,
-    image: 'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg',
+    id: 'chewable-5',
+    brand: 'natuka',
+    name: 'Natuka Knot Plus',
+    description: 'Mastigável natural de couro bovino em formato de nó (knot)',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
     images: [
-      'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg',
-      'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
+      './catalogs/petiscosMastigaveis/knotplus.JPG'
     ],
-    details: 'Blend especial de frutas desidratadas, rico em vitaminas naturais.'
+    details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de médio a grande porte.'
   },
   {
-    id: 'luv-alecrim-5',
-    brand: 'luv-alecrim',
-    name: 'Snack Vegano',
-    description: 'Petisco à base de vegetais',
-    price: 36.90,
-    image: 'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg',
+    id: 'chewable-7',
+    brand: 'natuka',
+    name: 'Natuka Trança Bovina',
+    description: 'Rica em glucosamina natural',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
     images: [
-      'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg',
-      'https://images.pexels.com/photos/7788901/pexels-photo-7788901.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
+      './catalogs/petiscosMastigaveis/natuka tranca.JPG'
     ],
-    details: 'Petisco vegano feito com vegetais orgânicos selecionados.'
+    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
   },
 
   // GoodLoving (Bom Amoroso) Products

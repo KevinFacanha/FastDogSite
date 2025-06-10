@@ -9,263 +9,316 @@ const chewables: Product[] = [
   {
     id: 'chewable-1',
     brand: 'natuka',
-    name: 'Palito Mastigável Natural',
-    description: 'Palito natural para higiene bucal',
-    price: 24.90,
-    image: 'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg',
+    name: 'Aorta Bovina Natuka',
+    description: 'Mastigável natural de aorta bovina',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Aorta Bovina.JPG',
     images: [
-      'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg',
-      'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Aorta Bovina.JPG',
+      './catalogs/petiscosMastigaveis/aorta bovina.JPG'
     ],
-    details: 'Palito mastigável natural que auxilia na limpeza dos dentes e diversão do seu pet.'
+    details: 'Petisco 100% natural feito de aorta bovina desidratada lentamente em temperatura controlada. Rico em proteínas e colágeno, crocante, levemente flexível e altamente palatável. Ideal para limpeza bucal, estímulo de mastigação, enriquecimento ambiental e distração. Embalagem com 4 unidades.'
   },
   {
     id: 'chewable-2',
     brand: 'natuka',
-    name: 'Osso Mastigável Premium',
-    description: 'Osso resistente para cães grandes',
-    price: 25.90,
-    image: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
+    name: 'Natuka Buba',
+    description: 'Mastigável natural de couro de búfalo',
+    price: 41.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
     images: [
-      'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
-      'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
+      './catalogs/petiscosMastigaveis/buba natuka.JPG'
     ],
-    details: 'Osso mastigável premium, ideal para cães de grande porte que gostam de mastigar.'
+    details: 'Mastigável 100% natural feito de couro de búfalo sem pelos, em formato espiral para maior resistência e segurança. Rico em estímulo para limpeza bucal, entretenimento e gasto de energia. Embalagem com 1 unidade.'
   },
   {
     id: 'chewable-3',
     brand: 'natuka',
-    name: 'Couro Bovino Desidratado',
-    description: 'Couro natural para mastigação',
-    price: 26.90,
-    image: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg',
+    name: 'Natuka Puff',
+    description: 'Mastigável natural de bexiga bovina',
+    price: 37.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
     images: [
-      'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg',
-      'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
+      './catalogs/petiscosMastigaveis/puff natuka.JPG'
     ],
-    details: 'Couro bovino desidratado, 100% natural e seguro para mastigação prolongada.'
+    details: 'Petisco 100% natural feito de bexiga bovina desidratada lentamente. Baixo teor calórico, extremamente palatável e ideal para limpeza bucal, enriquecimento ambiental e distração. Embalagem com 5 unidades.'
   },
   {
     id: 'chewable-4',
     brand: 'natuka',
-    name: 'Chifre de Búfalo',
-    description: 'Mastigável duradouro natural',
-    price: 27.90,
-    image: 'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg',
+    name: 'Natuka Knot',
+    description: 'Mastigável natural de couro bovino em formato de nó (knot)',
+    price: 33.90,
+    image: './catalogs/petiscosMastigaveis/knot.jpeg',
     images: [
-      'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg',
-      'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg'
+      './catalogs/petiscosMastigaveis/knot.jpeg',
+      './catalogs/petiscosMastigaveis/natuka knot.JPG'
     ],
-    details: 'Chifre de búfalo natural, extremamente duradouro e rico em cálcio.'
+    details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de pequeno a médio porte'
   },
   {
     id: 'chewable-5',
     brand: 'natuka',
-    name: 'Tendão Bovino Trançado',
-    description: 'Tendão natural trançado',
-    price: 28.90,
-    image: 'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg',
+    name: 'Natuka Knot Plus',
+    description: 'Mastigável natural de couro bovino em formato de nó (knot)',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
     images: [
-      'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg',
-      'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
+      './catalogs/petiscosMastigaveis/knotplus.JPG'
     ],
-    details: 'Tendão bovino trançado, rico em proteínas e ideal para mastigação.'
+    details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de médio a grande porte.'
   },
   {
-    id: 'chewable-6',
-    brand: 'natuka',
-    name: 'Orelha de Porco Desidratada',
-    description: 'Petisco mastigável crocante',
-    price: 29.90,
-    image: 'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg',
-      'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg'
-    ],
-    details: 'Orelha de porco desidratada, crocante e saborosa para cães de todos os portes.'
-  },
+  id: 'natuka-1',
+  brand: 'natuka',
+  name: 'Palitinho Bovino Natuka',
+  description: 'Mastigável natural de couro bovino com pelos',
+  price: 28.90,
+  image: '/catalogs/Natuka Palitinho Bovino.JPG',
+  images: [
+    '/catalogs/Natuka Palitinho Bovino.JPG',
+    '/catalogs/palitinho bovino.jpeg'
+  ],
+  details: 'Petisco 100% natural feito de couro bovino com pelos, desidratado lentamente a baixa temperatura. Promove limpeza dental, entretenimento e estímulo à mastigação. Textura moderada, indicado para cães de todos os portes. Embalagem com 4 unidades.'
+},
   {
     id: 'chewable-7',
     brand: 'natuka',
-    name: 'Pata de Frango Desidratada',
+    name: 'Natuka Trança Bovina',
     description: 'Rica em glucosamina natural',
-    price: 30.90,
-    image: 'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
     images: [
-      'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg',
-      'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg'
+      './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
+      './catalogs/petiscosMastigaveis/natuka tranca.JPG'
     ],
-    details: 'Pata de frango desidratada, rica em glucosamina para saúde das articulações.'
+    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
   },
   {
     id: 'chewable-8',
     brand: 'natuka',
-    name: 'Traqueia Bovina',
-    description: 'Mastigável rico em cartilagem',
-    price: 31.90,
-    image: 'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg',
+    name: 'Mini Traqueia Bovina Good Lovin',
+    description: 'Mastigável natural de traqueia bovina',
+    price: 25.90,
+    image: './catalogs/petiscosMastigaveis/traqueia mini goodlovin.JPG',
     images: [
-      'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg',
-      'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg'
+      './catalogs/petiscosMastigaveis/traqueia mini goodlovin.JPG',
+      './catalogs/petiscosMastigaveis/traqueia mini.JPG'
     ],
-    details: 'Traqueia bovina rica em cartilagem, excelente para saúde articular.'
+    details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em baixa temperatura. Rico em colágeno, glucosamina e condroitina, auxilia na saúde das articulações e na regeneração de tecidos. Textura firme que promove limpeza dental e enriquecimento ambiental. Embalagem com 5 unidades.'
   },
   {
     id: 'chewable-9',
     brand: 'natuka',
-    name: 'Costela Bovina Defumada',
-    description: 'Sabor defumado irresistível',
-    price: 32.90,
-    image: 'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg',
+    name: 'Big Traqueia Bovina Good Lovin',
+    description: 'Mastigável natural de traqueia bovina – unidade única',
+    price: 25.90,
+    image: './catalogs/petiscosMastigaveis/traqueia.JPG',
     images: [
-      'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg',
-      'https://images.pexels.com/photos/7788901/pexels-photo-7788901.jpeg'
+      './catalogs/petiscosMastigaveis/traqueia.JPG',
+      './catalogs/petiscosMastigaveis/big traqueia.JPG'
     ],
-    details: 'Costela bovina defumada com sabor irresistível e textura ideal para mastigação.'
+    details: 'Petisco 100% natural feito de traqueia bovina higienizada e esterilizada, desidratada lentamente em baixa temperatura.\nRica em colágeno, glucosamina e condroitina — favorece a saúde articular e regeneração de tecidos.\nTextura rígida, ideal para promover limpeza dental, removendo tártaro e placa.\nEstimula a mastigação, proporcionando entretenimento, enriquecimento ambiental e alívio do estresse.\n\nEmbalagem contém 1 unidade (aproximadamente 13cm x 8cm), com variação natural de formato e cor.\nProduto livre de conservantes e corantes.'
   },
   {
     id: 'chewable-10',
     brand: 'natuka',
-    name: 'Pele de Peixe Desidratada',
-    description: 'Rica em ômega 3',
-    price: 33.90,
-    image: 'https://images.pexels.com/photos/7788901/pexels-photo-7788901.jpeg',
+    name: 'Spiral Júnior Good Lovin',
+    description: 'Mastigável natural de couro bovino em espiral – pacote com 5 unidades',
+    price: 25.90,
+    image: './catalogs/petiscosMastigaveis/Spiral Junior.JPG',
     images: [
-      'https://images.pexels.com/photos/7788901/pexels-photo-7788901.jpeg',
-      'https://images.pexels.com/photos/7788903/pexels-photo-7788903.jpeg'
+      './catalogs/petiscosMastigaveis/Spiral Junior.JPG',
+      './catalogs/petiscosMastigaveis/junior spiral.JPG'
     ],
-    details: 'Pele de peixe desidratada, rica em ômega 3 para pelagem brilhante.'
+    details: 'Petisco 100% natural feito de couro bovino desidratado lentamente em baixa temperatura, com pelos curtos. Itens altamente resistentes e duráveis, ideais para cães com grande necessidade de mastigação. Proporcionam limpeza dental (equivalem a 40 min de caminhada a cada 20 min de uso) e aliviam a ansiedade e estresse. Rico em fibras insolúveis que auxiliam o trânsito intestinal. Indicados para cães de porte pequeno, mas também adequados a todos os portes. Embalagem com 5 unidades (aprox. 14,5cm cada), peso mínimo de 55g. Conservação: após aberto, consumir em até 7 dias. Use sempre sob supervisão.'
   },
   {
     id: 'chewable-11',
     brand: 'natuka',
-    name: 'Focinho de Porco',
-    description: 'Mastigável natural resistente',
-    price: 34.90,
-    image: 'https://images.pexels.com/photos/7788903/pexels-photo-7788903.jpeg',
+    name: 'Spiral Extreme Good Lovin',
+    description: 'Mastigável natural de couro bovino em espiral – pacote com 2 unidades',
+    price: 29.90,
+    image: './catalogs/petiscosMastigaveis/Spiral extreme.JPG',
     images: [
-      'https://images.pexels.com/photos/7788903/pexels-photo-7788903.jpeg',
-      'https://images.pexels.com/photos/7788904/pexels-photo-7788904.jpeg'
+      './catalogs/petiscosMastigaveis/Spiral extreme.JPG',
+      './catalogs/petiscosMastigaveis/extreme spiral.JPG'
     ],
-    details: 'Focinho de porco natural, resistente e ideal para cães que adoram mastigar.'
+    details: 'Petisco 100% natural feito de couro bovino (com pelos), lavada, esterilizada e desidratada lentamente em baixa temperatura.\nIdeal para cães que gostam de mastigação intensa — súper resistente e durável.\nAuxilia na limpeza dental – funciona como fio dental natural, reduz em até 90% o odor da mastigação.\nOferece enriquecimento ambiental, alívio de estresse e estímulo mental.\n\nConteúdo da embalagem:\n• 2 espirais (peso mínimo de 100g).\n\nCuidados:\n• Use sempre sob supervisão.\n• Conservar em lugar seco e arejado, longe do calor e sol.\n• Consumir em até 7 dias após aberto.\n• Interrompa o uso se o pet começar a engolir pedaços grandes.'
   },
   {
     id: 'chewable-12',
     brand: 'natuka',
-    name: 'Nervo de Boi Torcido',
-    description: 'Mastigável de longa duração',
-    price: 35.90,
-    image: 'https://images.pexels.com/photos/7788904/pexels-photo-7788904.jpeg',
+    name: 'Tie Good Lovin',
+    description: 'Mastigável natural de couro bovino em formato de gravata',
+    price: 19.90,
+    image: './catalogs/petiscosMastigaveis/mordedor tie.JPG',
     images: [
-      'https://images.pexels.com/photos/7788904/pexels-photo-7788904.jpeg',
-      'https://images.pexels.com/photos/7788905/pexels-photo-7788905.jpeg'
+      './catalogs/petiscosMastigaveis/mordedor tie.JPG',
+      './catalogs/petiscosMastigaveis/tie.png'
     ],
-    details: 'Nervo de boi torcido, mastigável de longa duração rico em proteínas.'
+    details: 'Feito 100% de couro bovino com pelos curtos, desidratado lentamente. Altamente resistente, auxilia na saúde bucal, alívio do estresse e melhora do trânsito intestinal. Indicado para cães de todos os portes. Embalagem com 1 unidade (15cm).'
   },
   {
     id: 'chewable-13',
     brand: 'natuka',
-    name: 'Casca de Búfalo',
-    description: 'Mastigável extra resistente',
-    price: 36.90,
-    image: 'https://images.pexels.com/photos/7788905/pexels-photo-7788905.jpeg',
+    name: 'Orelha de Coelho Luv',
+    description: 'Mastigável natural de orelha de coelho',
+    price: 44.90,
+    image: './catalogs/petiscosMastigaveis/Orelha de Coelho.jpeg',
     images: [
-      'https://images.pexels.com/photos/7788905/pexels-photo-7788905.jpeg',
-      'https://images.pexels.com/photos/7788906/pexels-photo-7788906.jpeg'
+      './catalogs/petiscosMastigaveis/Orelha de Coelho.jpeg',
+      './catalogs/petiscosMastigaveis/coelho orelha.JPG'
     ],
-    details: 'Casca de búfalo extra resistente, ideal para cães destruidores.'
+    details: 'Petisco 100% natural feito de orelhas de coelho desidratadas lentamente em temperatura controlada. Baixa rigidez, ideal para cães e gatos de pequeno porte. Rico em cartilagem e pelos — auxilia na limpeza bucal, saúde gastrointestinal e oferece enriquecimento ambiental. Embalagem com 50g.'
   },
   {
     id: 'chewable-14',
     brand: 'natuka',
-    name: 'Pulmão Bovino Desidratado',
-    description: 'Leve e nutritivo',
-    price: 37.90,
-    image: 'https://images.pexels.com/photos/7788906/pexels-photo-7788906.jpeg',
+    name: 'Luv Mini Mat',
+    description: 'Mastigável natural de pele bovina em formato quadrado',
+    price: 39.90,
+    image: './catalogs/petiscosMastigaveis/mat mini.jpeg',
     images: [
-      'https://images.pexels.com/photos/7788906/pexels-photo-7788906.jpeg',
-      'https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg'
+      './catalogs/petiscosMastigaveis/mat mini.jpeg',
+      './catalogs/petiscosMastigaveis/mini mat.JPG'
     ],
-    details: 'Pulmão bovino desidratado, leve e nutritivo, ideal para cães idosos.'
+    details: 'Petisco 100% natural feito de pele bovina com pelos, desidratado lentamente. Nível difícil, ideal para cães de porte pequeno e filhotes. Auxilia na limpeza dental, controle de ansiedade e satisfação do instinto de roer. Embalagem com 2 unidades.'
   },
   {
     id: 'chewable-15',
     brand: 'natuka',
-    name: 'Rabo de Porco Inteiro',
-    description: 'Mastigável natural completo',
-    price: 38.90,
-    image: 'https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg',
+    name: 'Traqueia Bovina Luv',
+    description: 'Mastigável natural de cartilagem bovina',
+    price: 44.90,
+    image: './catalogs/petiscosMastigaveis/Traqueia Bovina.jpeg',
     images: [
-      'https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg',
-      'https://images.pexels.com/photos/4498185/pexels-photo-4498185.jpeg'
+      './catalogs/petiscosMastigaveis/Traqueia Bovina.jpeg',
+      './catalogs/petiscosMastigaveis/bovina traqueia.JPG',
     ],
-    details: 'Rabo de porco inteiro, mastigável natural que proporciona horas de diversão.'
+    details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em temperatura controlada. Rico em glucosamina e condroitina, favorece articulações e limpeza dental. Mastigável leve (nível fácil), adequado para cães de todos os portes. Embalagem com 200g.'
   },
   {
     id: 'chewable-16',
     brand: 'natuka',
-    name: 'Cartilagem de Tubarão',
-    description: 'Rico em condroitina',
-    price: 39.90,
-    image: 'https://images.pexels.com/photos/4498185/pexels-photo-4498185.jpeg',
+    name: 'Traqueia Redonda Luv',
+    description: 'Mastigável natural de traqueia bovina em formato redondo',
+    price: 39.44,
+    image: './catalogs/petiscosMastigaveis/Traqueia Redonda.jpeg',
     images: [
-      'https://images.pexels.com/photos/4498185/pexels-photo-4498185.jpeg',
-      'https://images.pexels.com/photos/6568461/pexels-photo-6568461.jpeg'
+      './catalogs/petiscosMastigaveis/Traqueia Redonda.jpeg',
+      './catalogs/petiscosMastigaveis/redonda traqueia.JPG'
     ],
-    details: 'Cartilagem de tubarão rica em condroitina para saúde das articulações.'
+    details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em baixa temperatura. Seu formato redondo dificulta a posição de mordida, tornando a mastigação mais eficiente na limpeza dos dentes caninos. Rico em glucosamina e condroitina, auxilia na saúde articular e na higiene bucal. Dificuldade: fácil; indicado para cães saudáveis de todos os portes. Embalagem com 1 unidade.'
   },
   {
     id: 'chewable-17',
     brand: 'natuka',
-    name: 'Pescoço de Frango',
-    description: 'Crocante e nutritivo',
-    price: 40.90,
-    image: 'https://images.pexels.com/photos/6568461/pexels-photo-6568461.jpeg',
+    name: 'Luv Mat',
+    description: 'Mastigável natural de pele bovina em formato quadrado',
+    price: 57.49,
+    image: './catalogs/petiscosMastigaveis/luv mat.jpeg',
     images: [
-      'https://images.pexels.com/photos/6568461/pexels-photo-6568461.jpeg',
-      'https://images.pexels.com/photos/7788658/pexels-photo-7788658.jpeg'
+      './catalogs/petiscosMastigaveis/luv mat.jpeg',
+      './catalogs/petiscosMastigaveis/mat luv.JPG'
     ],
-    details: 'Pescoço de frango crocante, rico em cálcio e fósforo natural.'
+    details: 'Petisco 100% natural feito de pele bovina com pelos, desidratado lentamente em temperatura controlada.\nFormato quadrado ( 20 x 20 cm), sem base para roer — mais desafiador para o pet.\nDificuldade: difícil; indicado para cães saudáveis de porte médio e grande.\nAuxilia na limpeza dental, sacia o instinto de roer, protege móveis e oferece enriquecimento ambiental — 20 min de mastigação equivalem a 40 min de caminhada.\nEmbalagem com 1 unidade.\nConservar em local seco e arejado; após aberto, consumir em até 15 dias.'
   },
   {
     id: 'chewable-18',
     brand: 'natuka',
-    name: 'Espinha de Peixe Grande',
-    description: 'Mastigável marinho',
-    price: 41.90,
-    image: 'https://images.pexels.com/photos/7788658/pexels-photo-7788658.jpeg',
+    name: 'Orelha Suína Luv',
+    description: 'Mastigável natural de orelha de porco',
+    price: 51.49,
+    image: './catalogs/petiscosMastigaveis/Orelha Suína.jpeg',
     images: [
-      'https://images.pexels.com/photos/7788658/pexels-photo-7788658.jpeg',
-      'https://images.pexels.com/photos/7788659/pexels-photo-7788659.jpeg'
+      './catalogs/petiscosMastigaveis/Orelha Suína.jpeg',
+      './catalogs/petiscosMastigaveis/suina orelha.JPG'
     ],
-    details: 'Espinha de peixe grande, mastigável marinho rico em minerais.'
+    details: 'Petisco 100% natural feito de orelhas de porco desidratadas lentamente em baixa temperatura. Baixa rigidez, ideal para cães de todos os portes, especialmente filhotes.\n\nBenefícios:\n• Auxilia na limpeza dental e higiene gengival;\n• Estimula o instinto de mastigação, reduz ansiedade e protege móveis;\n• Promove entretenimento e enriquecimento ambiental.\n\nEmbalagem com 4 unidades.\n\nDificuldade: fácil a moderado.'
   },
   {
     id: 'chewable-19',
     brand: 'natuka',
-    name: 'Joelho de Porco',
-    description: 'Articulação natural',
-    price: 42.90,
-    image: 'https://images.pexels.com/photos/7788659/pexels-photo-7788659.jpeg',
+    name: 'Orelha Bovina Luv',
+    description: 'Mastigável natural de orelha bovina com pelos',
+    price: 51.49,
+    image: './catalogs/petiscosMastigaveis/orelha bovina luv.JPG',
     images: [
-      'https://images.pexels.com/photos/7788659/pexels-photo-7788659.jpeg',
-      'https://images.pexels.com/photos/1938123/pexels-photo-1938123.jpeg'
+      './catalogs/petiscosMastigaveis/orelha bovina luv.JPG',
+      './catalogs/petiscosMastigaveis/bovina orelha.JPG'
     ],
-    details: 'Joelho de porco natural, articulação rica em cartilagem e colágeno.'
+    details: 'Petisco 100% natural feito de orelhas de boi desidratadas lentamente em temperatura controlada. Rigidez moderada, ideal para cães de todos os portes. Auxilia na limpeza dental, alivia o estresse e entretém o pet — 20 min roendo equivalem a 40 min de caminhada.'
   },
   {
     id: 'chewable-20',
     brand: 'natuka',
-    name: 'Mix Mastigáveis Premium',
-    description: 'Variedade de mastigáveis',
-    price: 43.90,
-    image: 'https://images.pexels.com/photos/1938123/pexels-photo-1938123.jpeg',
+    name: 'Delícia de Treino – Coração Bovino Alecrim Pet',
+    description: 'Petisco natural de coração bovino desidratado',
+    price: 29.90,
+    image: './catalogs/petiscosMastigaveis/bovino coração.JPG',
     images: [
-      'https://images.pexels.com/photos/1938123/pexels-photo-1938123.jpeg',
-      'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg'
+      './catalogs/petiscosMastigaveis/bovino coração.JPG',
+      './catalogs/petiscosMastigaveis/coração bovino.JPG'
     ],
-    details: 'Mix premium com variedade de mastigáveis naturais para máxima diversão.'
+    details: 'Petisco 100% natural feito de coração bovino desidratado lentamente em baixa temperatura. Baixo teor calórico — ideal para cães e gatos com sobrepeso. Textura crocante, fácil de fragmentar na mão — excelente para treinos, adestramento e apoio a filhotes e idosos. Rico em proteínas, vitaminas B (riboflavina, niacina e B12), ferro e zinco. Embalagem com 70g.'
+  },
+    {
+    id: 'chewable-20',
+    brand: 'natuka',
+    name: 'Rosquinha Mineira',
+    description: 'Mastigável natural de pele bovina enrolada',
+    price: 28.49,
+    image: './catalogs/petiscosMastigaveis/Rosquinha Mineira.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/Rosquinha Mineira.JPG',
+      './catalogs/petiscosMastigaveis/mineira rosquinha.JPG'
+    ],
+    details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona distração prolongada, enriquece o ambiente e exercita a mandíbula. Auxilia na limpeza dental. Embalagem com 4 unidades.'
+  },
+    {
+    id: 'chewable-20',
+    brand: 'natuka',
+    name: 'Rocambole Mineiro Miúdo Alecrim Pet',
+    description: 'Mastigável natural de pele bovina enrolada',
+    price: 29.90,
+    image: './catalogs/petiscosMastigaveis/rocambole mineiro.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/rocambole mineiro.JPG',
+      './catalogs/petiscosMastigaveis/mineiro rocambole.JPG'
+    ],
+    details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental e alívio da ansiedade. Indicado para cães de todos os portes e idades — ideal para mordida forte. Embalagem com 1 unidade.'
+  },
+    {
+    id: 'chewable-20',
+    brand: 'natuka',
+    name: 'Rocambole Mineiro Graúdo Alecrim Pet',
+    description: 'Mastigável natural de pele bovina enrolada',
+    price: 41.90,
+    image: './catalogs/petiscosMastigaveis/Mineiro Graúdo.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/Mineiro Graúdo.JPG',
+      './catalogs/petiscosMastigaveis/graudo mineiro.JPG',
+    ],
+    details: 'Petisco 100% natural feito de pele bovina desidratada e enrolada artesanalmente. Super resistente — indicado para cães com energia e mordida forte. Proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental, combate tártaro e promove bem-estar. Embalagem com 1 unidade.'
+  },
+    {
+    id: 'chewable-20',
+    brand: 'natuka',
+    name: 'Buchinho Crocante AlecrimPet',
+    description: 'Mastigável natural de rúmen bovino',
+    price: 28.90,
+    image: './catalogs/petiscosMastigaveis/buchinho crocante.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/buchinho crocante.JPG',
+      './catalogs/petiscosMastigaveis/crocante buchinho.JPG'
+    ],
+    details: 'Petisco 100% natural feito de rúmen bovino desidratado lentamente. Super crocante com aroma marcante, rico em proteínas. Baixo teor calórico — ideal para cães e gatos com sobrepeso. Fácil de fragmentar na mão, excelente para treinos, filhotes e idosos. Promove limpeza dental e saúde gastrointestinal. Indicado para cães e gatos de todos os portes. Embalagem com 70 g.'
   }
+  
 ];
 
 interface ProductModalProps {
@@ -285,7 +338,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const calculatePixPrice = (price: number) => price - 1.10;
+  const calculatePixPrice = (price: number) => price * 0.9;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -308,15 +361,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="flex justify-center space-x-2">
+            <div className="grid grid-cols-2 gap-2">
               {product.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
+                  className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
                     selectedImage === index
-                      ? 'border-green-500 ring-2 ring-green-200'
-                      : 'border-gray-200 hover:border-green-300'
+                      ? 'border-green-500'
+                      : 'border-transparent hover:border-green-300'
                   }`}
                 >
                   <img
@@ -436,7 +489,7 @@ const ChewablesPage: React.FC = () => {
   };
 
   const calculatePixPrice = (price: number) => {
-    return price - 1.10;
+    return price * 0.9;
   };
 
   return (

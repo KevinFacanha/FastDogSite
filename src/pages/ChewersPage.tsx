@@ -9,263 +9,96 @@ const chewers: Product[] = [
   {
     id: 'chewer-1',
     brand: 'natuka',
-    name: 'Mordedor de Corda Natural',
-    description: 'Mordedor de corda resistente',
-    price: 39.90,
-    image: 'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg',
+    name: 'Casco Bovino Natuka',
+    description: 'Mastigável natural de casco bovino',
+    price: 41.90,
+    image: './catalogs/mordedores/Natuka Casco Bovino.JPG',
     images: [
-      'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg',
-      'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg'
+      './catalogs/mordedores/Natuka Casco Bovino.JPG',
+      './catalogs/mordedores/bovino casco.JPG'
     ],
-    details: 'Mordedor de corda natural, resistente e seguro para cães de todos os portes.'
+    details: 'Petisco 100% natural feito de casco bovino (queratina), desidratado lentamente. Extremamente rígido — oferece mastigação prolongada e pode durar dias. Pode ser recheado para enriquecimento ambiental. Ideal para limpeza dental, alívio de estresse e controle de peso. Indicado para cães de todos os portes, exceto com problemas dentários. Embalagem com 4 unidades.'
   },
   {
     id: 'chewer-2',
     brand: 'natuka',
-    name: 'Bola Mordedora Texturizada',
-    description: 'Bola com textura para massagem',
-    price: 40.90,
-    image: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
+    name: 'Chifre Bovino Natuka',
+    description: 'Mastigável natural de chifre bovino',
+    price: 24.90,
+    image: './catalogs/mordedores/Natuka Chifre.JPG',
     images: [
-      'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
-      'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg'
+      './catalogs/mordedores/Natuka Chifre.JPG',
+      './catalogs/mordedores/bovino chifre.JPG'
     ],
-    details: 'Bola mordedora com textura especial que massageia as gengivas do seu pet.'
+    details: 'Petisco 100% natural feito de chifre bovino (queratina), sem ponta, muito rígido e durável. Ideal para mastigação prolongada, limpeza dental e enriquecimento ambiental. Pode ser recheado para maior estímulo. Indicado para cães de todos os portes. Produto natural — variações de tamanho, cor e peso podem ocorrer.\n\nDisponível em dois tamanhos:\n• Tamanho M (porte médio): R$ 24,90\n• Tamanho G (porte grande): R$ 27,90\nEmbalagem com 1 unidade..'
   },
   {
     id: 'chewer-3',
     brand: 'natuka',
-    name: 'Osso de Nylon Resistente',
-    description: 'Osso sintético ultra resistente',
-    price: 41.90,
-    image: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg',
+    name: 'Casco Bovino Good Lovin',
+    description: 'Mastigável natural de casco bovino',
+    price: 12.50,
+    image: './catalogs/mordedores/Casco.JPG',
     images: [
-      'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg',
-      'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg'
+      './catalogs/mordedores/Casco.JPG',
+      './catalogs/mordedores/casco bovino good.JPG'
     ],
-    details: 'Osso de nylon ultra resistente, ideal para cães destruidores e mastigadores compulsivos.'
+    details: 'Petisco 100% natural feito de casco bovino higienizado e esterilizado, desidratado lentamente. Alta durabilidade — ideal para filhotes em troca dentária e cães com instinto de mastigação. Promove limpeza dental, controle de tártaro e distração prolongada. Indicado para cães de pequeno e médio porte. Embalagem com 1 unidade.'
   },
   {
     id: 'chewer-4',
     brand: 'natuka',
-    name: 'Mordedor Kong Classic',
-    description: 'Mordedor recheável premium',
-    price: 42.90,
-    image: 'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg',
+    name: 'Chifre Bovino Good Lovin',
+    description: 'Mastigável natural de chifre bovino',
+    price: 38.90,
+    image: './catalogs/mordedores/Chifre.JPG',
     images: [
-      'https://images.pexels.com/photos/4587959/pexels-photo-4587959.jpeg',
-      'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg'
+      './catalogs/mordedores/Chifre.JPG',
+      './catalogs/mordedores/bovino chifre good.JPG'
     ],
-    details: 'Mordedor Kong clássico, pode ser recheado com petiscos para maior diversão.'
+    details: 'Petisco 100% natural feito de chifre bovino inteiro, higienizado e desidratado lentamente. Muito resistente e durável, ideal para mastigação prolongada e limpeza dental. Indicado para cães de porte médio e grande. Embalagem com 1 unidade. '
   },
   {
     id: 'chewer-5',
     brand: 'natuka',
-    name: 'Corda Dental Tripla',
-    description: 'Corda com três nós para limpeza',
-    price: 43.90,
-    image: 'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg',
+    name: 'Orelha Bovina Júnior com Pelos Good Lovin',
+    description: 'Mastigável natural de orelha bovina com pelos',
+    price: 12.90,
+    image: './catalogs/mordedores/Orelha bovina.JPG',
     images: [
-      'https://images.pexels.com/photos/6816860/pexels-photo-6816860.jpeg',
-      'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg'
+      './catalogs/mordedores/Orelha bovina.JPG',
+      './catalogs/mordedores/bovina orelha.JPG'
     ],
-    details: 'Corda dental com três nós que ajuda na limpeza dos dentes durante a brincadeira.'
+    details: 'Petisco 100% natural feito de orelha bovina com pelos, higienizada e desidratada lentamente. Textura crocante, rica em magnésio, auxilia na limpeza dental e alívio de estresse. Ideal para distração prolongada. Embalagem com 1 unidade.'
   },
   {
     id: 'chewer-6',
     brand: 'natuka',
-    name: 'Mordedor de Borracha Natural',
-    description: 'Borracha 100% natural',
-    price: 44.90,
-    image: 'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg',
+    name: 'Orelha de Boi Jumbo Good Lovin (sem ouvido)',
+    description: 'Mastigável natural de orelha bovina sem ouvido',
+    price: 12.90,
+    image: './catalogs/mordedores/orelha de boi.JPG',
     images: [
-      'https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg',
-      'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg'
+      './catalogs/mordedores/orelha de boi.JPG',
+      './catalogs/mordedores/orelha de boi.JPG'
     ],
-    details: 'Mordedor feito com borracha 100% natural, seguro e resistente.'
+    details: 'Petisco 100% natural feito de orelha de boi higienizada, esterilizada e desidratada lentamente. Muito crocante, alta palatabilidade e durabilidade, ideal para distração prolongada e enriquecimento ambiental. Auxilia na higiene bucal e controle de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
   },
   {
     id: 'chewer-7',
     brand: 'natuka',
-    name: 'Brinquedo Interativo Puzzle',
-    description: 'Estimula a inteligência',
-    price: 45.90,
-    image: 'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg',
+    name: 'Orelha de Boi Jumbo com Ouvido Good Lovin',
+    description: 'Mastigável natural de orelha bovina com ouvido',
+    price: 13.90,
+    image: './catalogs/mordedores/com ouvido.JPG',
     images: [
-      'https://images.pexels.com/photos/7788654/pexels-photo-7788654.jpeg',
-      'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg'
+      './catalogs/mordedores/com ouvido.JPG',
+      './catalogs/mordedores/Orelha de boi com ouvido.JPG'
     ],
-    details: 'Brinquedo puzzle que estimula a inteligência e mantém o cão entretido por horas.'
-  },
-  {
-    id: 'chewer-8',
-    brand: 'natuka',
-    name: 'Mordedor Gelado Refrescante',
-    description: 'Pode ser congelado',
-    price: 46.90,
-    image: 'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788239/pexels-photo-7788239.jpeg',
-      'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg'
-    ],
-    details: 'Mordedor que pode ser congelado, ideal para alívio durante a dentição.'
-  },
-  {
-    id: 'chewer-9',
-    brand: 'natuka',
-    name: 'Frisbee Mordedor Flexível',
-    description: 'Frisbee resistente a mordidas',
-    price: 47.90,
-    image: 'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788236/pexels-photo-7788236.jpeg',
-      'https://images.pexels.com/photos/7788901/pexels-photo-7788901.jpeg'
-    ],
-    details: 'Frisbee flexível e resistente, perfeito para brincadeiras ao ar livre.'
-  },
-  {
-    id: 'chewer-10',
-    brand: 'natuka',
-    name: 'Mordedor Flutuante Aquático',
-    description: 'Ideal para brincadeiras na água',
-    price: 48.90,
-    image: 'https://images.pexels.com/photos/7788901/pexels-photo-7788901.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788901/pexels-photo-7788901.jpeg',
-      'https://images.pexels.com/photos/7788903/pexels-photo-7788903.jpeg'
-    ],
-    details: 'Mordedor flutuante, perfeito para brincadeiras na piscina ou praia.'
-  },
-  {
-    id: 'chewer-11',
-    brand: 'natuka',
-    name: 'Osso com Sabor Bacon',
-    description: 'Mordedor saborizado',
-    price: 49.90,
-    image: 'https://images.pexels.com/photos/7788903/pexels-photo-7788903.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788903/pexels-photo-7788903.jpeg',
-      'https://images.pexels.com/photos/7788904/pexels-photo-7788904.jpeg'
-    ],
-    details: 'Osso mordedor com delicioso sabor de bacon que mantém o interesse do cão.'
-  },
-  {
-    id: 'chewer-12',
-    brand: 'natuka',
-    name: 'Bola com Corda Integrada',
-    description: 'Dois brinquedos em um',
-    price: 50.90,
-    image: 'https://images.pexels.com/photos/7788904/pexels-photo-7788904.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788904/pexels-photo-7788904.jpeg',
-      'https://images.pexels.com/photos/7788905/pexels-photo-7788905.jpeg'
-    ],
-    details: 'Bola com corda integrada, oferece duas formas de diversão em um só produto.'
-  },
-  {
-    id: 'chewer-13',
-    brand: 'natuka',
-    name: 'Mordedor Dental Massageador',
-    description: 'Massageia gengivas e limpa dentes',
-    price: 51.90,
-    image: 'https://images.pexels.com/photos/7788905/pexels-photo-7788905.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788905/pexels-photo-7788905.jpeg',
-      'https://images.pexels.com/photos/7788906/pexels-photo-7788906.jpeg'
-    ],
-    details: 'Mordedor com textura especial que massageia as gengivas e limpa os dentes.'
-  },
-  {
-    id: 'chewer-14',
-    brand: 'natuka',
-    name: 'Brinquedo Dispensador de Ração',
-    description: 'Libera ração durante a brincadeira',
-    price: 52.90,
-    image: 'https://images.pexels.com/photos/7788906/pexels-photo-7788906.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788906/pexels-photo-7788906.jpeg',
-      'https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg'
-    ],
-    details: 'Brinquedo inteligente que libera ração conforme o cão brinca, estimulando a atividade.'
-  },
-  {
-    id: 'chewer-15',
-    brand: 'natuka',
-    name: 'Mordedor Luminoso LED',
-    description: 'Brilha no escuro',
-    price: 53.90,
-    image: 'https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg',
-    images: [
-      'https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg',
-      'https://images.pexels.com/photos/4498185/pexels-photo-4498185.jpeg'
-    ],
-    details: 'Mordedor com LED que brilha no escuro, perfeito para brincadeiras noturnas.'
-  },
-  {
-    id: 'chewer-16',
-    brand: 'natuka',
-    name: 'Corda de Algodão Orgânico',
-    description: 'Fibras naturais orgânicas',
-    price: 54.90,
-    image: 'https://images.pexels.com/photos/4498185/pexels-photo-4498185.jpeg',
-    images: [
-      'https://images.pexels.com/photos/4498185/pexels-photo-4498185.jpeg',
-      'https://images.pexels.com/photos/6568461/pexels-photo-6568461.jpeg'
-    ],
-    details: 'Corda feita com algodão 100% orgânico, segura e ecológica.'
-  },
-  {
-    id: 'chewer-17',
-    brand: 'natuka',
-    name: 'Mordedor Antibacteriano',
-    description: 'Com propriedades antibacterianas',
-    price: 55.90,
-    image: 'https://images.pexels.com/photos/6568461/pexels-photo-6568461.jpeg',
-    images: [
-      'https://images.pexels.com/photos/6568461/pexels-photo-6568461.jpeg',
-      'https://images.pexels.com/photos/7788658/pexels-photo-7788658.jpeg'
-    ],
-    details: 'Mordedor com propriedades antibacterianas que ajuda na higiene bucal.'
-  },
-  {
-    id: 'chewer-18',
-    brand: 'natuka',
-    name: 'Bola Sonora Musical',
-    description: 'Emite sons divertidos',
-    price: 56.90,
-    image: 'https://images.pexels.com/photos/7788658/pexels-photo-7788658.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788658/pexels-photo-7788658.jpeg',
-      'https://images.pexels.com/photos/7788659/pexels-photo-7788659.jpeg'
-    ],
-    details: 'Bola que emite sons musicais divertidos, estimulando o interesse do cão.'
-  },
-  {
-    id: 'chewer-19',
-    brand: 'natuka',
-    name: 'Mordedor Ecológico Bambu',
-    description: 'Feito com fibra de bambu',
-    price: 57.90,
-    image: 'https://images.pexels.com/photos/7788659/pexels-photo-7788659.jpeg',
-    images: [
-      'https://images.pexels.com/photos/7788659/pexels-photo-7788659.jpeg',
-      'https://images.pexels.com/photos/1938123/pexels-photo-1938123.jpeg'
-    ],
-    details: 'Mordedor ecológico feito com fibra de bambu, sustentável e resistente.'
-  },
-  {
-    id: 'chewer-20',
-    brand: 'natuka',
-    name: 'Kit Mordedores Variados',
-    description: 'Conjunto com 5 mordedores',
-    price: 58.90,
-    image: 'https://images.pexels.com/photos/1938123/pexels-photo-1938123.jpeg',
-    images: [
-      'https://images.pexels.com/photos/1938123/pexels-photo-1938123.jpeg',
-      'https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg'
-    ],
-    details: 'Kit completo com 5 mordedores diferentes para máxima diversão e variedade.'
+    details: 'Petisco 100% natural feito de orelha de boi (com duto auditivo), higienizada, esterilizada e desidratada lentamente. Textura crocante e mais resistente, ideal para distração prolongada, enriquecimento ambiental e controle de ansiedade de separação. Auxilia na limpeza dental e redução de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
   }
+
+
 ];
 
 interface ProductModalProps {
