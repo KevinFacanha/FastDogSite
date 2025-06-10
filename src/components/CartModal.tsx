@@ -14,6 +14,9 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   const [cep, setCep] = useState('');
   const [cepError, setCepError] = useState('');
 
+  // Lista de cupons válidos
+  const validCoupons = ['ESCOLADECAES10', 'LOKIEAPOLO10', 'BDOG10'];
+
   const formatCEP = (value: string) => {
     const numbers = value.replace(/\D/g, '');
     if (numbers.length <= 5) return numbers;
@@ -53,9 +56,19 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   };
 
   const handleApplyCoupon = () => {
-    if (couponInput.trim()) {
-      setCouponCode(couponInput.trim());
+    const couponToValidate = couponInput.trim().toUpperCase();
+    
+    if (!couponToValidate) {
+      toast.error('Digite um cupom');
+      return;
+    }
+
+    if (validCoupons.includes(couponToValidate)) {
+      setCouponCode(couponToValidate);
+      setCouponInput('');
       toast.success('Cupom aplicado com sucesso');
+    } else {
+      toast.error('Cupom inválido');
     }
   };
 
@@ -150,6 +163,11 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                     onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                     placeholder="Digite seu cupom"
                     className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        handleApplyCoupon();
+                      }
+                    }}
                   />
                 </div>
               </div>
