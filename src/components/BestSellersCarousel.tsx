@@ -248,7 +248,8 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-green-800 dark:text-green-400 mb-8 text-center">Mais Vendidos</h2>
         
-        <div className="relative">
+        {/* Container com padding lateral para as setas */}
+        <div className="relative px-8 md:px-12">
           <div className="overflow-hidden">
             <div 
               className="flex transition-transform duration-300 ease-in-out"
@@ -320,28 +321,46 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
             </div>
           </div>
           
-          {/* Seta Esquerda */}
+          {/* Seta Esquerda - Posicionamento melhorado */}
           {currentIndex > 0 && (
             <button
               onClick={handlePrevious}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10 border dark:border-gray-600"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-full p-2 md:p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-20 border dark:border-gray-600"
               aria-label="Produtos anteriores"
             >
-              <ChevronLeft className="h-6 w-6 text-green-600 dark:text-green-400" />
+              <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-green-600 dark:text-green-400" />
             </button>
           )}
           
-          {/* Seta Direita */}
+          {/* Seta Direita - Posicionamento melhorado */}
           {currentIndex < maxIndex && (
             <button
               onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10 border dark:border-gray-600"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-full p-2 md:p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-20 border dark:border-gray-600"
               aria-label="Próximos produtos"
             >
-              <ChevronRight className="h-6 w-6 text-green-600 dark:text-green-400" />
+              <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-green-600 dark:text-green-400" />
             </button>
           )}
         </div>
+
+        {/* Indicadores de navegação para mobile */}
+        {productsPerPage === 1 && products.length > 1 && (
+          <div className="flex justify-center mt-6 space-x-2">
+            {Array.from({ length: products.length }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex
+                    ? 'bg-green-600 dark:bg-green-400'
+                    : 'bg-gray-300 dark:bg-gray-600'
+                }`}
+                aria-label={`Ir para produto ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {selectedProduct && (
