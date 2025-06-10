@@ -17,7 +17,7 @@ export const products: Product[] = [
   },
  {
     id: 'chewable-15',
-    brand: 'natuka',
+    brand: 'luv',
     name: 'Traqueia Bovina Luv',
     description: 'Mastigável natural de cartilagem bovina',
     price: 44.90,
