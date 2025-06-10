@@ -278,10 +278,13 @@ const TreatsPage: React.FC = () => {
   // Função para scroll suave para o grid de produtos (apenas mobile)
   const scrollToProductsGrid = () => {
     if (isMobile() && productsGridRef.current) {
-      productsGridRef.current.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+      // Usar setTimeout para garantir que o DOM foi atualizado
+      setTimeout(() => {
+        productsGridRef.current?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
     }
   };
 

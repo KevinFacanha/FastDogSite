@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Heart, Plus, X, Minus, Package, Clock, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
@@ -252,7 +252,7 @@ const ChewersPage: React.FC = () => {
   const productsPerPage = 6;
   const addItem = useCartStore((state) => state.addItem);
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
-  const productsGridRef = useRef<HTMLDivElement>(null);
+  const productsGridRef = React.useRef<HTMLDivElement>(null);
 
   // Filtrar produtos baseado no termo de busca
   const filteredChewers = chewers.filter(product =>
@@ -277,10 +277,13 @@ const ChewersPage: React.FC = () => {
   // Função para scroll suave para o grid de produtos (apenas mobile)
   const scrollToProductsGrid = () => {
     if (isMobile() && productsGridRef.current) {
-      productsGridRef.current.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+      // Usar setTimeout para garantir que o DOM foi atualizado
+      setTimeout(() => {
+        productsGridRef.current?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
     }
   };
 
