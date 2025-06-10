@@ -118,7 +118,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const calculatePixPrice = (price: number) => price - 1.10;
+  const calculatePixPrice = (price: number) => price - 1.26;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -184,7 +184,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 R$ {product.price.toFixed(2)}
               </p>
               <p className="text-gray-600">
-                Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+              </p>
+              <p className="text-sm text-green-600 font-medium">
+                👉 Economize R$ 1,26 no Pix
               </p>
             </div>
             
@@ -278,7 +281,7 @@ const ChewersPage: React.FC = () => {
   };
 
   const calculatePixPrice = (price: number) => {
-    return price - 1.10;
+    return price - 1.26;
   };
 
   return (
@@ -344,7 +347,10 @@ const ChewersPage: React.FC = () => {
                         R$ {product.price.toFixed(2)}
                       </p>
                       <p className="text-sm text-gray-600">
-                        Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                        👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                      </p>
+                      <p className="text-xs text-green-600 font-medium">
+                        👉 Economize R$ 1,26 no Pix
                       </p>
                     </div>
                     <button

@@ -267,7 +267,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de coração bovino desidratado lentamente em baixa temperatura. Baixo teor calórico — ideal para cães e gatos com sobrepeso. Textura crocante, fácil de fragmentar na mão — excelente para treinos, adestramento e apoio a filhotes e idosos. Rico em proteínas, vitaminas B (riboflavina, niacina e B12), ferro e zinco. Embalagem com 70g.'
   },
     {
-    id: 'chewable-20',
+    id: 'chewable-21',
     brand: 'natuka',
     name: 'Rosquinha Mineira',
     description: 'Mastigável natural de pele bovina enrolada',
@@ -280,7 +280,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona distração prolongada, enriquece o ambiente e exercita a mandíbula. Auxilia na limpeza dental. Embalagem com 4 unidades.'
   },
     {
-    id: 'chewable-20',
+    id: 'chewable-22',
     brand: 'natuka',
     name: 'Rocambole Mineiro Miúdo Alecrim Pet',
     description: 'Mastigável natural de pele bovina enrolada',
@@ -293,7 +293,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental e alívio da ansiedade. Indicado para cães de todos os portes e idades — ideal para mordida forte. Embalagem com 1 unidade.'
   },
     {
-    id: 'chewable-20',
+    id: 'chewable-23',
     brand: 'natuka',
     name: 'Rocambole Mineiro Graúdo Alecrim Pet',
     description: 'Mastigável natural de pele bovina enrolada',
@@ -306,7 +306,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de pele bovina desidratada e enrolada artesanalmente. Super resistente — indicado para cães com energia e mordida forte. Proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental, combate tártaro e promove bem-estar. Embalagem com 1 unidade.'
   },
     {
-    id: 'chewable-20',
+    id: 'chewable-24',
     brand: 'natuka',
     name: 'Buchinho Crocante AlecrimPet',
     description: 'Mastigável natural de rúmen bovino',
@@ -338,7 +338,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const calculatePixPrice = (price: number) => price * 0.9;
+  const calculatePixPrice = (price: number) => price - 1.26;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -406,7 +406,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 R$ {product.price.toFixed(2)}
               </p>
               <p className="text-gray-600">
-                Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+              </p>
+              <p className="text-sm text-green-600 font-medium">
+                👉 Economize R$ 1,26 no Pix
               </p>
             </div>
             
@@ -500,7 +503,7 @@ const ChewablesPage: React.FC = () => {
   };
 
   const calculatePixPrice = (price: number) => {
-    return price * 0.9;
+    return price - 1.26;
   };
 
   return (
@@ -566,7 +569,10 @@ const ChewablesPage: React.FC = () => {
                         R$ {product.price.toFixed(2)}
                       </p>
                       <p className="text-sm text-gray-600">
-                        Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                        👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                      </p>
+                      <p className="text-xs text-green-600 font-medium">
+                        👉 Economize R$ 1,26 no Pix
                       </p>
                     </div>
                     <button
