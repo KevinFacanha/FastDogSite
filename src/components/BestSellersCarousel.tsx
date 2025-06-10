@@ -168,10 +168,12 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
 
   useEffect(() => {
     const updateProductsPerPage = () => {
-      if (window.innerWidth < 640) {
-        setProductsPerPage(2);
+      if (window.innerWidth <= 767) {
+        setProductsPerPage(1); // Telas pequenas (mobile)
+      } else if (window.innerWidth >= 768 && window.innerWidth <= 1023) {
+        setProductsPerPage(2); // Telas médias (tablet)
       } else {
-        setProductsPerPage(5);
+        setProductsPerPage(5); // Telas grandes (desktop)
       }
     };
 
@@ -206,6 +208,12 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
     return price - 1.10;
   };
 
+  const getCardWidth = () => {
+    if (productsPerPage === 1) return 'w-full';
+    if (productsPerPage === 2) return 'w-1/2';
+    return 'w-1/5';
+  };
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -222,9 +230,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className={`flex-none ${
-                    productsPerPage === 5 ? 'w-1/5' : 'w-1/2'
-                  } px-2`}
+                  className={`flex-none ${getCardWidth()} px-2`}
                   onClick={() => setSelectedProduct(product)}
                 >
                   <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full flex flex-col">
@@ -255,10 +261,10 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                           ? 'Luv e Alecrim'
                           : 'Natuka'}
                       </p>
-                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1">
+                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center">
                         {product.name}
                       </h3>
-                      <div className="space-y-1 mb-4">
+                      <div className="space-y-1 mb-4 text-center">
                         <p className="text-lg font-bold text-green-600">
                           R$ {product.price.toFixed(2)}
                         </p>
