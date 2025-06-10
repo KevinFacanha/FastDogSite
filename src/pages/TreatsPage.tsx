@@ -121,13 +121,13 @@ const ProductModal: React.FC<ProductModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
         <div className="absolute top-4 right-4 z-10">
           <button
             onClick={onClose}
-            className="bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+            className="bg-white dark:bg-gray-700 rounded-full p-2 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
           >
-            <X className="h-6 w-6 text-gray-600" />
+            <X className="h-6 w-6 text-gray-600 dark:text-gray-300" />
           </button>
         </div>
         
@@ -147,8 +147,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   onClick={() => setSelectedImage(index)}
                   className={`w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
                     selectedImage === index
-                      ? 'border-green-500 ring-2 ring-green-200'
-                      : 'border-gray-200 hover:border-green-300'
+                      ? 'border-green-500 ring-2 ring-green-200 dark:ring-green-800'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
                   }`}
                 >
                   <img
@@ -163,12 +163,12 @@ const ProductModal: React.FC<ProductModalProps> = ({
           
           <div className="space-y-4 md:space-y-6">
             <div>
-              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
                 {product.name}
               </h2>
-              <p className="text-gray-600 mb-4">{product.details}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{product.details}</p>
               
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
                   <Package className="h-4 w-4" />
                   <span>Estoque disponível</span>
@@ -181,34 +181,34 @@ const ProductModal: React.FC<ProductModalProps> = ({
             </div>
             
             <div>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-2xl font-bold text-green-600 dark:text-green-400">
                 R$ {product.price.toFixed(2)}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
               </p>
-              <p className="text-sm text-green-600 font-medium">
+              <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                 👉 Economize R$ 1,26 no Pix
               </p>
             </div>
             
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <label className="text-gray-700">Quantidade:</label>
-              <div className="flex items-center border rounded-lg">
+              <label className="text-gray-700 dark:text-gray-300">Quantidade:</label>
+              <div className="flex items-center border dark:border-gray-600 rounded-lg">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-2 hover:bg-gray-100 transition-colors"
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
-                  <Minus className="h-4 w-4" />
+                  <Minus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                 </button>
-                <span className="px-4 py-2 border-x min-w-[3rem] text-center">
+                <span className="px-4 py-2 border-x dark:border-gray-600 min-w-[3rem] text-center text-gray-800 dark:text-gray-200">
                   {quantity}
                 </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="p-2 hover:bg-gray-100 transition-colors"
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                 </button>
               </div>
             </div>
@@ -219,7 +219,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   onAddToCart(quantity);
                   toast.success('Produto adicionado ao carrinho');
                 }}
-                className="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
               >
                 <Plus className="h-5 w-5 mr-2" />
                 <span className="whitespace-nowrap">Adicionar ao Carrinho</span>
@@ -228,13 +228,13 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 onClick={onToggleFavorite}
                 className={`p-3 rounded-lg border ${
                   isFavorite
-                    ? 'bg-red-50 border-red-200'
-                    : 'border-gray-200 hover:bg-gray-50'
+                    ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                    : 'border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
                 } transition-colors`}
               >
                 <Heart
                   className={`h-6 w-6 ${
-                    isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-400'
+                    isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-400 dark:text-gray-500'
                   }`}
                 />
               </button>
@@ -319,7 +319,7 @@ const TreatsPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8 md:py-16">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-green-800">
+        <h1 className="text-3xl md:text-4xl font-bold text-green-800 dark:text-green-400">
           Petiscos de Agrado
         </h1>
         
@@ -333,7 +333,7 @@ const TreatsPage: React.FC = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           />
         </div>
       </div>
@@ -341,7 +341,7 @@ const TreatsPage: React.FC = () => {
       {/* Mostrar mensagem se não houver resultados */}
       {filteredTreats.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">Nenhum produto encontrado para "{searchTerm}"</p>
+          <p className="text-gray-500 dark:text-gray-400 text-lg">Nenhum produto encontrado para "{searchTerm}"</p>
         </div>
       ) : (
         <>
@@ -352,7 +352,7 @@ const TreatsPage: React.FC = () => {
                 onClick={() => setSelectedProduct(product)}
                 className="cursor-pointer"
               >
-                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
                   <div className="relative">
                     <img
                       src={product.image}
@@ -361,27 +361,27 @@ const TreatsPage: React.FC = () => {
                     />
                     <button
                       onClick={(e) => toggleFavorite(product, e)}
-                      className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors z-10"
+                      className="absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
                     >
                       <Heart
                         className={`h-5 w-5 ${
                           isFavorite(product.id)
                             ? 'fill-red-500 text-red-500'
-                            : 'text-gray-400'
+                            : 'text-gray-400 dark:text-gray-500'
                         }`}
                       />
                     </button>
                   </div>
                   <div className="p-4">
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2">{product.name}</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{product.name}</h3>
                     <div className="space-y-1 mb-4">
-                      <p className="text-lg font-bold text-green-600">
+                      <p className="text-lg font-bold text-green-600 dark:text-green-400">
                         R$ {product.price.toFixed(2)}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
                         👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
                       </p>
-                      <p className="text-xs text-green-600 font-medium">
+                      <p className="text-xs text-green-600 dark:text-green-400 font-medium">
                         👉 Economize R$ 1,26 no Pix
                       </p>
                     </div>
@@ -391,7 +391,7 @@ const TreatsPage: React.FC = () => {
                         addItem(product);
                         toast.success('Produto adicionado ao carrinho');
                       }}
-                      className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
+                      className="w-full bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
                     >
                       <Plus className="h-5 w-5 mr-2" />
                       Adicionar ao Carrinho
@@ -410,15 +410,15 @@ const TreatsPage: React.FC = () => {
                 disabled={currentPage === 1}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg w-full sm:w-auto justify-center ${
                   currentPage === 1
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-green-600 text-white hover:bg-green-700'
+                    ? 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                    : 'bg-green-600 dark:bg-green-700 text-white hover:bg-green-700 dark:hover:bg-green-800'
                 } transition-colors`}
               >
                 <ChevronLeft className="h-5 w-5" />
                 <span>Anterior</span>
               </button>
               
-              <div className="text-gray-600 text-center">
+              <div className="text-gray-600 dark:text-gray-300 text-center">
                 Página {currentPage} de {totalPages}
               </div>
               
@@ -427,8 +427,8 @@ const TreatsPage: React.FC = () => {
                 disabled={currentPage === totalPages}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg w-full sm:w-auto justify-center ${
                   currentPage === totalPages
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-green-600 text-white hover:bg-green-700'
+                    ? 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                    : 'bg-green-600 dark:bg-green-700 text-white hover:bg-green-700 dark:hover:bg-green-800'
                 } transition-colors`}
               >
                 <span>Próxima</span>

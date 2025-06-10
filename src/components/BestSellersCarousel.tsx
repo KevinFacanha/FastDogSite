@@ -289,7 +289,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                       <p className="text-sm text-green-600 dark:text-green-400 font-medium mb-1">
                         {getBrandName(product.brand)}
                       </p>
-                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center text-gray-800 dark:text-gray-200">
+                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center text-gray-900 dark:text-gray-100">
                         {product.name}
                       </h3>
                       <div className="space-y-1 mb-4 text-center">
