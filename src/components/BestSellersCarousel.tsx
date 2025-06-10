@@ -24,6 +24,21 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const [selectedImage, setSelectedImage] = useState(0);
   const calculatePixPrice = (price: number) => price - 1.26;
 
+  const getBrandName = (brand: string) => {
+    switch (brand) {
+      case 'natuka':
+        return 'Natuka';
+      case 'good-lovin':
+        return 'Good Lovin';
+      case 'luv':
+        return 'Luv';
+      case 'alecrim':
+        return 'Alecrim';
+      default:
+        return brand;
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in">
@@ -69,11 +84,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
           <div className="p-6 border-t md:border-t-0 md:border-l border-gray-200">
             <div className="mb-6">
               <p className="text-sm text-green-600 font-medium mb-1">
-                {product.brand === 'bom-amoroso'
-                  ? 'Bom Amoroso'
-                  : product.brand === 'luv-alecrim'
-                  ? 'Luv e Alecrim'
-                  : 'Natuka'}
+                {getBrandName(product.brand)}
               </p>
               <h2 className="text-2xl font-bold text-gray-800 mb-2">
                 {product.name}
@@ -217,6 +228,21 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
     return 'w-1/5';
   };
 
+  const getBrandName = (brand: string) => {
+    switch (brand) {
+      case 'natuka':
+        return 'Natuka';
+      case 'good-lovin':
+        return 'Good Lovin';
+      case 'luv':
+        return 'Luv';
+      case 'alecrim':
+        return 'Alecrim';
+      default:
+        return brand;
+    }
+  };
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -258,11 +284,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                     </div>
                     <div className="p-4 flex-1 flex flex-col">
                       <p className="text-sm text-green-600 font-medium mb-1">
-                        {product.brand === 'bom-amoroso'
-                          ? 'Bom Amoroso'
-                          : product.brand === 'luv-alecrim'
-                          ? 'Luv e Alecrim'
-                          : 'Natuka'}
+                        {getBrandName(product.brand)}
                       </p>
                       <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center">
                         {product.name}

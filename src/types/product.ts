@@ -1,6 +1,6 @@
 export interface Product {
   id: string;
-  brand: 'natuka' | 'bom-amoroso' | 'luv-alecrim';
+  brand: 'natuka' | 'good-lovin' | 'luv' | 'alecrim';
   name: string;
   description: string;
   price: number;
