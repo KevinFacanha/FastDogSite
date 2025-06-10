@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Plus, X, Minus, Package, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Heart, Plus, X, Minus, Package, Clock, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
 import { Product } from '../types/product';
@@ -246,14 +246,25 @@ const ProductModal: React.FC<ProductModalProps> = ({
 const TreatsPage: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
   const productsPerPage = 6;
   const addItem = useCartStore((state) => state.addItem);
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
 
-  const totalPages = Math.ceil(treats.length / productsPerPage);
+  // Filtrar produtos baseado no termo de busca
+  const filteredTreats = treats.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredTreats.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = treats.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredTreats.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Reset para primeira página quando buscar
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   const toggleFavorite = (product: Product, event?: React.MouseEvent) => {
     if (event) {
@@ -273,94 +284,123 @@ const TreatsPage: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-16">
-      <h1 className="text-3xl md:text-4xl font-bold text-green-800 mb-6 md:mb-8">
-        Petiscos de Agrado
-      </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-        {currentProducts.map((product) => (
-          <div
-            key={product.id}
-            onClick={() => setSelectedProduct(product)}
-            className="cursor-pointer"
-          >
-            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-              <div className="relative">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-48 sm:h-64 object-contain transition-transform duration-300 group-hover:scale-110"
-                />
-                <button
-                  onClick={(e) => toggleFavorite(product, e)}
-                  className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors z-10"
-                >
-                  <Heart
-                    className={`h-5 w-5 ${
-                      isFavorite(product.id)
-                        ? 'fill-red-500 text-red-500'
-                        : 'text-gray-400'
-                    }`}
-                  />
-                </button>
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg sm:text-xl font-semibold mb-2">{product.name}</h3>
-                <div className="space-y-1 mb-4">
-                  <p className="text-lg font-bold text-green-600">
-                    R$ {product.price.toFixed(2)}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
-                  </p>
-                </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    addItem(product);
-                    toast.success('Produto adicionado ao carrinho');
-                  }}
-                  className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
-                >
-                  <Plus className="h-5 w-5 mr-2" />
-                  Adicionar ao Carrinho
-                </button>
-              </div>
-            </div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-green-800">
+          Petiscos de Agrado
+        </h1>
+        
+        {/* Campo de Busca */}
+        <div className="relative w-full sm:w-80">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-gray-400" />
           </div>
-        ))}
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Buscar..."
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
+          />
+        </div>
       </div>
 
-      <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4 sm:space-x-4">
-        <button
-          onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-          disabled={currentPage === 1}
-          className={`flex items-center space-x-2 px-4 py-2 rounded-lg w-full sm:w-auto justify-center ${
-            currentPage === 1
-              ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-              : 'bg-green-600 text-white hover:bg-green-700'
-          } transition-colors`}
-        >
-          <ChevronLeft className="h-5 w-5" />
-          <span>Anterior</span>
-        </button>
-        
-        <div className="text-gray-600 text-center">
-          Página {currentPage} de {totalPages}
+      {/* Mostrar mensagem se não houver resultados */}
+      {filteredTreats.length === 0 ? (
+        <div className="text-center py-12">
+          <p className="text-gray-500 text-lg">Nenhum produto encontrado para "{searchTerm}"</p>
         </div>
-        
-        <button
-          onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-          disabled={currentPage === totalPages}
-          className={`flex items-center space-x-2 px-4 py-2 rounded-lg w-full sm:w-auto justify-center ${
-            currentPage === totalPages
-              ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-              : 'bg-green-600 text-white hover:bg-green-700'
-          } transition-colors`}
-        >
-          <span>Próxima</span>
-          <ChevronRight className="h-5 w-5" />
-        </button>
-      </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            {currentProducts.map((product) => (
+              <div
+                key={product.id}
+                onClick={() => setSelectedProduct(product)}
+                className="cursor-pointer"
+              >
+                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                  <div className="relative">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 sm:h-64 object-contain transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <button
+                      onClick={(e) => toggleFavorite(product, e)}
+                      className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors z-10"
+                    >
+                      <Heart
+                        className={`h-5 w-5 ${
+                          isFavorite(product.id)
+                            ? 'fill-red-500 text-red-500'
+                            : 'text-gray-400'
+                        }`}
+                      />
+                    </button>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">{product.name}</h3>
+                    <div className="space-y-1 mb-4">
+                      <p className="text-lg font-bold text-green-600">
+                        R$ {product.price.toFixed(2)}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                      </p>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addItem(product);
+                        toast.success('Produto adicionado ao carrinho');
+                      }}
+                      className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
+                    >
+                      <Plus className="h-5 w-5 mr-2" />
+                      Adicionar ao Carrinho
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Paginação - só mostra se houver mais de uma página */}
+          {totalPages > 1 && (
+            <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4 sm:space-x-4">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg w-full sm:w-auto justify-center ${
+                  currentPage === 1
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-green-600 text-white hover:bg-green-700'
+                } transition-colors`}
+              >
+                <ChevronLeft className="h-5 w-5" />
+                <span>Anterior</span>
+              </button>
+              
+              <div className="text-gray-600 text-center">
+                Página {currentPage} de {totalPages}
+              </div>
+              
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg w-full sm:w-auto justify-center ${
+                  currentPage === totalPages
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-green-600 text-white hover:bg-green-700'
+                } transition-colors`}
+              >
+                <span>Próxima</span>
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          )}
+        </>
+      )}
 
       {selectedProduct && (
         <ProductModal
