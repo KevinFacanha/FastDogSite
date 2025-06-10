@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Heart, ChevronLeft, ChevronRight, Plus, X, Minus, Package, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Heart, Plus, X, Minus, Package, Clock } from 'lucide-react';
 import { Product } from '../types/product';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
@@ -160,37 +160,9 @@ interface BestSellersCarouselProps {
 }
 
 const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [productsPerPage, setProductsPerPage] = useState(4);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const addItem = useCartStore((state) => state.addItem);
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
-
-  useEffect(() => {
-    const updateProductsPerPage = () => {
-      if (window.innerWidth < 640) {
-        setProductsPerPage(1);
-      } else if (window.innerWidth < 1024) {
-        setProductsPerPage(2);
-      } else {
-        setProductsPerPage(4);
-      }
-    };
-
-    updateProductsPerPage();
-    window.addEventListener('resize', updateProductsPerPage);
-    return () => window.removeEventListener('resize', updateProductsPerPage);
-  }, []);
-
-  const maxIndex = Math.max(0, products.length - productsPerPage);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
-  };
 
   const toggleFavorite = (product: Product, event?: React.MouseEvent) => {
     if (event) {
@@ -211,101 +183,70 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-green-800 mb-8">Mais Vendidos</h2>
-        <div className="relative">
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-300 ease-in-out"
-              style={{
-                transform: `translateX(-${(currentIndex * 100) / productsPerPage}%)`,
-              }}
+        <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Mais Vendidos</h2>
+        
+        {/* Grid responsivo: 5 colunas em telas grandes, 2 em telas menores */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              onClick={() => setSelectedProduct(product)}
+              className="cursor-pointer"
             >
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  className={`flex-none ${
-                    productsPerPage === 4
-                      ? 'w-1/4'
-                      : productsPerPage === 2
-                      ? 'w-1/2'
-                      : 'w-full'
-                  } px-3`}
-                  onClick={() => setSelectedProduct(product)}
-                >
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                    <div className="relative">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <button
-                        onClick={(e) => toggleFavorite(product, e)}
-                        className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors z-10"
-                      >
-                        <Heart
-                          className={`h-5 w-5 ${
-                            isFavorite(product.id)
-                              ? 'fill-red-500 text-red-500'
-                              : 'text-gray-400'
-                          }`}
-                        />
-                      </button>
-                    </div>
-                    <div className="p-4">
-                      <p className="text-sm text-green-600 font-medium mb-1">
-                        {product.brand === 'bom-amoroso'
-                          ? 'Bom Amoroso'
-                          : product.brand === 'luv-alecrim'
-                          ? 'Luv e Alecrim'
-                          : 'Natuka'}
-                      </p>
-                      <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                      <div className="space-y-1">
-                        <p className="text-lg font-bold text-green-600">
-                          R$ {product.price.toFixed(2)}
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
-                        </p>
-                      </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          addItem(product);
-                          toast.success('Produto adicionado ao carrinho');
-                        }}
-                        className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
-                      >
-                        <Plus className="h-5 w-5 mr-2" />
-                        Adicionar
-                      </button>
-                    </div>
-                  </div>
+              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group h-full flex flex-col">
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-32 sm:h-40 lg:h-48 object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <button
+                    onClick={(e) => toggleFavorite(product, e)}
+                    className="absolute top-2 right-2 p-1.5 lg:p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors z-10"
+                  >
+                    <Heart
+                      className={`h-4 w-4 lg:h-5 lg:w-5 ${
+                        isFavorite(product.id)
+                          ? 'fill-red-500 text-red-500'
+                          : 'text-gray-400'
+                      }`}
+                    />
+                  </button>
                 </div>
-              ))}
+                <div className="p-3 lg:p-4 flex-1 flex flex-col">
+                  <p className="text-xs lg:text-sm text-green-600 font-medium mb-1">
+                    {product.brand === 'bom-amoroso'
+                      ? 'Bom Amoroso'
+                      : product.brand === 'luv-alecrim'
+                      ? 'Luv e Alecrim'
+                      : 'Natuka'}
+                  </p>
+                  <h3 className="text-sm lg:text-lg font-semibold mb-2 line-clamp-2 flex-1">
+                    {product.name}
+                  </h3>
+                  <div className="space-y-1 mb-3 lg:mb-4">
+                    <p className="text-sm lg:text-lg font-bold text-green-600">
+                      R$ {product.price.toFixed(2)}
+                    </p>
+                    <p className="text-xs lg:text-sm text-gray-600">
+                      Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                    </p>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      addItem(product);
+                      toast.success('Produto adicionado ao carrinho');
+                    }}
+                    className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center text-xs lg:text-sm"
+                  >
+                    <Plus className="h-3 w-3 lg:h-5 lg:w-5 mr-1 lg:mr-2" />
+                    Adicionar
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          {currentIndex > 0 && (
-            <button
-              onClick={handlePrevious}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10"
-              aria-label="Previous products"
-            >
-              <ChevronLeft className="h-6 w-6 text-green-600" />
-            </button>
-          )}
-          
-          {currentIndex < maxIndex && (
-            <button
-              onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10"
-              aria-label="Next products"
-            >
-              <ChevronRight className="h-6 w-6 text-green-600" />
-            </button>
-          )}
+          ))}
         </div>
       </div>
 
