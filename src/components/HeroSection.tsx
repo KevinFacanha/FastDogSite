@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
+  const [buttonText, setButtonText] = useState('Ver Catálogos');
+  const [hasClicked, setHasClicked] = useState(false);
+
+  const scrollToBestSellers = () => {
+    // Encontra a seção "Mais Vendidos" pelo texto do título
+    const bestSellersSection = document.querySelector('h2')?.closest('section');
+    if (bestSellersSection) {
+      bestSellersSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Atualiza o texto do botão após o primeiro clique
+    if (!hasClicked) {
+      setButtonText('Confira');
+      setHasClicked(true);
+    }
+  };
+
   const scrollToCatalogs = () => {
     const catalogsSection = document.getElementById('catalogs');
     if (catalogsSection) {
@@ -25,10 +42,10 @@ const HeroSection: React.FC = () => {
               oficial de marcas como Luv, Alecrim, GoodLoving e Natuka.
             </p>
             <button
-              onClick={scrollToCatalogs}
+              onClick={scrollToBestSellers}
               className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition-transform hover:scale-105"
             >
-              Ver Catálogos
+              {buttonText}
             </button>
           </div>
           <div className="md:w-1/2 flex justify-center">
