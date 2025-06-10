@@ -58,7 +58,7 @@ export const products: Product[] = [
 
 
     {
-    id: 'chewable-21',
+    id: 'chewable-20',
     brand: 'natuka',
     name: 'Rocambole Mineiro Graúdo Alecrim Pet',
     description: 'Mastigável natural de pele bovina enrolada',
@@ -109,33 +109,18 @@ export const products: Product[] = [
     ],
     details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de médio a grande porte.'
   },
-
-  // Produtos fictícios adicionais
   {
-    id: 'fictional-1',
+    id: 'chewable-7',
     brand: 'natuka',
-    name: 'Natuka Dental Stick Premium',
-    description: 'Stick mastigável para higiene bucal avançada',
-    price: 32.90,
-    image: './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
+    name: 'Natuka Trança Bovina',
+    description: 'Rica em glucosamina natural',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
     images: [
-      './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
-      './catalogs/petiscosMastigaveis/buba natuka.JPG'
+      './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
+      './catalogs/petiscosMastigaveis/natuka tranca.JPG'
     ],
-    details: 'Stick mastigável desenvolvido especialmente para promover a higiene bucal dos cães. Feito com ingredientes naturais que ajudam a reduzir o tártaro e refrescar o hálito. Ideal para uso diário. Embalagem com 3 unidades.'
-  },
-  {
-    id: 'fictional-2',
-    brand: 'natuka',
-    name: 'Natuka Energy Boost',
-    description: 'Petisco energético para cães ativos',
-    price: 29.90,
-    image: './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
-    images: [
-      './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
-      './catalogs/petiscosMastigaveis/puff natuka.JPG'
-    ],
-    details: 'Petisco especialmente formulado para cães com alta atividade física. Rico em proteínas e nutrientes essenciais que fornecem energia duradoura. Ideal para cães esportivos e de trabalho. Embalagem com 80g.'
+    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
   },
 
   // GoodLoving (Bom Amoroso) Products

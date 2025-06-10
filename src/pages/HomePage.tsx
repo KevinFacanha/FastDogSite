@@ -5,8 +5,7 @@ import CatalogSection from '../components/CatalogSection';
 import { products } from '../data/products';
 
 const HomePage: React.FC = () => {
-  // Seleciona os primeiros 10 produtos para a seção "Mais Vendidos"
-  const bestSellers = products.slice(0, 10);
+  const bestSellers = products.slice(0, 8);
 
   return (
     <>
