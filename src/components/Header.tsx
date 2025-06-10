@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Dog, ShoppingCart, Heart, ChevronDown, Menu, X } from 'lucide-react';
 import CartModal from './CartModal';
 import FavoritesModal from './FavoritesModal';
@@ -15,6 +15,8 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const items = useCartStore((state) => state.items);
   const favorites = useFavoritesStore((state) => state.favorites);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +30,52 @@ const Header: React.FC = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsProductsMenuOpen(false);
+  };
+
+  const handleCatalogsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Se estamos na página inicial, faz scroll para a seção
+    if (location.pathname === '/') {
+      const catalogsSection = document.getElementById('catalogs');
+      if (catalogsSection) {
+        catalogsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Se estamos em outra página, navega para a home e depois faz scroll
+      navigate('/');
+      setTimeout(() => {
+        const catalogsSection = document.getElementById('catalogs');
+        if (catalogsSection) {
+          catalogsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+    
+    closeMobileMenu();
+  };
+
+  const handleAboutClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Se estamos na página inicial, faz scroll para a seção
+    if (location.pathname === '/') {
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Se estamos em outra página, navega para a home e depois faz scroll
+      navigate('/');
+      setTimeout(() => {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+    
+    closeMobileMenu();
   };
 
   return (
@@ -134,20 +182,20 @@ const Header: React.FC = () => {
                 )}
               </li>
               <li>
-                <a
-                  href="#catalogs"
-                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
+                <button
+                  onClick={handleCatalogsClick}
+                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors cursor-pointer"
                 >
                   Catálogos
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#about"
-                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
+                <button
+                  onClick={handleAboutClick}
+                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors cursor-pointer"
                 >
                   Sobre
-                </a>
+                </button>
               </li>
               <li>
                 <DarkModeToggle />
@@ -230,22 +278,20 @@ const Header: React.FC = () => {
                 )}
               </li>
               <li>
-                <a
-                  href="#catalogs"
-                  className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
-                  onClick={closeMobileMenu}
+                <button
+                  onClick={handleCatalogsClick}
+                  className="block w-full text-left px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   Catálogos
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#about"
-                  className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
-                  onClick={closeMobileMenu}
+                <button
+                  onClick={handleAboutClick}
+                  className="block w-full text-left px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   Sobre
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
