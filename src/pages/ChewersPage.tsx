@@ -86,7 +86,7 @@ const chewers: Product[] = [
   },
   {
     id: 'chewer-7',
-    brand: 'natuka',
+    brand: 'good-lovin',
     name: 'Orelha de Boi Jumbo com Ouvido Good Lovin',
     description: 'Mastigável natural de orelha bovina com ouvido',
     price: 13.90,
@@ -268,6 +268,26 @@ const ChewersPage: React.FC = () => {
     setCurrentPage(1);
   }, [searchTerm]);
 
+  // Função para scroll suave para o topo
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Função para navegar para página anterior
+  const handlePreviousPage = () => {
+    setCurrentPage(prev => Math.max(1, prev - 1));
+    scrollToTop();
+  };
+
+  // Função para navegar para próxima página
+  const handleNextPage = () => {
+    setCurrentPage(prev => Math.min(totalPages, prev + 1));
+    scrollToTop();
+  };
+
   const toggleFavorite = (product: Product, event?: React.MouseEvent) => {
     if (event) {
       event.stopPropagation();
@@ -374,7 +394,7 @@ const ChewersPage: React.FC = () => {
           {totalPages > 1 && (
             <div className="mt-8 flex justify-center items-center space-x-4">
               <button
-                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                onClick={handlePreviousPage}
                 disabled={currentPage === 1}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
                   currentPage === 1
@@ -391,7 +411,7 @@ const ChewersPage: React.FC = () => {
               </div>
               
               <button
-                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                onClick={handleNextPage}
                 disabled={currentPage === totalPages}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
                   currentPage === totalPages
