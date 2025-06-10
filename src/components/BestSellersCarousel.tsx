@@ -161,7 +161,7 @@ interface BestSellersCarouselProps {
 
 const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [productsPerPage, setProductsPerPage] = useState(4);
+  const [productsPerPage, setProductsPerPage] = useState(5);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const addItem = useCartStore((state) => state.addItem);
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
@@ -169,11 +169,9 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   useEffect(() => {
     const updateProductsPerPage = () => {
       if (window.innerWidth < 640) {
-        setProductsPerPage(1);
-      } else if (window.innerWidth < 1024) {
         setProductsPerPage(2);
       } else {
-        setProductsPerPage(4);
+        setProductsPerPage(5);
       }
     };
 
@@ -211,7 +209,8 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-green-800 mb-8">Mais Vendidos</h2>
+        <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Mais Vendidos</h2>
+        
         <div className="relative">
           <div className="overflow-hidden">
             <div 
@@ -224,15 +223,11 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                 <div
                   key={product.id}
                   className={`flex-none ${
-                    productsPerPage === 4
-                      ? 'w-1/4'
-                      : productsPerPage === 2
-                      ? 'w-1/2'
-                      : 'w-full'
-                  } px-3`}
+                    productsPerPage === 5 ? 'w-1/5' : 'w-1/2'
+                  } px-2`}
                   onClick={() => setSelectedProduct(product)}
                 >
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full flex flex-col">
                     <div className="relative">
                       <img
                         src={product.image}
@@ -252,7 +247,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                         />
                       </button>
                     </div>
-                    <div className="p-4">
+                    <div className="p-4 flex-1 flex flex-col">
                       <p className="text-sm text-green-600 font-medium mb-1">
                         {product.brand === 'bom-amoroso'
                           ? 'Bom Amoroso'
@@ -260,8 +255,10 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                           ? 'Luv e Alecrim'
                           : 'Natuka'}
                       </p>
-                      <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                      <div className="space-y-1">
+                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1">
+                        {product.name}
+                      </h3>
+                      <div className="space-y-1 mb-4">
                         <p className="text-lg font-bold text-green-600">
                           R$ {product.price.toFixed(2)}
                         </p>
@@ -275,7 +272,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                           addItem(product);
                           toast.success('Produto adicionado ao carrinho');
                         }}
-                        className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
+                        className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
                       >
                         <Plus className="h-5 w-5 mr-2" />
                         Adicionar
@@ -287,21 +284,23 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
             </div>
           </div>
           
+          {/* Seta Esquerda */}
           {currentIndex > 0 && (
             <button
               onClick={handlePrevious}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10"
-              aria-label="Previous products"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors z-10 border"
+              aria-label="Produtos anteriores"
             >
               <ChevronLeft className="h-6 w-6 text-green-600" />
             </button>
           )}
           
+          {/* Seta Direita */}
           {currentIndex < maxIndex && (
             <button
               onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10"
-              aria-label="Next products"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors z-10 border"
+              aria-label="Próximos produtos"
             >
               <ChevronRight className="h-6 w-6 text-green-600" />
             </button>

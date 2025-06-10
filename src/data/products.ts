@@ -58,7 +58,7 @@ export const products: Product[] = [
 
 
     {
-    id: 'chewable-20',
+    id: 'chewable-21',
     brand: 'natuka',
     name: 'Rocambole Mineiro Graúdo Alecrim Pet',
     description: 'Mastigável natural de pele bovina enrolada',
@@ -109,18 +109,33 @@ export const products: Product[] = [
     ],
     details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de médio a grande porte.'
   },
+
+  // Produtos fictícios Natuka
   {
-    id: 'chewable-7',
+    id: 'fictional-1',
     brand: 'natuka',
-    name: 'Natuka Trança Bovina',
-    description: 'Rica em glucosamina natural',
-    price: 35.90,
-    image: './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
+    name: 'Natuka Snack Mix',
+    description: 'Mix de petiscos naturais variados',
+    price: 32.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
     images: [
-      './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
-      './catalogs/petiscosMastigaveis/natuka tranca.JPG'
+      './catalogs/petiscosMastigaveis/Natuka Puff.JPG',
+      './catalogs/petiscosMastigaveis/puff natuka.JPG'
     ],
-    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
+    details: 'Mix especial de petiscos naturais Natuka com diferentes texturas e sabores. Ideal para variar a alimentação do seu pet com opções saudáveis e nutritivas. Contém pedaços de carne desidratada, vegetais e frutas. Embalagem com 100g.'
+  },
+  {
+    id: 'fictional-2',
+    brand: 'natuka',
+    name: 'Natuka CrocBites',
+    description: 'Petiscos crocantes para treino',
+    price: 29.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/Natuka Buba.JPG',
+      './catalogs/petiscosMastigaveis/buba natuka.JPG'
+    ],
+    details: 'Petiscos pequenos e crocantes, perfeitos para treinamento e recompensas. Feitos com ingredientes naturais selecionados, são facilmente digeríveis e altamente palatáveis. Formato ideal para cães de todos os portes. Embalagem com 150g.'
   },
 
   // GoodLoving (Bom Amoroso) Products
