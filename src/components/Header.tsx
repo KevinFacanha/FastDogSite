@@ -13,6 +13,7 @@ const Header: React.FC = () => {
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
   const [isProductsMenuOpen, setIsProductsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const items = useCartStore((state) => state.items);
   const favorites = useFavoritesStore((state) => state.favorites);
   const navigate = useNavigate();
@@ -53,10 +54,15 @@ const Header: React.FC = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsProductsMenuOpen(false);
+    setIsMobileProductsOpen(false);
   };
 
   const handleProductsMenuClick = () => {
     setIsProductsMenuOpen(!isProductsMenuOpen);
+  };
+
+  const handleMobileProductsClick = () => {
+    setIsMobileProductsOpen(!isMobileProductsOpen);
   };
 
   const handleProductsMenuItemClick = () => {
@@ -276,12 +282,12 @@ const Header: React.FC = () => {
               <li>
                 <button
                   className="flex items-center justify-between w-full px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
-                  onClick={() => setIsProductsMenuOpen(!isProductsMenuOpen)}
+                  onClick={handleMobileProductsClick}
                 >
                   <span>Produtos</span>
-                  <ChevronDown className={`h-4 w-4 transform transition-transform ${isProductsMenuOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-4 w-4 transform transition-transform ${isMobileProductsOpen ? 'rotate-180' : ''}`} />
                 </button>
-                {isProductsMenuOpen && (
+                {isMobileProductsOpen && (
                   <div className="bg-green-50 dark:bg-gray-700 py-2">
                     <Link
                       to="/treats"
