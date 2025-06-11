@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dog, Mail, Phone, MapPin } from 'lucide-react';
+import { Dog, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 
 const FooterSection: React.FC = () => {
   return (
@@ -11,10 +11,26 @@ const FooterSection: React.FC = () => {
             <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-10 w-10" />
             <span className="text-2xl font-bold">FastDog</span>
             </div>
-            <p className="max-w-xs">
+            <p className="max-w-xs mb-4">
               Distribuidora especializada em petiscos de alta qualidade para cães,
               levando alegria e saúde para o seu melhor amigo de quatro patas.
             </p>
+            
+            {/* Instagram Link */}
+            <div className="flex items-center space-x-2">
+              <a
+                href="https://www.instagram.com/fastdognaturalpet/?next=%2F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200 group"
+                aria-label="Siga-nos no Instagram"
+              >
+                <div className="p-2 rounded-full bg-yellow-400/10 group-hover:bg-yellow-400/20 transition-colors duration-200">
+                  <Instagram className="h-5 w-5" />
+                </div>
+                <span className="text-sm font-medium">@fastdognaturalpet</span>
+              </a>
+            </div>
           </div>
           
           <div>
