@@ -27,9 +27,41 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Fechar menu de produtos quando clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      const productsMenu = document.getElementById('products-menu');
+      const productsButton = document.getElementById('products-button');
+      
+      if (productsMenu && productsButton && 
+          !productsMenu.contains(target) && 
+          !productsButton.contains(target)) {
+        setIsProductsMenuOpen(false);
+      }
+    };
+
+    if (isProductsMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isProductsMenuOpen]);
+
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsProductsMenuOpen(false);
+  };
+
+  const handleProductsMenuClick = () => {
+    setIsProductsMenuOpen(!isProductsMenuOpen);
+  };
+
+  const handleProductsMenuItemClick = () => {
+    setIsProductsMenuOpen(false);
+    closeMobileMenu();
   };
 
   const handleCatalogsClick = (e: React.MouseEvent) => {
@@ -143,38 +175,36 @@ const Header: React.FC = () => {
               </li>
               <li className="relative">
                 <button
+                  id="products-button"
                   className="flex items-center space-x-1 text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
-                  onClick={() => setIsProductsMenuOpen(!isProductsMenuOpen)}
-                  onMouseEnter={() => setIsProductsMenuOpen(true)}
-                  onMouseLeave={() => setIsProductsMenuOpen(false)}
+                  onClick={handleProductsMenuClick}
                 >
                   <span>Produtos</span>
-                  <ChevronDown className="h-4 w-4" />
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isProductsMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isProductsMenuOpen && (
                   <div
-                    className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 border dark:border-gray-700"
-                    onMouseEnter={() => setIsProductsMenuOpen(true)}
-                    onMouseLeave={() => setIsProductsMenuOpen(false)}
+                    id="products-menu"
+                    className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 border dark:border-gray-700 z-50"
                   >
                     <Link
                       to="/treats"
                       className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
-                      onClick={closeMobileMenu}
+                      onClick={handleProductsMenuItemClick}
                     >
                       Petiscos de Agrado
                     </Link>
                     <Link
                       to="/chewables"
                       className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
-                      onClick={closeMobileMenu}
+                      onClick={handleProductsMenuItemClick}
                     >
                       Petiscos Mastigáveis
                     </Link>
                     <Link
                       to="/chewers"
                       className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
-                      onClick={closeMobileMenu}
+                      onClick={handleProductsMenuItemClick}
                     >
                       Mordedores
                     </Link>
