@@ -162,16 +162,23 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 </button>
               )}
               <button
-                onClick={onToggleFavorite}
+                onClick={isOutOfStock ? undefined : onToggleFavorite}
+                disabled={isOutOfStock}
                 className={`p-3 rounded-lg border transition-colors ${
-                  isFavorite
+                  isOutOfStock
+                    ? 'bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 cursor-not-allowed'
+                    : isFavorite
                     ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
                     : 'border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
               >
                 <Heart
                   className={`h-6 w-6 ${
-                    isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-400 dark:text-gray-500'
+                    isOutOfStock
+                      ? 'text-gray-400 dark:text-gray-500'
+                      : isFavorite 
+                      ? 'fill-red-500 text-red-500' 
+                      : 'text-gray-400 dark:text-gray-500'
                   }`}
                 />
               </button>
@@ -223,6 +230,13 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   const toggleFavorite = (product: Product, event?: React.MouseEvent) => {
     if (event) {
       event.stopPropagation();
+    }
+    
+    // Check if product is out of stock
+    const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+    if (isOutOfStock) {
+      toast.error('Não é possível favoritar produtos indisponíveis');
+      return;
     }
     
     if (isFavorite(product.id)) {
@@ -291,11 +305,18 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                         </div>
                         <button
                           onClick={(e) => toggleFavorite(product, e)}
-                          className="absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
+                          disabled={isOutOfStock}
+                          className={`absolute top-2 right-2 p-2 rounded-full shadow-md transition-colors z-10 ${
+                            isOutOfStock
+                              ? 'bg-gray-200 dark:bg-gray-600 cursor-not-allowed'
+                              : 'bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
                         >
                           <Heart
                             className={`h-5 w-5 ${
-                              isFavorite(product.id)
+                              isOutOfStock
+                                ? 'text-gray-400 dark:text-gray-500'
+                                : isFavorite(product.id)
                                 ? 'fill-red-500 text-red-500'
                                 : 'text-gray-400 dark:text-gray-500'
                             }`}
