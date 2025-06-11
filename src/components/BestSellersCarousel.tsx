@@ -24,6 +24,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const [selectedImage, setSelectedImage] = useState(0);
   const calculatePixPrice = (price: number) => price - 1.26;
 
+  // Check if product is out of stock
+  const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+
   const getBrandName = (brand: string) => {
     switch (brand) {
       case 'natuka':
@@ -93,7 +96,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
               
               <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                 <Package className="h-4 w-4" />
-                <span>Estoque disponível</span>
+                <span>{isOutOfStock ? 'Estoque indisponível' : 'Estoque disponível'}</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                 <Clock className="h-4 w-4" />
@@ -114,39 +117,50 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 </p>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <label className="text-gray-700 dark:text-gray-300">Quantidade:</label>
-                <div className="flex items-center border dark:border-gray-600 rounded-lg">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  >
-                    <Minus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                  </button>
-                  <span className="px-4 py-2 border-x dark:border-gray-600 min-w-[3rem] text-center text-gray-800 dark:text-gray-200">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  >
-                    <Plus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                  </button>
+              {!isOutOfStock && (
+                <div className="flex items-center space-x-4">
+                  <label className="text-gray-700 dark:text-gray-300">Quantidade:</label>
+                  <div className="flex items-center border dark:border-gray-600 rounded-lg">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    >
+                      <Minus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                    </button>
+                    <span className="px-4 py-2 border-x dark:border-gray-600 min-w-[3rem] text-center text-gray-800 dark:text-gray-200">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    >
+                      <Plus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             
             <div className="flex space-x-4">
-              <button
-                onClick={() => {
-                  onAddToCart(quantity);
-                  toast.success('Produto adicionado ao carrinho');
-                }}
-                className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
-              >
-                <Plus className="h-5 w-5 mr-2" />
-                Adicionar ao Carrinho
-              </button>
+              {isOutOfStock ? (
+                <button
+                  disabled
+                  className="flex-1 bg-gray-400 dark:bg-gray-600 text-white py-3 rounded-lg cursor-not-allowed flex items-center justify-center"
+                >
+                  Produto Esgotado
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    onAddToCart(quantity);
+                    toast.success('Produto adicionado ao carrinho');
+                  }}
+                  className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                >
+                  <Plus className="h-5 w-5 mr-2" />
+                  Adicionar ao Carrinho
+                </button>
+              )}
               <button
                 onClick={onToggleFavorite}
                 className={`p-3 rounded-lg border transition-colors ${
@@ -257,67 +271,80 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                 transform: `translateX(-${(currentIndex * 100) / productsPerPage}%)`,
               }}
             >
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  className={`flex-none ${getCardWidth()} px-2`}
-                  onClick={() => setSelectedProduct(product)}
-                >
-                  <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full flex flex-col">
-                    <div className="relative">
-                      <div className="bg-gray-50 dark:bg-gray-600">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-110"
-                        />
+              {products.map((product) => {
+                const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+                
+                return (
+                  <div
+                    key={product.id}
+                    className={`flex-none ${getCardWidth()} px-2`}
+                    onClick={() => setSelectedProduct(product)}
+                  >
+                    <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full flex flex-col">
+                      <div className="relative">
+                        <div className="bg-gray-50 dark:bg-gray-600">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-110"
+                          />
+                        </div>
+                        <button
+                          onClick={(e) => toggleFavorite(product, e)}
+                          className="absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
+                        >
+                          <Heart
+                            className={`h-5 w-5 ${
+                              isFavorite(product.id)
+                                ? 'fill-red-500 text-red-500'
+                                : 'text-gray-400 dark:text-gray-500'
+                            }`}
+                          />
+                        </button>
                       </div>
-                      <button
-                        onClick={(e) => toggleFavorite(product, e)}
-                        className="absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
-                      >
-                        <Heart
-                          className={`h-5 w-5 ${
-                            isFavorite(product.id)
-                              ? 'fill-red-500 text-red-500'
-                              : 'text-gray-400 dark:text-gray-500'
-                          }`}
-                        />
-                      </button>
-                    </div>
-                    <div className="p-4 flex-1 flex flex-col">
-                      <p className="text-sm text-green-600 dark:text-green-400 font-medium mb-1">
-                        {getBrandName(product.brand)}
-                      </p>
-                      <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center text-gray-900 dark:text-gray-100">
-                        {product.name}
-                      </h3>
-                      <div className="space-y-1 mb-4 text-center">
-                        <p className="text-lg font-bold text-green-600 dark:text-green-400">
-                          R$ {product.price.toFixed(2)}
+                      <div className="p-4 flex-1 flex flex-col">
+                        <p className="text-sm text-green-600 dark:text-green-400 font-medium mb-1">
+                          {getBrandName(product.brand)}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                          👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
-                        </p>
-                        <p className="text-xs text-green-600 dark:text-green-400 font-medium">
-                          👉 Economize R$ 1,26 no Pix
-                        </p>
+                        <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-1 text-center text-gray-900 dark:text-gray-100">
+                          {product.name}
+                        </h3>
+                        <div className="space-y-1 mb-4 text-center">
+                          <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                            R$ {product.price.toFixed(2)}
+                          </p>
+                          <p className="text-sm text-gray-600 dark:text-gray-300">
+                            👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                          </p>
+                          <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                            👉 Economize R$ 1,26 no Pix
+                          </p>
+                        </div>
+                        {isOutOfStock ? (
+                          <button
+                            disabled
+                            className="w-full bg-gray-400 dark:bg-gray-600 text-white py-2 rounded-lg cursor-not-allowed flex items-center justify-center"
+                          >
+                            Produto Esgotado
+                          </button>
+                        ) : (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addItem(product);
+                              toast.success('Produto adicionado ao carrinho');
+                            }}
+                            className="w-full bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
+                          >
+                            <Plus className="h-5 w-5 mr-2" />
+                            Adicionar
+                          </button>
+                        )}
                       </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          addItem(product);
-                          toast.success('Produto adicionado ao carrinho');
-                        }}
-                        className="w-full bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
-                      >
-                        <Plus className="h-5 w-5 mr-2" />
-                        Adicionar
-                      </button>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           

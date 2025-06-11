@@ -353,6 +353,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const [selectedImage, setSelectedImage] = useState(0);
   const calculatePixPrice = (price: number) => price - 1.26;
 
+  // Check if product is out of stock
+  const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -405,7 +408,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
                   <Package className="h-4 w-4" />
-                  <span>Estoque disponível</span>
+                  <span>{isOutOfStock ? 'Estoque indisponível' : 'Estoque disponível'}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock className="h-4 w-4" />
@@ -426,38 +429,49 @@ const ProductModal: React.FC<ProductModalProps> = ({
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <label className="text-gray-700 dark:text-gray-300">Quantidade:</label>
-              <div className="flex items-center border dark:border-gray-600 rounded-lg">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  <Minus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                </button>
-                <span className="px-4 py-2 border-x dark:border-gray-600 min-w-[3rem] text-center text-gray-800 dark:text-gray-200">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  <Plus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                </button>
+            {!isOutOfStock && (
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <label className="text-gray-700 dark:text-gray-300">Quantidade:</label>
+                <div className="flex items-center border dark:border-gray-600 rounded-lg">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <Minus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                  </button>
+                  <span className="px-4 py-2 border-x dark:border-gray-600 min-w-[3rem] text-center text-gray-800 dark:text-gray-200">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <Plus className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
             
             <div className="flex space-x-4">
-              <button
-                onClick={() => {
-                  onAddToCart(quantity);
-                  toast.success('Produto adicionado ao carrinho');
-                }}
-                className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
-              >
-                <Plus className="h-5 w-5 mr-2" />
-                <span className="whitespace-nowrap">Adicionar ao Carrinho</span>
-              </button>
+              {isOutOfStock ? (
+                <button
+                  disabled
+                  className="flex-1 bg-gray-400 dark:bg-gray-600 text-white py-3 rounded-lg cursor-not-allowed flex items-center justify-center"
+                >
+                  Produto Esgotado
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    onAddToCart(quantity);
+                    toast.success('Produto adicionado ao carrinho');
+                  }}
+                  className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                >
+                  <Plus className="h-5 w-5 mr-2" />
+                  <span className="whitespace-nowrap">Adicionar ao Carrinho</span>
+                </button>
+              )}
               <button
                 onClick={onToggleFavorite}
                 className={`p-3 rounded-lg border ${
@@ -580,60 +594,73 @@ const ChewablesPage: React.FC = () => {
       ) : (
         <>
           <div ref={productsGridRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-            {currentProducts.map((product) => (
-              <div
-                key={product.id}
-                onClick={() => setSelectedProduct(product)}
-                className="cursor-pointer"
-              >
-                <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                  <div className="relative">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-48 sm:h-64 object-contain transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <button
-                      onClick={(e) => toggleFavorite(product, e)}
-                      className="absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
-                    >
-                      <Heart
-                        className={`h-5 w-5 ${
-                          isFavorite(product.id)
-                            ? 'fill-red-500 text-red-500'
-                            : 'text-gray-400 dark:text-gray-500'
-                        }`}
+            {currentProducts.map((product) => {
+              const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+              
+              return (
+                <div
+                  key={product.id}
+                  onClick={() => setSelectedProduct(product)}
+                  className="cursor-pointer"
+                >
+                  <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                    <div className="relative">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-48 sm:h-64 object-contain transition-transform duration-300 group-hover:scale-110"
                       />
-                    </button>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{product.name}</h3>
-                    <div className="space-y-1 mb-4">
-                      <p className="text-lg font-bold text-green-600 dark:text-green-400">
-                        R$ {product.price.toFixed(2)}
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
-                      </p>
-                      <p className="text-xs text-green-600 dark:text-green-400 font-medium">
-                        👉 Economize R$ 1,26 no Pix
-                      </p>
+                      <button
+                        onClick={(e) => toggleFavorite(product, e)}
+                        className="absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
+                      >
+                        <Heart
+                          className={`h-5 w-5 ${
+                            isFavorite(product.id)
+                              ? 'fill-red-500 text-red-500'
+                              : 'text-gray-400 dark:text-gray-500'
+                          }`}
+                        />
+                      </button>
                     </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addItem(product);
-                        toast.success('Produto adicionado ao carrinho');
-                      }}
-                      className="w-full bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
-                    >
-                      <Plus className="h-5 w-5 mr-2" />
-                      Adicionar ao Carrinho
-                    </button>
+                    <div className="p-4">
+                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{product.name}</h3>
+                      <div className="space-y-1 mb-4">
+                        <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                          R$ {product.price.toFixed(2)}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                        </p>
+                        <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                          👉 Economize R$ 1,26 no Pix
+                        </p>
+                      </div>
+                      {isOutOfStock ? (
+                        <button
+                          disabled
+                          className="w-full bg-gray-400 dark:bg-gray-600 text-white py-2 rounded-lg cursor-not-allowed flex items-center justify-center"
+                        >
+                          Produto Esgotado
+                        </button>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addItem(product);
+                            toast.success('Produto adicionado ao carrinho');
+                          }}
+                          className="w-full bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
+                        >
+                          <Plus className="h-5 w-5 mr-2" />
+                          Adicionar ao Carrinho
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Paginação - só mostra se houver mais de uma página */}
