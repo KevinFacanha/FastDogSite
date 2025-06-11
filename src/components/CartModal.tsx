@@ -83,12 +83,12 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
-        <div className="p-4 border-b flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-green-800">Carrinho</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md mx-4">
+        <div className="p-4 border-b dark:border-gray-700 flex justify-between items-center">
+          <h2 className="text-xl font-semibold text-green-800 dark:text-green-400">Carrinho</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           >
             <X className="h-6 w-6" />
           </button>
@@ -98,14 +98,14 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
           {items.length === 0 ? (
             <div className="text-center py-8">
               <ShoppingBag className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-500">Seu carrinho está vazio</p>
+              <p className="text-gray-500 dark:text-gray-400">Seu carrinho está vazio</p>
             </div>
           ) : (
             <div className="space-y-4">
               {items.map((item) => (
                 <div
                   key={item.product.id}
-                  className="flex items-center justify-between border-b pb-4"
+                  className="flex items-center justify-between border-b dark:border-gray-700 pb-4"
                 >
                   <div className="flex items-center space-x-4">
                     <img
@@ -114,8 +114,8 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                       className="w-16 h-16 object-cover rounded"
                     />
                     <div>
-                      <h3 className="font-medium">{item.product.name}</h3>
-                      <p className="text-sm text-gray-500">
+                      <h3 className="font-medium text-gray-900 dark:text-gray-100">{item.product.name}</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
                         R$ {item.product.price.toFixed(2)}
                       </p>
                     </div>
@@ -125,22 +125,22 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                       onClick={() =>
                         updateQuantity(item.product.id, Math.max(0, item.quantity - 1))
                       }
-                      className="text-gray-500 hover:text-gray-700"
+                      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                     >
                       <Minus className="h-4 w-4" />
                     </button>
-                    <span className="w-8 text-center">{item.quantity}</span>
+                    <span className="w-8 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
                     <button
                       onClick={() =>
                         updateQuantity(item.product.id, item.quantity + 1)
                       }
-                      className="text-gray-500 hover:text-gray-700"
+                      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => removeItem(item.product.id)}
-                      className="text-red-500 hover:text-red-700 ml-4"
+                      className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 ml-4"
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -152,7 +152,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
         </div>
         
         {items.length > 0 && (
-          <div className="p-4 border-t space-y-4">
+          <div className="p-4 border-t dark:border-gray-700 space-y-4">
             <div className="flex items-center space-x-2">
               <div className="flex-1">
                 <div className="relative">
@@ -162,7 +162,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                     value={couponInput}
                     onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                     placeholder="Digite seu cupom"
-                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                     onKeyPress={(e) => {
                       if (e.key === 'Enter') {
                         handleApplyCoupon();
@@ -173,16 +173,16 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
               </div>
               <button
                 onClick={handleApplyCoupon}
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                className="bg-green-600 dark:bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors"
               >
                 Aplicar
               </button>
             </div>
 
             {couponCode && (
-              <div className="flex justify-between items-center bg-green-50 p-2 rounded-lg">
+              <div className="flex justify-between items-center bg-green-50 dark:bg-green-900/20 p-2 rounded-lg">
                 <div>
-                  <p className="text-green-800 font-medium">{couponCode}</p>
+                  <p className="text-green-800 dark:text-green-400 font-medium">{couponCode}</p>
                 </div>
                 <button
                   onClick={() => {
@@ -190,7 +190,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                     setCouponInput('');
                     toast.success('Cupom removido');
                   }}
-                  className="text-red-500 hover:text-red-700"
+                  className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -205,18 +205,18 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                 onChange={handleCEPChange}
                 placeholder="Digite seu CEP"
                 maxLength={9}
-                className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-                  cepError ? 'border-red-500' : ''
+                className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 ${
+                  cepError ? 'border-red-500 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
                 }`}
               />
               {cepError && (
-                <p className="text-red-500 text-sm mt-1">{cepError}</p>
+                <p className="text-red-500 dark:text-red-400 text-sm mt-1">{cepError}</p>
               )}
             </div>
 
             <div className="flex justify-between items-center">
-              <span className="font-semibold">Total:</span>
-              <span className="font-bold text-lg">
+              <span className="font-semibold text-gray-900 dark:text-gray-100">Total:</span>
+              <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
                 R$ {total.toFixed(2)}
               </span>
             </div>
@@ -226,7 +226,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleWhatsAppClick}
-              className="block w-full bg-green-600 text-white text-center py-3 rounded-lg hover:bg-green-700 transition-colors"
+              className="block w-full bg-green-600 dark:bg-green-700 text-white text-center py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors"
             >
               Finalizar no WhatsApp
             </a>
