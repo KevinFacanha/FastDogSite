@@ -13,7 +13,7 @@ export const products: Product[] = [
       './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
       './catalogs/petiscosMastigaveis/natuka tranca.JPG'
     ],
-    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
+    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90."
   },
  {
     id: 'chewable-15',
