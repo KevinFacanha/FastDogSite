@@ -14,8 +14,16 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   const [cep, setCep] = useState('');
   const [cepError, setCepError] = useState('');
 
-  // Lista de cupons válidos
-  const validCoupons = ['ESCOLADECAES10', 'LOKIEAPOLO10', 'BDOG10', 'FASTDOG10'];
+  // Lista de cupons válidos - ADICIONE NOVOS CUPONS AQUI
+  const validCoupons = [
+    'ESCOLADECAES10', 
+    'LOKIEAPOLO10', 
+    'BDOG10', 
+    'FASTDOG10',
+    'NOVOCUPOM10',     // ← Exemplo de novo cupom
+    'PROMO2025',       // ← Exemplo de novo cupom
+    'DESCONTO10'       // ← Exemplo de novo cupom
+  ];
 
   const formatCEP = (value: string) => {
     const numbers = value.replace(/\D/g, '');
