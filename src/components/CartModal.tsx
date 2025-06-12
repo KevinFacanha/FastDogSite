@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Minus, Plus, ShoppingBag, Tag, MapPin } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
+import { formatPrice, formatFullPrice } from '../utils/formatPrice';
 import toast from 'react-hot-toast';
 
 interface CartModalProps {
@@ -49,14 +50,16 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   const generateWhatsAppMessage = () => {
     const message = `Olá! Gostaria de fazer o seguinte pedido:\n${items
       .map(
-        (item) =>
-          `• ${item.quantity}x ${item.product.name} - R$ ${(
+        (item) => {
+          const variantInfo = item.selectedVariant ? ` (${item.selectedVariant.description})` : '';
+          return `• ${item.quantity}x ${item.product.name}${variantInfo} - ${formatFullPrice(
             item.product.price * item.quantity
-          ).toFixed(2)}`
+          )}`;
+        }
       )
-      .join('\n')}\n\nSubtotal: R$ ${subtotal.toFixed(2)}${
-      couponCode ? `\nCupom: ${couponCode} (-10%): -R$ ${discount.toFixed(2)}` : ''
-    }\nCEP: ${cep}\nTotal: R$ ${total.toFixed(2)}`;
+      .join('\n')}\n\nSubtotal: ${formatFullPrice(subtotal)}${
+      couponCode ? `\nCupom: ${couponCode} (-10%): -${formatFullPrice(discount)}` : ''
+    }\nCEP: ${cep}\nTotal: ${formatFullPrice(total)}`;
 
     const encodedMessage = encodeURIComponent(message);
     const phoneNumber = '5511945993793';
@@ -110,9 +113,9 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
             </div>
           ) : (
             <div className="space-y-4">
-              {items.map((item) => (
+              {items.map((item, index) => (
                 <div
-                  key={item.product.id}
+                  key={`${item.product.id}-${item.selectedVariant?.size || 'default'}-${index}`}
                   className="flex items-center justify-between border-b dark:border-gray-700 pb-4"
                 >
                   <div className="flex items-center space-x-4">
@@ -123,8 +126,13 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                     />
                     <div>
                       <h3 className="font-medium text-gray-900 dark:text-gray-100">{item.product.name}</h3>
+                      {item.selectedVariant && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {item.selectedVariant.description}
+                        </p>
+                      )}
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        R$ {item.product.price.toFixed(2)}
+                        {formatFullPrice(item.product.price)}
                       </p>
                     </div>
                   </div>
@@ -226,20 +234,20 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
             <div className="space-y-2">
               <div className="flex justify-between items-center">
                 <span className="text-gray-700 dark:text-gray-300">Subtotal:</span>
-                <span className="text-gray-900 dark:text-gray-100">R$ {subtotal.toFixed(2)}</span>
+                <span className="text-gray-900 dark:text-gray-100">{formatFullPrice(subtotal)}</span>
               </div>
               
               {couponCode && discount > 0 && (
                 <div className="flex justify-between items-center">
                   <span className="text-green-600 dark:text-green-400">Desconto (10%):</span>
-                  <span className="text-green-600 dark:text-green-400">-R$ {discount.toFixed(2)}</span>
+                  <span className="text-green-600 dark:text-green-400">-{formatFullPrice(discount)}</span>
                 </div>
               )}
               
               <div className="flex justify-between items-center border-t dark:border-gray-600 pt-2">
                 <span className="font-semibold text-gray-900 dark:text-gray-100">Total:</span>
                 <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
-                  R$ {total.toFixed(2)}
+                  {formatFullPrice(total)}
                 </span>
               </div>
             </div>

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, ChevronLeft, ChevronRight, Plus, X, Minus, Package, Clock } from 'lucide-react';
-import { Product } from '../types/product';
+import { Product, ProductVariant } from '../types/product';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
+import { formatPrice, formatFullPrice } from '../utils/formatPrice';
 import toast from 'react-hot-toast';
 
 interface ProductModalProps {
   product: Product;
   onClose: () => void;
-  onAddToCart: (quantity: number) => void;
+  onAddToCart: (quantity: number, variant?: ProductVariant) => void;
   isFavorite: boolean;
   onToggleFavorite: () => void;
 }
@@ -22,6 +23,14 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | undefined>(
+    product.hasVariants ? product.variants?.[0] : undefined
+  );
+  
+  const getCurrentPrice = () => {
+    return selectedVariant ? selectedVariant.price : product.price;
+  };
+  
   const calculatePixPrice = (price: number) => price - 1.26;
 
   // Check if product is out of stock
@@ -105,12 +114,48 @@ const ProductModal: React.FC<ProductModalProps> = ({
             </div>
             
             <div className="space-y-6 mb-6">
+              {/* Seleção de Variantes (Tamanhos) */}
+              {product.hasVariants && product.variants && (
+                <div>
+                  <label className="text-gray-700 dark:text-gray-300 font-medium mb-3 block">
+                    Selecione o tamanho:
+                  </label>
+                  <div className="space-y-2">
+                    {product.variants.map((variant) => (
+                      <button
+                        key={variant.size}
+                        onClick={() => setSelectedVariant(variant)}
+                        className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
+                          selectedVariant?.size === variant.size
+                            ? 'border-green-500 bg-green-50 dark:bg-green-900/20 dark:border-green-400'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
+                        }`}
+                      >
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <span className="font-medium text-gray-800 dark:text-gray-200">
+                              Tamanho {variant.size}
+                            </span>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                              {variant.description}
+                            </p>
+                          </div>
+                          <span className="font-bold text-green-600 dark:text-green-400">
+                            {formatFullPrice(variant.price)}
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
               <div>
                 <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-                  R$ {product.price.toFixed(2)}
+                  {formatFullPrice(getCurrentPrice())}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                  👉 Pix: {formatFullPrice(calculatePixPrice(getCurrentPrice()))}
                 </p>
                 <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                   👉 Economize R$ 1,26 no Pix
@@ -152,7 +197,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
               ) : (
                 <button
                   onClick={() => {
-                    onAddToCart(quantity);
+                    onAddToCart(quantity, selectedVariant);
                     toast.success('Produto adicionado ao carrinho');
                   }}
                   className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
@@ -332,10 +377,10 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                         </h3>
                         <div className="space-y-1 mb-4 text-center">
                           <p className="text-lg font-bold text-green-600 dark:text-green-400">
-                            R$ {product.price.toFixed(2)}
+                            {formatFullPrice(product.price)}
                           </p>
                           <p className="text-sm text-gray-600 dark:text-gray-300">
-                            👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                            👉 Pix: {formatFullPrice(calculatePixPrice(product.price))}
                           </p>
                           <p className="text-xs text-green-600 dark:text-green-400 font-medium">
                             👉 Economize R$ 1,26 no Pix
@@ -415,8 +460,8 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
         <ProductModal
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
-          onAddToCart={(quantity) => {
-            Array(quantity).fill(null).forEach(() => addItem(selectedProduct));
+          onAddToCart={(quantity, variant) => {
+            Array(quantity).fill(null).forEach(() => addItem(selectedProduct, variant));
             setSelectedProduct(null);
           }}
           isFavorite={isFavorite(selectedProduct.id)}
