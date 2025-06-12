@@ -44,7 +44,7 @@ export const products: Product[] = [
   
     {
     id: 'chewable-20',
-    brand: 'Alecrim',
+    brand: 'alecrim',
     name: 'Rosquinha Mineira',
     description: 'Mastigável natural de pele bovina enrolada',
     price: 28.49,
@@ -113,7 +113,7 @@ export const products: Product[] = [
   // Produtos fictícios Natuka
   {
     id: 'fictional-1',
-    brand: 'Alecrim',
+    brand: 'alecrim',
     name: 'Crush Pet Alecrim',
     description: 'Mordedor natural de pele bovina desidratada',
     price: 34.90,
@@ -126,7 +126,7 @@ export const products: Product[] = [
   },
     {
     id: 'chewable-22',
-    brand: 'Alecrim',
+    brand: 'alecrim',
     name: 'Rocambole Mineiro Miúdo Alecrim Pet',
     description: 'Mastigável natural de pele bovina enrolada',
     price: 29.90,
