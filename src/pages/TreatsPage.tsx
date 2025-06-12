@@ -3,6 +3,7 @@ import { Heart, Plus, X, Minus, Package, Clock, ChevronLeft, ChevronRight, Searc
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
 import { Product } from '../types/product';
+import { formatPrice, formatFullPrice } from '../utils/formatPrice';
 import toast from 'react-hot-toast';
 
 const treats: Product[] = [
@@ -185,10 +186,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
             
             <div>
               <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-                R$ {product.price.toFixed(2)}
+                {formatFullPrice(product.price)}
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                👉 Pix: {formatFullPrice(calculatePixPrice(product.price))}
               </p>
               <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                 👉 Economize R$ 1,26 no Pix
@@ -393,10 +394,10 @@ const TreatsPage: React.FC = () => {
                       <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{product.name}</h3>
                       <div className="space-y-1 mb-4">
                         <p className="text-lg font-bold text-green-600 dark:text-green-400">
-                          R$ {product.price.toFixed(2)}
+                          {formatFullPrice(product.price)}
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
-                          👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                          👉 Pix: {formatFullPrice(calculatePixPrice(product.price))}
                         </p>
                         <p className="text-xs text-green-600 dark:text-green-400 font-medium">
                           👉 Economize R$ 1,26 no Pix

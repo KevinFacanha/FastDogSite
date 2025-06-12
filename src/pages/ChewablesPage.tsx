@@ -3,6 +3,7 @@ import { Heart, Plus, X, Minus, Package, Clock, ChevronLeft, ChevronRight, Searc
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
 import { Product } from '../types/product';
+import { formatPrice, formatFullPrice } from '../utils/formatPrice';
 import toast from 'react-hot-toast';
 
 const chewables: Product[] = [
@@ -95,7 +96,13 @@ const chewables: Product[] = [
       './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
       './catalogs/petiscosMastigaveis/natuka tranca.JPG'
     ],
-    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
+    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,30\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90",
+    hasVariants: true,
+    variants: [
+      { size: 'P', price: 35.90, description: 'Tamanho P (15cm) - Cães de pequeno porte' },
+      { size: 'M', price: 38.30, description: 'Tamanho M (25cm) - Cães de médio porte' },
+      { size: 'G', price: 45.90, description: 'Tamanho G (35cm) - Cães de grande porte' }
+    ]
   },
   {
     id: 'chewable-8',
@@ -418,10 +425,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
             
             <div>
               <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-                R$ {product.price.toFixed(2)}
+                {formatFullPrice(product.price)}
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                👉 Pix: {formatFullPrice(calculatePixPrice(product.price))}
               </p>
               <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                 👉 Economize R$ 1,26 no Pix
@@ -626,10 +633,10 @@ const ChewablesPage: React.FC = () => {
                       <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{product.name}</h3>
                       <div className="space-y-1 mb-4">
                         <p className="text-lg font-bold text-green-600 dark:text-green-400">
-                          R$ {product.price.toFixed(2)}
+                          {formatFullPrice(product.price)}
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
-                          👉 Pix: R$ {calculatePixPrice(product.price).toFixed(2)}
+                          👉 Pix: {formatFullPrice(calculatePixPrice(product.price))}
                         </p>
                         <p className="text-xs text-green-600 dark:text-green-400 font-medium">
                           👉 Economize R$ 1,26 no Pix
