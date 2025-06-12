@@ -1,6 +1,5 @@
 import React from 'react';
 import HeroSection from '../components/HeroSection';
-import DogSizeBanners from '../components/DogSizeBanners';
 import BestSellersCarousel from '../components/BestSellersCarousel';
 import { products } from '../data/products';
 
@@ -11,7 +10,6 @@ const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
-      <DogSizeBanners />
       <BestSellersCarousel products={bestSellers} />
     </>
   );
