@@ -9,7 +9,7 @@ interface CartModalProps {
 }
 
 const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
-  const { items, total, removeItem, updateQuantity, couponCode, setCouponCode } = useCartStore();
+  const { items, subtotal, discount, total, removeItem, updateQuantity, couponCode, setCouponCode } = useCartStore();
   const [couponInput, setCouponInput] = useState('');
   const [cep, setCep] = useState('');
   const [cepError, setCepError] = useState('');
@@ -46,8 +46,8 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
             item.product.price * item.quantity
           ).toFixed(2)}`
       )
-      .join('\n')}${
-      couponCode ? `\nCupom: ${couponCode}` : ''
+      .join('\n')}\n\nSubtotal: R$ ${subtotal.toFixed(2)}${
+      couponCode ? `\nCupom: ${couponCode} (-10%): -R$ ${discount.toFixed(2)}` : ''
     }\nCEP: ${cep}\nTotal: R$ ${total.toFixed(2)}`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -66,7 +66,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
     if (validCoupons.includes(couponToValidate)) {
       setCouponCode(couponToValidate);
       setCouponInput('');
-      toast.success('Cupom aplicado com sucesso');
+      toast.success('Cupom aplicado! Desconto de 10% concedido');
     } else {
       toast.error('Cupom inválido');
     }
@@ -180,9 +180,10 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             {couponCode && (
-              <div className="flex justify-between items-center bg-green-50 dark:bg-green-900/20 p-2 rounded-lg">
+              <div className="flex justify-between items-center bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
                 <div>
                   <p className="text-green-800 dark:text-green-400 font-medium">{couponCode}</p>
+                  <p className="text-green-600 dark:text-green-300 text-sm">Desconto de 10% aplicado</p>
                 </div>
                 <button
                   onClick={() => {
@@ -214,11 +215,25 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
               )}
             </div>
 
-            <div className="flex justify-between items-center">
-              <span className="font-semibold text-gray-900 dark:text-gray-100">Total:</span>
-              <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
-                R$ {total.toFixed(2)}
-              </span>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700 dark:text-gray-300">Subtotal:</span>
+                <span className="text-gray-900 dark:text-gray-100">R$ {subtotal.toFixed(2)}</span>
+              </div>
+              
+              {couponCode && discount > 0 && (
+                <div className="flex justify-between items-center">
+                  <span className="text-green-600 dark:text-green-400">Desconto (10%):</span>
+                  <span className="text-green-600 dark:text-green-400">-R$ {discount.toFixed(2)}</span>
+                </div>
+              )}
+              
+              <div className="flex justify-between items-center border-t dark:border-gray-600 pt-2">
+                <span className="font-semibold text-gray-900 dark:text-gray-100">Total:</span>
+                <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
+                  R$ {total.toFixed(2)}
+                </span>
+              </div>
             </div>
             
             <a

@@ -8,10 +8,12 @@ interface CartStore {
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   setCouponCode: (code: string | null) => void;
+  subtotal: number;
+  discount: number;
   total: number;
 }
 
-export const useCartStore = create<CartStore>((set) => ({
+export const useCartStore = create<CartStore>((set, get) => ({
   items: [],
   couponCode: null,
   addItem: (product) =>
@@ -20,53 +22,104 @@ export const useCartStore = create<CartStore>((set) => ({
         (item) => item.product.id === product.id
       );
 
+      let newItems;
       if (existingItem) {
-        return {
-          ...state,
-          items: state.items.map((item) =>
-            item.product.id === product.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-          total: state.total + product.price,
-        };
+        newItems = state.items.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        newItems = [...state.items, { product, quantity: 1 }];
       }
+
+      const newSubtotal = newItems.reduce(
+        (total, item) => total + item.product.price * item.quantity,
+        0
+      );
+
+      const newDiscount = state.couponCode ? newSubtotal * 0.1 : 0;
+      const newTotal = newSubtotal - newDiscount;
 
       return {
         ...state,
-        items: [...state.items, { product, quantity: 1 }],
-        total: state.total + product.price,
+        items: newItems,
+        subtotal: newSubtotal,
+        discount: newDiscount,
+        total: newTotal,
       };
     }),
   removeItem: (productId) =>
-    set((state) => ({
-      ...state,
-      items: state.items.filter((item) => item.product.id !== productId),
-      total: state.items.reduce(
-        (total, item) =>
-          item.product.id === productId
-            ? total
-            : total + item.product.price * item.quantity,
+    set((state) => {
+      const newItems = state.items.filter((item) => item.product.id !== productId);
+      
+      const newSubtotal = newItems.reduce(
+        (total, item) => total + item.product.price * item.quantity,
         0
-      ),
-    })),
+      );
+
+      const newDiscount = state.couponCode ? newSubtotal * 0.1 : 0;
+      const newTotal = newSubtotal - newDiscount;
+
+      return {
+        ...state,
+        items: newItems,
+        subtotal: newSubtotal,
+        discount: newDiscount,
+        total: newTotal,
+      };
+    }),
   updateQuantity: (productId, quantity) =>
-    set((state) => ({
-      ...state,
-      items: state.items.map((item) =>
+    set((state) => {
+      const newItems = state.items.map((item) =>
         item.product.id === productId ? { ...item, quantity } : item
-      ),
-      total: state.items.reduce(
-        (total, item) =>
-          total +
-          item.product.price * (item.product.id === productId ? quantity : item.quantity),
+      );
+
+      const newSubtotal = newItems.reduce(
+        (total, item) => total + item.product.price * item.quantity,
         0
-      ),
-    })),
+      );
+
+      const newDiscount = state.couponCode ? newSubtotal * 0.1 : 0;
+      const newTotal = newSubtotal - newDiscount;
+
+      return {
+        ...state,
+        items: newItems,
+        subtotal: newSubtotal,
+        discount: newDiscount,
+        total: newTotal,
+      };
+    }),
   setCouponCode: (code) =>
-    set((state) => ({
-      ...state,
-      couponCode: code,
-    })),
-  total: 0,
+    set((state) => {
+      const newSubtotal = state.items.reduce(
+        (total, item) => total + item.product.price * item.quantity,
+        0
+      );
+
+      const newDiscount = code ? newSubtotal * 0.1 : 0;
+      const newTotal = newSubtotal - newDiscount;
+
+      return {
+        ...state,
+        couponCode: code,
+        discount: newDiscount,
+        total: newTotal,
+      };
+    }),
+  get subtotal() {
+    return get().items.reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0
+    );
+  },
+  get discount() {
+    const state = get();
+    return state.couponCode ? state.subtotal * 0.1 : 0;
+  },
+  get total() {
+    const state = get();
+    return state.subtotal - state.discount;
+  },
 }));
