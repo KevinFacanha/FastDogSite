@@ -70,29 +70,6 @@ const Header: React.FC = () => {
     closeMobileMenu();
   };
 
-  const handleCatalogsClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    
-    // Se estamos na página inicial, faz scroll para a seção
-    if (location.pathname === '/') {
-      const catalogsSection = document.getElementById('catalogs');
-      if (catalogsSection) {
-        catalogsSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // Se estamos em outra página, navega para a home e depois faz scroll
-      navigate('/');
-      setTimeout(() => {
-        const catalogsSection = document.getElementById('catalogs');
-        if (catalogsSection) {
-          catalogsSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    }
-    
-    closeMobileMenu();
-  };
-
   const handleAboutClick = (e: React.MouseEvent) => {
     e.preventDefault();
     
@@ -218,12 +195,12 @@ const Header: React.FC = () => {
                 )}
               </li>
               <li>
-                <button
-                  onClick={handleCatalogsClick}
-                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors cursor-pointer"
+                <Link
+                  to="/catalogos"
+                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
                 >
                   Catálogos
-                </button>
+                </Link>
               </li>
               <li>
                 <button
@@ -314,12 +291,13 @@ const Header: React.FC = () => {
                 )}
               </li>
               <li>
-                <button
-                  onClick={handleCatalogsClick}
-                  className="block w-full text-left px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
+                <Link
+                  to="/catalogos"
+                  className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
+                  onClick={closeMobileMenu}
                 >
                   Catálogos
-                </button>
+                </Link>
               </li>
               <li>
                 <button

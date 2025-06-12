@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import TreatsPage from './pages/TreatsPage';
 import ChewablesPage from './pages/ChewablesPage';
 import ChewersPage from './pages/ChewersPage';
+import CatalogsPage from './pages/CatalogsPage';
 import FooterSection from './components/FooterSection';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/treats" element={<TreatsPage />} />
             <Route path="/chewables" element={<ChewablesPage />} />
             <Route path="/chewers" element={<ChewersPage />} />
+            <Route path="/catalogos" element={<CatalogsPage />} />
           </Routes>
         </main>
         <FooterSection />

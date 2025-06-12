@@ -18,11 +18,9 @@ const HeroSection: React.FC = () => {
     }
   };
 
-  const scrollToCatalogs = () => {
-    const catalogsSection = document.getElementById('catalogs');
-    if (catalogsSection) {
-      catalogsSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollToBottom = () => {
+    // Scroll para o final da página
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   return (
@@ -63,9 +61,9 @@ const HeroSection: React.FC = () => {
       </div>
       <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 animate-bounce">
         <button
-          onClick={scrollToCatalogs}
+          onClick={scrollToBottom}
           className="flex items-center justify-center h-10 w-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow"
-          aria-label="Scroll to catalogs"
+          aria-label="Scroll to bottom"
         >
           <ChevronDown className="h-6 w-6 text-green-600 dark:text-green-400" />
         </button>
