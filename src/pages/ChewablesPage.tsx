@@ -72,18 +72,18 @@ const chewables: Product[] = [
     details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de médio a grande porte.'
   },
   {
-  id: 'natuka-1',
-  brand: 'natuka',
-  name: 'Palitinho Bovino Natuka',
-  description: 'Mastigável natural de couro bovino com pelos',
-  price: 28.90,
-  image: '/catalogs/Natuka Palitinho Bovino.JPG',
-  images: [
-    '/catalogs/Natuka Palitinho Bovino.JPG',
-    '/catalogs/palitinho bovino.jpeg'
-  ],
-  details: 'Petisco 100% natural feito de couro bovino com pelos, desidratado lentamente a baixa temperatura. Promove limpeza dental, entretenimento e estímulo à mastigação. Textura moderada, indicado para cães de todos os portes. Embalagem com 4 unidades.'
-},
+    id: 'natuka-1',
+    brand: 'natuka',
+    name: 'Palitinho Bovino Natuka',
+    description: 'Mastigável natural de couro bovino com pelos',
+    price: 28.90,
+    image: '/catalogs/Natuka Palitinho Bovino.JPG',
+    images: [
+      '/catalogs/Natuka Palitinho Bovino.JPG',
+      '/catalogs/palitinho bovino.jpeg'
+    ],
+    details: 'Petisco 100% natural feito de couro bovino com pelos, desidratado lentamente a baixa temperatura. Promove limpeza dental, entretenimento e estímulo à mastigação. Textura moderada, indicado para cães de todos os portes. Embalagem com 4 unidades.'
+  },
   {
     id: 'chewable-7',
     brand: 'natuka',
@@ -97,8 +97,8 @@ const chewables: Product[] = [
     ],
     details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,90\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90"
   },
-    {
-    id: 'chewable-7',
+  {
+    id: 'chewable-8',
     brand: 'natuka',
     name: 'Natuka Vergalho Stick',
     description: 'Mastigável natural feito de vergalho bovino',
@@ -111,7 +111,7 @@ const chewables: Product[] = [
     details: "Feito exclusivamente de vergalho bovino 100% natural, sem aditivos, conservantes ou corantes. Textura firme que estimula a mastigação e ajuda na saúde dental. Produto de alta palatabilidade e durabilidade. Recomendado para cães de médio a grande porte. Embalagem contém 1 unidade. Oferecer com supervisão."
   },
   {
-    id: 'chewable-8',
+    id: 'chewable-9',
     brand: 'natuka',
     name: 'Mini Traqueia Bovina Good Lovin',
     description: 'Mastigável natural de traqueia bovina',
@@ -124,7 +124,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em baixa temperatura. Rico em colágeno, glucosamina e condroitina, auxilia na saúde das articulações e na regeneração de tecidos. Textura firme que promove limpeza dental e enriquecimento ambiental. Embalagem com 5 unidades.'
   },
   {
-    id: 'chewable-9',
+    id: 'chewable-10',
     brand: 'natuka',
     name: 'Big Traqueia Bovina Good Lovin',
     description: 'Mastigável natural de traqueia bovina – unidade única',
@@ -137,7 +137,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de traqueia bovina higienizada e esterilizada, desidratada lentamente em baixa temperatura.\nRica em colágeno, glucosamina e condroitina — favorece a saúde articular e regeneração de tecidos.\nTextura rígida, ideal para promover limpeza dental, removendo tártaro e placa.\nEstimula a mastigação, proporcionando entretenimento, enriquecimento ambiental e alívio do estresse.\n\nEmbalagem contém 1 unidade (aproximadamente 13cm x 8cm), com variação natural de formato e cor.\nProduto livre de conservantes e corantes.'
   },
   {
-    id: 'chewable-10',
+    id: 'chewable-11',
     brand: 'natuka',
     name: 'Spiral Júnior Good Lovin',
     description: 'Mastigável natural de couro bovino em espiral – pacote com 5 unidades',
@@ -150,7 +150,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de couro bovino desidratado lentamente em baixa temperatura, com pelos curtos. Itens altamente resistentes e duráveis, ideais para cães com grande necessidade de mastigação. Proporcionam limpeza dental (equivalem a 40 min de caminhada a cada 20 min de uso) e aliviam a ansiedade e estresse. Rico em fibras insolúveis que auxiliam o trânsito intestinal. Indicados para cães de porte pequeno, mas também adequados a todos os portes. Embalagem com 5 unidades (aprox. 14,5cm cada), peso mínimo de 55g. Conservação: após aberto, consumir em até 7 dias. Use sempre sob supervisão.'
   },
   {
-    id: 'chewable-11',
+    id: 'chewable-12',
     brand: 'natuka',
     name: 'Spiral Extreme Good Lovin',
     description: 'Mastigável natural de couro bovino em espiral – pacote com 2 unidades',
@@ -163,7 +163,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de couro bovino (com pelos), lavada, esterilizada e desidratada lentamente em baixa temperatura.\nIdeal para cães que gostam de mastigação intensa — súper resistente e durável.\nAuxilia na limpeza dental – funciona como fio dental natural, reduz em até 90% o odor da mastigação.\nOferece enriquecimento ambiental, alívio de estresse e estímulo mental.\n\nConteúdo da embalagem:\n• 2 espirais (peso mínimo de 100g).\n\nCuidados:\n• Use sempre sob supervisão.\n• Conservar em lugar seco e arejado, longe do calor e sol.\n• Consumir em até 7 dias após aberto.\n• Interrompa o uso se o pet começar a engolir pedaços grandes.'
   },
   {
-    id: 'chewable-12',
+    id: 'chewable-13',
     brand: 'natuka',
     name: 'Tie Good Lovin',
     description: 'Mastigável natural de couro bovino em formato de gravata',
@@ -176,7 +176,7 @@ const chewables: Product[] = [
     details: 'Feito 100% de couro bovino com pelos curtos, desidratado lentamente. Altamente resistente, auxilia na saúde bucal, alívio do estresse e melhora do trânsito intestinal. Indicado para cães de todos os portes. Embalagem com 1 unidade (15cm).'
   },
   {
-    id: 'chewable-13',
+    id: 'chewable-14',
     brand: 'natuka',
     name: 'Orelha de Coelho Luv',
     description: 'Mastigável natural de orelha de coelho',
@@ -189,7 +189,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de orelhas de coelho desidratadas lentamente em temperatura controlada. Baixa rigidez, ideal para cães e gatos de pequeno porte. Rico em cartilagem e pelos — auxilia na limpeza bucal, saúde gastrointestinal e oferece enriquecimento ambiental. Embalagem com 50g.'
   },
   {
-    id: 'chewable-14',
+    id: 'chewable-15',
     brand: 'natuka',
     name: 'Luv Mini Mat',
     description: 'Mastigável natural de pele bovina em formato quadrado',
@@ -202,7 +202,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de pele bovina com pelos, desidratado lentamente. Nível difícil, ideal para cães de porte pequeno e filhotes. Auxilia na limpeza dental, controle de ansiedade e satisfação do instinto de roer. Embalagem com 2 unidades.'
   },
   {
-    id: 'chewable-15',
+    id: 'chewable-16',
     brand: 'luv',
     name: 'Traqueia Bovina Luv',
     description: 'Mastigável natural de cartilagem bovina',
@@ -215,7 +215,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em temperatura controlada. Rico em glucosamina e condroitina, favorece articulações e limpeza dental. Mastigável leve (nível fácil), adequado para cães de todos os portes. Embalagem com 200g.'
   },
   {
-    id: 'chewable-16',
+    id: 'chewable-17',
     brand: 'luv',
     name: 'Traqueia Redonda Luv',
     description: 'Mastigável natural de traqueia bovina em formato redondo',
@@ -228,7 +228,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em baixa temperatura. Seu formato redondo dificulta a posição de mordida, tornando a mastigação mais eficiente na limpeza dos dentes caninos. Rico em glucosamina e condroitina, auxilia na saúde articular e na higiene bucal. Dificuldade: fácil; indicado para cães saudáveis de todos os portes. Embalagem com 1 unidade.'
   },
   {
-    id: 'chewable-17',
+    id: 'chewable-18',
     brand: 'natuka',
     name: 'Luv Mat',
     description: 'Mastigável natural de pele bovina em formato quadrado',
@@ -241,7 +241,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de pele bovina com pelos, desidratado lentamente em temperatura controlada.\nFormato quadrado ( 20 x 20 cm), sem base para roer — mais desafiador para o pet.\nDificuldade: difícil; indicado para cães saudáveis de porte médio e grande.\nAuxilia na limpeza dental, sacia o instinto de roer, protege móveis e oferece enriquecimento ambiental — 20 min de mastigação equivalem a 40 min de caminhada.\nEmbalagem com 1 unidade.\nConservar em local seco e arejado; após aberto, consumir em até 15 dias.'
   },
   {
-    id: 'chewable-18',
+    id: 'chewable-19',
     brand: 'natuka',
     name: 'Orelha Suína Luv',
     description: 'Mastigável natural de orelha de porco',
@@ -254,7 +254,7 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de orelhas de porco desidratadas lentamente em baixa temperatura. Baixa rigidez, ideal para cães de todos os portes, especialmente filhotes.\n\nBenefícios:\n• Auxilia na limpeza dental e higiene gengival;\n• Estimula o instinto de mastigação, reduz ansiedade e protege móveis;\n• Promove entretenimento e enriquecimento ambiental.\n\nEmbalagem com 4 unidades.\n\nDificuldade: fácil a moderado.'
   },
   {
-    id: 'chewable-19',
+    id: 'chewable-20',
     brand: 'natuka',
     name: 'Orelha Bovina Luv',
     description: 'Mastigável natural de orelha bovina com pelos',
@@ -267,8 +267,8 @@ const chewables: Product[] = [
     details: 'Petisco 100% natural feito de orelhas de boi desidratadas lentamente em temperatura controlada. Rigidez moderada, ideal para cães de todos os portes. Auxilia na limpeza dental, alivia o estresse e entretém o pet — 20 min roendo equivalem a 40 min de caminhada.'
   },
   {
-    id: 'chewable-20',
-    brand: 'natuka',
+    id: 'chewable-21',
+    brand: 'alecrim',
     name: 'Delícia de Treino – Coração Bovino Alecrim Pet',
     description: 'Petisco natural de coração bovino desidratado',
     price: 29.90,
@@ -279,9 +279,9 @@ const chewables: Product[] = [
     ],
     details: 'Petisco 100% natural feito de coração bovino desidratado lentamente em baixa temperatura. Baixo teor calórico — ideal para cães e gatos com sobrepeso. Textura crocante, fácil de fragmentar na mão — excelente para treinos, adestramento e apoio a filhotes e idosos. Rico em proteínas, vitaminas B (riboflavina, niacina e B12), ferro e zinco. Embalagem com 70g.'
   },
-    {
-    id: 'chewable-21',
-    brand: 'natuka',
+  {
+    id: 'chewable-22',
+    brand: 'alecrim',
     name: 'Rosquinha Mineira',
     description: 'Mastigável natural de pele bovina enrolada',
     price: 28.49,
@@ -292,9 +292,9 @@ const chewables: Product[] = [
     ],
     details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona distração prolongada, enriquece o ambiente e exercita a mandíbula. Auxilia na limpeza dental. Embalagem com 4 unidades.'
   },
-    {
-    id: 'chewable-22',
-    brand: 'natuka',
+  {
+    id: 'chewable-23',
+    brand: 'alecrim',
     name: 'Rocambole Mineiro Miúdo Alecrim Pet',
     description: 'Mastigável natural de pele bovina enrolada',
     price: 29.90,
@@ -305,8 +305,8 @@ const chewables: Product[] = [
     ],
     details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental e alívio da ansiedade. Indicado para cães de todos os portes e idades — ideal para mordida forte. Embalagem com 1 unidade.'
   },
-    {
-    id: 'chewable-23',
+  {
+    id: 'chewable-24',
     brand: 'alecrim',
     name: 'Rocambole Mineiro Graúdo Alecrim Pet',
     description: 'Mastigável natural de pele bovina enrolada',
@@ -318,9 +318,9 @@ const chewables: Product[] = [
     ],
     details: 'Petisco 100% natural feito de pele bovina desidratada e enrolada artesanalmente. Super resistente — indicado para cães com energia e mordida forte. Proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental, combate tártaro e promove bem-estar. Embalagem com 1 unidade.'
   },
-    {
-    id: 'chewable-24',
-    brand: 'natuka',
+  {
+    id: 'chewable-25',
+    brand: 'alecrim',
     name: 'Buchinho Crocante AlecrimPet',
     description: 'Mastigável natural de rúmen bovino',
     price: 28.90,
@@ -331,7 +331,6 @@ const chewables: Product[] = [
     ],
     details: 'Petisco 100% natural feito de rúmen bovino desidratado lentamente. Super crocante com aroma marcante, rico em proteínas. Baixo teor calórico — ideal para cães e gatos com sobrepeso. Fácil de fragmentar na mão, excelente para treinos, filhotes e idosos. Promove limpeza dental e saúde gastrointestinal. Indicado para cães e gatos de todos os portes. Embalagem com 70 g.'
   }
-  
 ];
 
 interface ProductModalProps {

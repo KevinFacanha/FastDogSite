@@ -53,6 +53,9 @@ const HeroSection: React.FC = () => {
                 src="https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                 alt="Cachorro feliz com petisco"
                 className="w-full h-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           </div>
