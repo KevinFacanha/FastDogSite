@@ -4,6 +4,8 @@ export interface ProductVariant {
   description: string;
 }
 
+export type DogSize = 'pequeno' | 'medio' | 'grande' | 'multporte';
+
 export interface Product {
   id: string;
   brand: 'natuka' | 'good-lovin' | 'luv' | 'alecrim';
@@ -15,6 +17,7 @@ export interface Product {
   details: string;
   hasVariants?: boolean;
   variants?: ProductVariant[];
+  dogSize: DogSize; // Nova propriedade para classificação por porte
 }
 
 export interface CartItem {

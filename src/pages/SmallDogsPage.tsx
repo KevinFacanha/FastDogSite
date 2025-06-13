@@ -4,115 +4,12 @@ import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
 import { Product, ProductVariant } from '../types/product';
 import { formatPrice, formatFullPrice } from '../utils/formatPrice';
+import { getSmallDogProducts } from '../utils/productFilters';
+import { products } from '../data/products';
 import toast from 'react-hot-toast';
 
-// Produtos adequados para cães de porte pequeno
-const smallDogProducts: Product[] = [
-  {
-    id: 'chewable-14',
-    brand: 'luv',
-    name: 'Orelha de Coelho Luv',
-    description: 'Mastigável natural de orelha de coelho',
-    price: 44.90,
-    image: './catalogs/petiscosMastigaveis/Orelha de Coelho.jpeg',
-    images: [
-      './catalogs/petiscosMastigaveis/Orelha de Coelho.jpeg',
-      './catalogs/petiscosMastigaveis/coelho orelha.JPG'
-    ],
-    details: 'Petisco 100% natural feito de orelhas de coelho desidratadas lentamente em temperatura controlada. Baixa rigidez, ideal para cães e gatos de pequeno porte. Rico em cartilagem e pelos — auxilia na limpeza bucal, saúde gastrointestinal e oferece enriquecimento ambiental. Embalagem com 50g.'
-  },
-  {
-    id: 'chewable-15',
-    brand: 'luv',
-    name: 'Luv Mini Mat',
-    description: 'Mastigável natural de pele bovina em formato quadrado',
-    price: 39.90,
-    image: './catalogs/petiscosMastigaveis/mat mini.jpeg',
-    images: [
-      './catalogs/petiscosMastigaveis/mat mini.jpeg',
-      './catalogs/petiscosMastigaveis/mini mat.JPG'
-    ],
-    details: 'Petisco 100% natural feito de pele bovina com pelos, desidratado lentamente. Nível difícil, ideal para cães de porte pequeno e filhotes. Auxilia na limpeza dental, controle de ansiedade e satisfação do instinto de roer. Embalagem com 2 unidades.'
-  },
-  {
-    id: 'chewer-3',
-    brand: 'good-lovin',
-    name: 'Casco Bovino Good Lovin',
-    description: 'Mastigável natural de casco bovino',
-    price: 12.50,
-    image: './catalogs/mordedores/Casco.JPG',
-    images: [
-      './catalogs/mordedores/Casco.JPG',
-      './catalogs/mordedores/casco bovino good.JPG'
-    ],
-    details: 'Petisco 100% natural feito de casco bovino higienizado e esterilizado, desidratado lentamente. Alta durabilidade — ideal para filhotes em troca dentária e cães com instinto de mastigação. Promove limpeza dental, controle de tártaro e distração prolongada. Indicado para cães de pequeno e médio porte. Embalagem com 1 unidade.'
-  },
-  {
-    id: 'chewable-4',
-    brand: 'natuka',
-    name: 'Natuka Knot',
-    description: 'Mastigável natural de couro bovino em formato de nó (knot)',
-    price: 33.90,
-    image: './catalogs/petiscosMastigaveis/knot.jpeg',
-    images: [
-      './catalogs/petiscosMastigaveis/knot.jpeg',
-      './catalogs/petiscosMastigaveis/natuka knot.JPG'
-    ],
-    details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de pequeno a médio porte'
-  },
-  {
-    id: 'chewable-11',
-    brand: 'good-lovin',
-    name: 'Spiral Júnior Good Lovin',
-    description: 'Mastigável natural de couro bovino em espiral – pacote com 5 unidades',
-    price: 25.90,
-    image: './catalogs/petiscosMastigaveis/Spiral Junior.JPG',
-    images: [
-      './catalogs/petiscosMastigaveis/Spiral Junior.JPG',
-      './catalogs/petiscosMastigaveis/junior spiral.JPG'
-    ],
-    details: 'Petisco 100% natural feito de couro bovino desidratado lentamente em baixa temperatura, com pelos curtos. Itens altamente resistentes e duráveis, ideais para cães com grande necessidade de mastigação. Proporcionam limpeza dental (equivalem a 40 min de caminhada a cada 20 min de uso) e aliviam a ansiedade e estresse. Rico em fibras insolúveis que auxiliam o trânsito intestinal. Indicados para cães de porte pequeno, mas também adequados a todos os portes. Embalagem com 5 unidades (aprox. 14,5cm cada), peso mínimo de 55g. Conservação: após aberto, consumir em até 7 dias. Use sempre sob supervisão.'
-  },
-  {
-    id: 'treat-1',
-    brand: 'natuka',
-    name: 'Tiras de Frango Natuka',
-    description: 'Petisco natural desidratado de frango',
-    price: 37.90,
-    image: '/catalogs/petiscosAgrado/Natuka Tiras de frango.JPG',
-    images: [
-      '/catalogs/petiscosAgrado/Natuka Tiras de frango.JPG',
-      '/catalogs/petiscosAgrado/tiras de frango.jpeg'
-    ],
-    details: 'Petisco feito 100% de carne de frango desidratada lentamente a baixa temperatura. Rico em proteínas, altamente palatável, pode ser facilmente fracionado para treinos e adequado para cães e gatos. Embalagem com 60g.'
-  },
-  {
-    id: 'treat-3',
-    brand: 'natuka',
-    name: 'Natuka Pop – Pulmão Bovino',
-    description: 'Petisco natural de pulmão bovino',
-    price: 30.90,
-    image: './catalogs/petiscosAgrado/Natuka Pop.JPG',
-    images: [
-      './catalogs/petiscosAgrado/Natuka Pop.JPG',
-      './catalogs/petiscosAgrado/natuka popp.JPG'
-    ],
-    details: 'Petisco 100% natural feito de pulmão de boi desidratado lentamente em baixa temperatura. Leve, de baixo teor calórico, altamente atrativo e ideal para treinos e recompensas. Adequado para cães e gatos. Embalagem com 60g.'
-  },
-  {
-    id: 'chewable-25',
-    brand: 'alecrim',
-    name: 'Buchinho Crocante AlecrimPet',
-    description: 'Mastigável natural de rúmen bovino',
-    price: 28.90,
-    image: './catalogs/petiscosMastigaveis/buchinho crocante.JPG',
-    images: [
-      './catalogs/petiscosMastigaveis/buchinho crocante.JPG',
-      './catalogs/petiscosMastigaveis/crocante buchinho.JPG'
-    ],
-    details: 'Petisco 100% natural feito de rúmen bovino desidratado lentamente. Super crocante com aroma marcante, rico em proteínas. Baixo teor calórico — ideal para cães e gatos com sobrepeso. Fácil de fragmentar na mão, excelente para treinos, filhotes e idosos. Promove limpeza dental e saúde gastrointestinal. Indicado para cães e gatos de todos os portes. Embalagem com 70 g.'
-  }
-];
+// Produtos adequados para cães de porte pequeno usando o filtro
+const smallDogProducts = getSmallDogProducts(products);
 
 interface ProductModalProps {
   product: Product;

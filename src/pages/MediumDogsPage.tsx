@@ -4,115 +4,12 @@ import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
 import { Product, ProductVariant } from '../types/product';
 import { formatPrice, formatFullPrice } from '../utils/formatPrice';
+import { getMediumDogProducts } from '../utils/productFilters';
+import { products } from '../data/products';
 import toast from 'react-hot-toast';
 
-// Produtos adequados para cães de porte médio
-const mediumDogProducts: Product[] = [
-  {
-    id: 'chewable-5',
-    brand: 'natuka',
-    name: 'Natuka Knot Plus',
-    description: 'Mastigável natural de couro bovino em formato de nó (knot)',
-    price: 35.90,
-    image: './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
-    images: [
-      './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
-      './catalogs/petiscosMastigaveis/knotplus.JPG'
-    ],
-    details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de médio a grande porte.'
-  },
-  {
-    id: 'chewable-18',
-    brand: 'luv',
-    name: 'Luv Mat',
-    description: 'Mastigável natural de pele bovina em formato quadrado',
-    price: 57.49,
-    image: './catalogs/petiscosMastigaveis/luv mat.jpeg',
-    images: [
-      './catalogs/petiscosMastigaveis/luv mat.jpeg',
-      './catalogs/petiscosMastigaveis/mat luv.JPG'
-    ],
-    details: 'Petisco 100% natural feito de pele bovina com pelos, desidratado lentamente em temperatura controlada.\nFormato quadrado ( 20 x 20 cm), sem base para roer — mais desafiador para o pet.\nDificuldade: difícil; indicado para cães saudáveis de porte médio e grande.\nAuxilia na limpeza dental, sacia o instinto de roer, protege móveis e oferece enriquecimento ambiental — 20 min de mastigação equivalem a 40 min de caminhada.\nEmbalagem com 1 unidade.\nConservar em local seco e arejado; após aberto, consumir em até 15 dias.'
-  },
-  {
-    id: 'chewer-4',
-    brand: 'good-lovin',
-    name: 'Chifre Bovino Good Lovin',
-    description: 'Mastigável natural de chifre bovino',
-    price: 38.90,
-    image: './catalogs/mordedores/Chifre.JPG',
-    images: [
-      './catalogs/mordedores/Chifre.JPG',
-      './catalogs/mordedores/bovino chifre good.JPG'
-    ],
-    details: 'Petisco 100% natural feito de chifre bovino inteiro, higienizado e desidratado lentamente. Muito resistente e durável, ideal para mastigação prolongada e limpeza dental. Indicado para cães de porte médio e grande. Embalagem com 1 unidade. '
-  },
-  {
-    id: 'chewer-6',
-    brand: 'good-lovin',
-    name: 'Orelha de Boi Jumbo Good Lovin (sem ouvido)',
-    description: 'Mastigável natural de orelha bovina sem ouvido',
-    price: 12.90,
-    image: './catalogs/mordedores/orelha de boi.JPG',
-    images: [
-      './catalogs/mordedores/orelha de boi.JPG',
-      './catalogs/mordedores/orelha de boi.JPG'
-    ],
-    details: 'Petisco 100% natural feito de orelha de boi higienizada, esterilizada e desidratada lentamente. Muito crocante, alta palatabilidade e durabilidade, ideal para distração prolongada e enriquecimento ambiental. Auxilia na higiene bucal e controle de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
-  },
-  {
-    id: 'chewer-7',
-    brand: 'good-lovin',
-    name: 'Orelha de Boi Jumbo com Ouvido Good Lovin',
-    description: 'Mastigável natural de orelha bovina com ouvido',
-    price: 13.90,
-    image: './catalogs/mordedores/com ouvido.JPG',
-    images: [
-      './catalogs/mordedores/com ouvido.JPG',
-      './catalogs/mordedores/Orelha de boi com ouvido.JPG'
-    ],
-    details: 'Petisco 100% natural feito de orelha de boi (com duto auditivo), higienizada, esterilizada e desidratada lentamente. Textura crocante e mais resistente, ideal para distração prolongada, enriquecimento ambiental e controle de ansiedade de separação. Auxilia na limpeza dental e redução de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
-  },
-  {
-    id: 'chewable-23',
-    brand: 'alecrim',
-    name: 'Rocambole Mineiro Miúdo Alecrim Pet',
-    description: 'Mastigável natural de pele bovina enrolada',
-    price: 29.90,
-    image: './catalogs/petiscosMastigaveis/rocambole mineiro.JPG',
-    images: [
-      './catalogs/petiscosMastigaveis/rocambole mineiro.JPG',
-      './catalogs/petiscosMastigaveis/mineiro rocambole.JPG'
-    ],
-    details: 'Petisco 100% natural feito de pele bovina enrolada e desidratada lentamente. Alta resistência, proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental e alívio da ansiedade. Indicado para cães de todos os portes e idades — ideal para mordida forte. Embalagem com 1 unidade.'
-  },
-  {
-    id: 'chewable-16',
-    brand: 'luv',
-    name: 'Traqueia Bovina Luv',
-    description: 'Mastigável natural de cartilagem bovina',
-    price: 44.90,
-    image: './catalogs/petiscosMastigaveis/Traqueia Bovina.jpeg',
-    images: [
-      './catalogs/petiscosMastigaveis/Traqueia Bovina.jpeg',
-      './catalogs/petiscosMastigaveis/bovina traqueia.JPG',
-    ],
-    details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em temperatura controlada. Rico em glucosamina e condroitina, favorece articulações e limpeza dental. Mastigável leve (nível fácil), adequado para cães de todos os portes. Embalagem com 200g.'
-  },
-  {
-    id: 'treat-4',
-    brand: 'natuka',
-    name: 'Sticks Carnes Nobres Good Lovin',
-    description: 'Petisco natural de carnes nobres bovinas',
-    price: 34.90,
-    image: './catalogs/petiscosAgrado/STICKS CARNES NOBRES.JPG',
-    images: [
-      './catalogs/petiscosAgrado/STICKS CARNES NOBRES.JPG',
-      './catalogs/petiscosAgrado/stick nobre.JPG',
-    ],
-    details: 'Petisco feito 100% de carne bovina (patinho e lombinho), higienizada e esterilizada, desidratada lentamente. Baixo teor de gordura, 100% natural, ideal para treino e recompensa. Embalagem com 60 g.'
-  }
-];
+// Produtos adequados para cães de porte médio usando o filtro
+const mediumDogProducts = getMediumDogProducts(products);
 
 interface ProductModalProps {
   product: Product;
