@@ -4,12 +4,121 @@ import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
 import { Product, ProductVariant } from '../types/product';
 import { formatPrice, formatFullPrice } from '../utils/formatPrice';
-import { getLargeDogProducts } from '../utils/productFilters';
-import { products } from '../data/products';
 import toast from 'react-hot-toast';
 
-// Produtos adequados para cães de porte grande usando o filtro
-const largeDogProducts = getLargeDogProducts(products);
+// Produtos adequados para cães de porte grande
+const largeDogProducts: Product[] = [
+  {
+    id: 'chewable-7',
+    brand: 'natuka',
+    name: 'Natuka Trança Bovina',
+    description: 'Rica em glucosamina natural',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/Natuka Trança Bovina.JPG',
+      './catalogs/petiscosMastigaveis/natuka tranca.JPG'
+    ],
+    details: "Trança natural feita 100% de couro bovino com pelos, desidratada lentamente em baixa temperatura.\nProduto resistente, artesanal e sem conservantes, corantes ou aditivos.\nAuxilia na saúde bucal, reduz o estresse e é rica em glucosamina natural para suporte articular.\n\nDisponível em três tamanhos:\n• Tamanho P (15cm) – indicado para cães de pequeno porte – R$ 35,90\n• Tamanho M (25cm) – indicado para cães de médio porte – R$ 38,30\n• Tamanho G (35cm) – indicado para cães de grande porte – R$ 45,90",
+    hasVariants: true,
+    variants: [
+      { size: 'P', price: 35.90, description: 'Tamanho P (15cm) - Cães de pequeno porte' },
+      { size: 'M', price: 38.30, description: 'Tamanho M (25cm) - Cães de médio porte' },
+      { size: 'G', price: 45.90, description: 'Tamanho G (35cm) - Cães de grande porte' }
+    ]
+  },
+  {
+    id: 'chewable-8',
+    brand: 'natuka',
+    name: 'Natuka Vergalho Stick',
+    description: 'Mastigável natural feito de vergalho bovino',
+    price: 58.90,
+    image: './catalogs/petiscosMastigaveis/natuka vergalho.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/natuka vergalho.JPG',
+      './catalogs/petiscosMastigaveis/vergalho natuka.JPG'
+    ],
+    details: "Feito exclusivamente de vergalho bovino 100% natural, sem aditivos, conservantes ou corantes. Textura firme que estimula a mastigação e ajuda na saúde dental. Produto de alta palatabilidade e durabilidade. Recomendado para cães de médio a grande porte. Embalagem contém 1 unidade. Oferecer com supervisão."
+  },
+  {
+    id: 'chewable-12',
+    brand: 'good-lovin',
+    name: 'Spiral Extreme Good Lovin',
+    description: 'Mastigável natural de couro bovino em espiral – pacote com 2 unidades',
+    price: 29.90,
+    image: './catalogs/petiscosMastigaveis/Spiral extreme.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/Spiral extreme.JPG',
+      './catalogs/petiscosMastigaveis/extreme spiral.JPG'
+    ],
+    details: 'Petisco 100% natural feito de couro bovino (com pelos), lavada, esterilizada e desidratada lentamente em baixa temperatura.\nIdeal para cães que gostam de mastigação intensa — súper resistente e durável.\nAuxilia na limpeza dental – funciona como fio dental natural, reduz em até 90% o odor da mastigação.\nOferece enriquecimento ambiental, alívio de estresse e estímulo mental.\n\nConteúdo da embalagem:\n• 2 espirais (peso mínimo de 100g).\n\nCuidados:\n• Use sempre sob supervisão.\n• Conservar em lugar seco e arejado, longe do calor e sol.\n• Consumir em até 7 dias após aberto.\n• Interrompa o uso se o pet começar a engolir pedaços grandes.'
+  },
+  {
+    id: 'chewable-24',
+    brand: 'alecrim',
+    name: 'Rocambole Mineiro Graúdo Alecrim Pet',
+    description: 'Mastigável natural de pele bovina enrolada',
+    price: 41.90,
+    image: './catalogs/petiscosMastigaveis/Mineiro Graúdo.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/Mineiro Graúdo.JPG',
+      './catalogs/petiscosMastigaveis/graudo mineiro.JPG',
+    ],
+    details: 'Petisco 100% natural feito de pele bovina desidratada e enrolada artesanalmente. Super resistente — indicado para cães com energia e mordida forte. Proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental, combate tártaro e promove bem-estar. Embalagem com 1 unidade.'
+  },
+  {
+    id: 'chewer-1',
+    brand: 'natuka',
+    name: 'Casco Bovino Natuka',
+    description: 'Mastigável natural de casco bovino',
+    price: 41.90,
+    image: './catalogs/mordedores/Natuka Casco Bovino.JPG',
+    images: [
+      './catalogs/mordedores/Natuka Casco Bovino.JPG',
+      './catalogs/mordedores/bovino casco.JPG'
+    ],
+    details: 'Petisco 100% natural feito de casco bovino (queratina), desidratado lentamente. Extremamente rígido — oferece mastigação prolongada e pode durar dias. Pode ser recheado para enriquecimento ambiental. Ideal para limpeza dental, alívio de estresse e controle de peso. Indicado para cães de todos os portes, exceto com problemas dentários. Embalagem com 4 unidades.'
+  },
+  {
+    id: 'chewer-2',
+    brand: 'natuka',
+    name: 'Chifre Bovino Natuka',
+    description: 'Mastigável natural de chifre bovino',
+    price: 24.90,
+    image: './catalogs/mordedores/Natuka Chifre.JPG',
+    images: [
+      './catalogs/mordedores/Natuka Chifre.JPG',
+      './catalogs/mordedores/bovino chifre.JPG'
+    ],
+    details: 'Petisco 100% natural feito de chifre bovino (queratina), sem ponta, muito rígido e durável. Ideal para mastigação prolongada, limpeza dental e enriquecimento ambiental. Pode ser recheado para maior estímulo. Indicado para cães de todos os portes. Produto natural — variações de tamanho, cor e peso podem ocorrer.\n\nDisponível em dois tamanhos:\n• Tamanho M (porte médio): R$ 24,90\n• Tamanho G (porte grande): R$ 27,90\nEmbalagem com 1 unidade..'
+  },
+  {
+    id: 'fictional-1',
+    brand: 'alecrim',
+    name: 'Crush Pet Alecrim',
+    description: 'Mordedor natural de pele bovina desidratada',
+    price: 34.90,
+    image: './catalogs/crush pet.JPG',
+    images: [
+      './catalogs/crush pet.JPG',
+      './catalogs/pet crush.JPG'
+    ],
+    details: 'Feito com 100% de pele bovina enrolada e desidratada, sem conservantes, corantes ou aditivos. Alta resistência para proporcionar longas sessões de mastigação, auxiliando na limpeza dental e alívio de estresse. Recomendado para cães de todos os portes, especialmente os com mordida potente. Cada embalagem contém 1 unidade. Oferecer sempre sob supervisão.'
+  },
+  {
+    id: 'treat-5',
+    brand: 'natuka',
+    name: 'Sticks Filé Mignon Suíno',
+    description: 'Petisco natural de filé mignon suíno',
+    price: 38.30,
+    image: './catalogs/petiscosAgrado/STICKS FILÉ MIGNON SUÍNO.JPG',
+    images: [
+      './catalogs/petiscosAgrado/STICKS FILÉ MIGNON SUÍNO.JPG',
+      './catalogs/petiscosAgrado/filé mignon suíno.png',
+    ],
+    details: 'Petisco feito 100% de filé mignon suíno higienizado e desidratado lentamente em baixa temperatura. Rico em proteínas, com baixo teor de gordura, altamente palatável, ideal para treinos, recompensas e enriquecimento ambiental. Embalagem com 60g.'
+  }
+];
 
 interface ProductModalProps {
   product: Product;
