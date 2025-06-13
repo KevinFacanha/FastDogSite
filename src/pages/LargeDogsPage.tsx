@@ -41,8 +41,34 @@ const largeDogProducts: Product[] = [
     details: "Feito exclusivamente de vergalho bovino 100% natural, sem aditivos, conservantes ou corantes. Textura firme que estimula a mastigação e ajuda na saúde dental. Produto de alta palatabilidade e durabilidade. Recomendado para cães de médio a grande porte. Embalagem contém 1 unidade. Oferecer com supervisão."
   },
   {
+    id: 'chewable-5',
+    brand: 'natuka',
+    name: 'Natuka Knot Plus',
+    description: 'Mastigável natural de couro bovino em formato de nó (knot)',
+    price: 35.90,
+    image: './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/Natuka Knotplus.JPG',
+      './catalogs/petiscosMastigaveis/knotplus.JPG'
+    ],
+    details: 'Feito 100% de couro bovino, desidratado lentamente sem aditivos, conservantes ou corantes. Nível de resistência alto, ideal para limpeza dental e estímulo da mastigação. Cada embalagem contém 1 unidade. Indicado para cães de médio a grande porte.'
+  },
+  {
+    id: 'chewable-10',
+    brand: 'natuka',
+    name: 'Big Traqueia Bovina Good Lovin',
+    description: 'Mastigável natural de traqueia bovina – unidade única',
+    price: 25.90,
+    image: './catalogs/petiscosMastigaveis/traqueia.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/traqueia.JPG',
+      './catalogs/petiscosMastigaveis/big traqueia.JPG'
+    ],
+    details: 'Petisco 100% natural feito de traqueia bovina higienizada e esterilizada, desidratada lentamente em baixa temperatura.\nRica em colágeno, glucosamina e condroitina — favorece a saúde articular e regeneração de tecidos.\nTextura rígida, ideal para promover limpeza dental, removendo tártaro e placa.\nEstimula a mastigação, proporcionando entretenimento, enriquecimento ambiental e alívio do estresse.\n\nEmbalagem contém 1 unidade (aproximadamente 13cm x 8cm), com variação natural de formato e cor.\nProduto livre de conservantes e corantes.'
+  },
+  {
     id: 'chewable-12',
-    brand: 'good-lovin',
+    brand: 'natuka',
     name: 'Spiral Extreme Good Lovin',
     description: 'Mastigável natural de couro bovino em espiral – pacote com 2 unidades',
     price: 29.90,
@@ -52,6 +78,19 @@ const largeDogProducts: Product[] = [
       './catalogs/petiscosMastigaveis/extreme spiral.JPG'
     ],
     details: 'Petisco 100% natural feito de couro bovino (com pelos), lavada, esterilizada e desidratada lentamente em baixa temperatura.\nIdeal para cães que gostam de mastigação intensa — súper resistente e durável.\nAuxilia na limpeza dental – funciona como fio dental natural, reduz em até 90% o odor da mastigação.\nOferece enriquecimento ambiental, alívio de estresse e estímulo mental.\n\nConteúdo da embalagem:\n• 2 espirais (peso mínimo de 100g).\n\nCuidados:\n• Use sempre sob supervisão.\n• Conservar em lugar seco e arejado, longe do calor e sol.\n• Consumir em até 7 dias após aberto.\n• Interrompa o uso se o pet começar a engolir pedaços grandes.'
+  },
+  {
+    id: 'chewable-20',
+    brand: 'natuka',
+    name: 'Orelha Bovina Luv',
+    description: 'Mastigável natural de orelha bovina com pelos',
+    price: 51.49,
+    image: './catalogs/petiscosMastigaveis/orelha bovina luv.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/orelha bovina luv.JPG',
+      './catalogs/petiscosMastigaveis/bovina orelha.JPG'
+    ],
+    details: 'Petisco 100% natural feito de orelhas de boi desidratadas lentamente em temperatura controlada. Rigidez moderada, ideal para cães de todos os portes. Auxilia na limpeza dental, alivia o estresse e entretém o pet — 20 min roendo equivalem a 40 min de caminhada.'
   },
   {
     id: 'chewable-24',
@@ -67,6 +106,19 @@ const largeDogProducts: Product[] = [
     details: 'Petisco 100% natural feito de pele bovina desidratada e enrolada artesanalmente. Super resistente — indicado para cães com energia e mordida forte. Proporciona enriquecimento ambiental, distração prolongada e exercício da mandíbula. Auxilia na limpeza dental, combate tártaro e promove bem-estar. Embalagem com 1 unidade.'
   },
   {
+    id: 'chewable-25',
+    brand: 'alecrim',
+    name: 'Buchinho Crocante AlecrimPet',
+    description: 'Mastigável natural de rúmen bovino',
+    price: 28.90,
+    image: './catalogs/petiscosMastigaveis/buchinho crocante.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/buchinho crocante.JPG',
+      './catalogs/petiscosMastigaveis/crocante buchinho.JPG'
+    ],
+    details: 'Petisco 100% natural feito de rúmen bovino desidratado lentamente. Super crocante com aroma marcante, rico em proteínas. Baixo teor calórico — ideal para cães e gatos com sobrepeso. Fácil de fragmentar na mão, excelente para treinos, filhotes e idosos. Promove limpeza dental e saúde gastrointestinal. Indicado para cães e gatos de todos os portes. Embalagem com 70 g.'
+  },
+    {
     id: 'chewer-1',
     brand: 'natuka',
     name: 'Casco Bovino Natuka',
@@ -79,7 +131,7 @@ const largeDogProducts: Product[] = [
     ],
     details: 'Petisco 100% natural feito de casco bovino (queratina), desidratado lentamente. Extremamente rígido — oferece mastigação prolongada e pode durar dias. Pode ser recheado para enriquecimento ambiental. Ideal para limpeza dental, alívio de estresse e controle de peso. Indicado para cães de todos os portes, exceto com problemas dentários. Embalagem com 4 unidades.'
   },
-  {
+    {
     id: 'chewer-2',
     brand: 'natuka',
     name: 'Chifre Bovino Natuka',
@@ -92,7 +144,72 @@ const largeDogProducts: Product[] = [
     ],
     details: 'Petisco 100% natural feito de chifre bovino (queratina), sem ponta, muito rígido e durável. Ideal para mastigação prolongada, limpeza dental e enriquecimento ambiental. Pode ser recheado para maior estímulo. Indicado para cães de todos os portes. Produto natural — variações de tamanho, cor e peso podem ocorrer.\n\nDisponível em dois tamanhos:\n• Tamanho M (porte médio): R$ 24,90\n• Tamanho G (porte grande): R$ 27,90\nEmbalagem com 1 unidade..'
   },
-  {
+    {
+    id: 'chewer-3',
+    brand: 'natuka',
+    name: 'Casco Bovino Good Lovin',
+    description: 'Mastigável natural de casco bovino',
+    price: 12.50,
+    image: './catalogs/mordedores/Casco.JPG',
+    images: [
+      './catalogs/mordedores/Casco.JPG',
+      './catalogs/mordedores/casco bovino good.JPG'
+    ],
+    details: 'Petisco 100% natural feito de casco bovino higienizado e esterilizado, desidratado lentamente. Alta durabilidade — ideal para filhotes em troca dentária e cães com instinto de mastigação. Promove limpeza dental, controle de tártaro e distração prolongada. Indicado para cães de pequeno e médio porte. Embalagem com 1 unidade.'
+  },
+    {
+    id: 'chewer-4',
+    brand: 'natuka',
+    name: 'Chifre Bovino Good Lovin',
+    description: 'Mastigável natural de chifre bovino',
+    price: 38.90,
+    image: './catalogs/mordedores/Chifre.JPG',
+    images: [
+      './catalogs/mordedores/Chifre.JPG',
+      './catalogs/mordedores/bovino chifre good.JPG'
+    ],
+    details: 'Petisco 100% natural feito de chifre bovino inteiro, higienizado e desidratado lentamente. Muito resistente e durável, ideal para mastigação prolongada e limpeza dental. Indicado para cães de porte médio e grande. Embalagem com 1 unidade. '
+  },
+    {
+    id: 'chewer-6',
+    brand: 'natuka',
+    name: 'Orelha de Boi Jumbo Good Lovin (sem ouvido)',
+    description: 'Mastigável natural de orelha bovina sem ouvido',
+    price: 12.90,
+    image: './catalogs/mordedores/orelha de boi.JPG',
+    images: [
+      './catalogs/mordedores/orelha de boi.JPG',
+      './catalogs/mordedores/orelha de boi.JPG'
+    ],
+    details: 'Petisco 100% natural feito de orelha de boi higienizada, esterilizada e desidratada lentamente. Muito crocante, alta palatabilidade e durabilidade, ideal para distração prolongada e enriquecimento ambiental. Auxilia na higiene bucal e controle de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
+  },
+    {
+    id: 'chewer-7',
+    brand: 'good-lovin',
+    name: 'Orelha de Boi Jumbo com Ouvido Good Lovin',
+    description: 'Mastigável natural de orelha bovina com ouvido',
+    price: 13.90,
+    image: './catalogs/mordedores/com ouvido.JPG',
+    images: [
+      './catalogs/mordedores/com ouvido.JPG',
+      './catalogs/mordedores/Orelha de boi com ouvido.JPG'
+    ],
+    details: 'Petisco 100% natural feito de orelha de boi (com duto auditivo), higienizada, esterilizada e desidratada lentamente. Textura crocante e mais resistente, ideal para distração prolongada, enriquecimento ambiental e controle de ansiedade de separação. Auxilia na limpeza dental e redução de tártaro. Indicado para cães de médio e grande porte. Embalagem com 1 unidade.'
+  },
+    {
+    id: 'chewable-13',
+    brand: 'natuka',
+    name: 'Tie Good Lovin',
+    description: 'Mastigável natural de couro bovino em formato de gravata',
+    price: 19.90,
+    image: './catalogs/petiscosMastigaveis/mordedor tie.JPG',
+    images: [
+      './catalogs/petiscosMastigaveis/mordedor tie.JPG',
+      './catalogs/petiscosMastigaveis/tie.png'
+    ],
+    details: 'Feito 100% de couro bovino com pelos curtos, desidratado lentamente. Altamente resistente, auxilia na saúde bucal, alívio do estresse e melhora do trânsito intestinal. Indicado para cães de todos os portes. Embalagem com 1 unidade (15cm).'
+  },
+      {
     id: 'fictional-1',
     brand: 'alecrim',
     name: 'Crush Pet Alecrim',
@@ -105,19 +222,7 @@ const largeDogProducts: Product[] = [
     ],
     details: 'Feito com 100% de pele bovina enrolada e desidratada, sem conservantes, corantes ou aditivos. Alta resistência para proporcionar longas sessões de mastigação, auxiliando na limpeza dental e alívio de estresse. Recomendado para cães de todos os portes, especialmente os com mordida potente. Cada embalagem contém 1 unidade. Oferecer sempre sob supervisão.'
   },
-  {
-    id: 'treat-5',
-    brand: 'natuka',
-    name: 'Sticks Filé Mignon Suíno',
-    description: 'Petisco natural de filé mignon suíno',
-    price: 38.30,
-    image: './catalogs/petiscosAgrado/STICKS FILÉ MIGNON SUÍNO.JPG',
-    images: [
-      './catalogs/petiscosAgrado/STICKS FILÉ MIGNON SUÍNO.JPG',
-      './catalogs/petiscosAgrado/filé mignon suíno.png',
-    ],
-    details: 'Petisco feito 100% de filé mignon suíno higienizado e desidratado lentamente em baixa temperatura. Rico em proteínas, com baixo teor de gordura, altamente palatável, ideal para treinos, recompensas e enriquecimento ambiental. Embalagem com 60g.'
-  }
+
 ];
 
 interface ProductModalProps {
