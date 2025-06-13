@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DogSizeBanners: React.FC = () => {
   const banners = [
@@ -6,28 +7,24 @@ const DogSizeBanners: React.FC = () => {
       id: 'small',
       title: 'Cachorros de Porte Pequeno',
       image: 'https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2',
-      description: 'Petiscos especiais para cães pequenos'
+      description: 'Petiscos especiais para cães pequenos',
+      route: '/porte-pequeno'
     },
     {
       id: 'medium',
       title: 'Cachorros de Porte Médio',
       image: 'https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2',
-      description: 'Produtos ideais para cães de porte médio'
+      description: 'Produtos ideais para cães de porte médio',
+      route: '/porte-medio'
     },
     {
       id: 'large',
       title: 'Cachorros de Porte Grande',
       image: 'https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2',
-      description: 'Petiscos resistentes para cães grandes'
+      description: 'Petiscos resistentes para cães grandes',
+      route: '/porte-grande'
     }
   ];
-
-  const scrollToBestSellers = () => {
-    const bestSellersSection = document.querySelector('h2')?.closest('section');
-    if (bestSellersSection) {
-      bestSellersSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="py-16 bg-gradient-to-br from-green-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 transition-colors duration-200">
@@ -43,10 +40,10 @@ const DogSizeBanners: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {banners.map((banner) => (
-            <div
+            <Link
               key={banner.id}
-              className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-xl transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-              onClick={scrollToBestSellers}
+              to={banner.route}
+              className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-xl transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl block"
             >
               {/* Imagem de fundo */}
               <div className="relative h-80 overflow-hidden">
@@ -75,7 +72,7 @@ const DogSizeBanners: React.FC = () => {
 
               {/* Efeito de brilho no hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 bg-gradient-to-r from-transparent via-white to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full" />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -6,6 +6,9 @@ import TreatsPage from './pages/TreatsPage';
 import ChewablesPage from './pages/ChewablesPage';
 import ChewersPage from './pages/ChewersPage';
 import CatalogsPage from './pages/CatalogsPage';
+import SmallDogsPage from './pages/SmallDogsPage';
+import MediumDogsPage from './pages/MediumDogsPage';
+import LargeDogsPage from './pages/LargeDogsPage';
 import FooterSection from './components/FooterSection';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -21,6 +24,9 @@ function App() {
             <Route path="/chewables" element={<ChewablesPage />} />
             <Route path="/chewers" element={<ChewersPage />} />
             <Route path="/catalogos" element={<CatalogsPage />} />
+            <Route path="/porte-pequeno" element={<SmallDogsPage />} />
+            <Route path="/porte-medio" element={<MediumDogsPage />} />
+            <Route path="/porte-grande" element={<LargeDogsPage />} />
           </Routes>
         </main>
         <FooterSection />
