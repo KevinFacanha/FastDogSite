@@ -93,9 +93,10 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md mx-4">
-        <div className="p-4 border-b dark:border-gray-700 flex justify-between items-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md mx-4 max-h-[90vh] flex flex-col">
+        {/* Header */}
+        <div className="p-4 border-b dark:border-gray-700 flex justify-between items-center flex-shrink-0">
           <h2 className="text-xl font-semibold text-green-800 dark:text-green-400">Carrinho</h2>
           <button
             onClick={onClose}
@@ -105,162 +106,176 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
         
-        <div className="p-4 max-h-96 overflow-y-auto">
-          {items.length === 0 ? (
-            <div className="text-center py-8">
-              <ShoppingBag className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-500 dark:text-gray-400">Seu carrinho está vazio</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {items.map((item, index) => (
-                <div
-                  key={`${item.product.id}-${item.selectedVariant?.size || 'default'}-${index}`}
-                  className="flex items-center justify-between border-b dark:border-gray-700 pb-4"
-                >
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src={item.product.image}
-                      alt={item.product.name}
-                      className="w-16 h-16 object-cover rounded"
-                    />
-                    <div>
-                      <h3 className="font-medium text-gray-900 dark:text-gray-100">{item.product.name}</h3>
-                      {item.selectedVariant && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                          {item.selectedVariant.description}
+        {/* Content Area - Scrollable */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-4">
+            {items.length === 0 ? (
+              <div className="text-center py-8">
+                <ShoppingBag className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-500 dark:text-gray-400">Seu carrinho está vazio</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {items.map((item, index) => (
+                  <div
+                    key={`${item.product.id}-${item.selectedVariant?.size || 'default'}-${index}`}
+                    className="flex items-center justify-between border-b dark:border-gray-700 pb-4"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <img
+                        src={item.product.image}
+                        alt={item.product.name}
+                        className="w-16 h-16 object-cover rounded"
+                      />
+                      <div>
+                        <h3 className="font-medium text-gray-900 dark:text-gray-100">{item.product.name}</h3>
+                        {item.selectedVariant && (
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                            {item.selectedVariant.description}
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {formatFullPrice(item.product.price)}
                         </p>
-                      )}
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {formatFullPrice(item.product.price)}
-                      </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.product.id, Math.max(0, item.quantity - 1))
+                        }
+                        className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="w-8 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.product.id, item.quantity + 1)
+                        }
+                        className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => removeItem(item.product.id)}
+                        className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 ml-4"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() =>
-                        updateQuantity(item.product.id, Math.max(0, item.quantity - 1))
-                      }
-                      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                    >
-                      <Minus className="h-4 w-4" />
-                    </button>
-                    <span className="w-8 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
-                    <button
-                      onClick={() =>
-                        updateQuantity(item.product.id, item.quantity + 1)
-                      }
-                      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                    >
-                      <Plus className="h-4 w-4" />
-                    </button>
-                    <button
-                      onClick={() => removeItem(item.product.id)}
-                      className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 ml-4"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        
-        {items.length > 0 && (
-          <div className="p-4 border-t dark:border-gray-700 space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="flex-1">
-                <div className="relative">
-                  <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
-                    type="text"
-                    value={couponInput}
-                    onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
-                    placeholder="Digite seu cupom"
-                    className="w-full pl-10 pr-4 py-2 border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        handleApplyCoupon();
-                      }
-                    }}
-                  />
-                </div>
-              </div>
-              <button
-                onClick={handleApplyCoupon}
-                className="bg-green-600 dark:bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors"
-              >
-                Aplicar
-              </button>
-            </div>
-
-            {couponCode && (
-              <div className="flex justify-between items-center bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
-                <div>
-                  <p className="text-green-800 dark:text-green-400 font-medium">{couponCode}</p>
-                  <p className="text-green-600 dark:text-green-300 text-sm">Desconto de 10% aplicado</p>
-                </div>
-                <button
-                  onClick={() => {
-                    setCouponCode(null);
-                    setCouponInput('');
-                    toast.success('Cupom removido');
-                  }}
-                  className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-                >
-                  <X className="h-4 w-4" />
-                </button>
+                ))}
               </div>
             )}
-
-            <div className="relative">
-              <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                value={cep}
-                onChange={handleCEPChange}
-                placeholder="Digite seu CEP"
-                maxLength={9}
-                className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 ${
-                  cepError ? 'border-red-500 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
-                }`}
-              />
-              {cepError && (
-                <p className="text-red-500 dark:text-red-400 text-sm mt-1">{cepError}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-700 dark:text-gray-300">Subtotal:</span>
-                <span className="text-gray-900 dark:text-gray-100">{formatFullPrice(subtotal)}</span>
+          </div>
+        </div>
+        
+        {/* Footer - Fixed at bottom when there are items */}
+        {items.length > 0 && (
+          <div className="border-t dark:border-gray-700 bg-white dark:bg-gray-800 flex-shrink-0">
+            {/* Coupon and CEP Section */}
+            <div className="p-4 space-y-4">
+              {/* Coupon Input */}
+              <div className="flex items-center space-x-2">
+                <div className="flex-1">
+                  <div className="relative">
+                    <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <input
+                      type="text"
+                      value={couponInput}
+                      onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
+                      placeholder="Digite seu cupom"
+                      className="w-full pl-10 pr-4 py-2 border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                          handleApplyCoupon();
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+                <button
+                  onClick={handleApplyCoupon}
+                  className="bg-green-600 dark:bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors"
+                >
+                  Aplicar
+                </button>
               </div>
-              
-              {couponCode && discount > 0 && (
-                <div className="flex justify-between items-center">
-                  <span className="text-green-600 dark:text-green-400">Desconto (10%):</span>
-                  <span className="text-green-600 dark:text-green-400">-{formatFullPrice(discount)}</span>
+
+              {/* Applied Coupon Display */}
+              {couponCode && (
+                <div className="flex justify-between items-center bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
+                  <div>
+                    <p className="text-green-800 dark:text-green-400 font-medium">{couponCode}</p>
+                    <p className="text-green-600 dark:text-green-300 text-sm">Desconto de 10% aplicado</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setCouponCode(null);
+                      setCouponInput('');
+                      toast.success('Cupom removido');
+                    }}
+                    className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
                 </div>
               )}
-              
-              <div className="flex justify-between items-center border-t dark:border-gray-600 pt-2">
-                <span className="font-semibold text-gray-900 dark:text-gray-100">Total:</span>
-                <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
-                  {formatFullPrice(total)}
-                </span>
+
+              {/* CEP Input */}
+              <div className="relative">
+                <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  type="text"
+                  value={cep}
+                  onChange={handleCEPChange}
+                  placeholder="Digite seu CEP"
+                  maxLength={9}
+                  className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 ${
+                    cepError ? 'border-red-500 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
+                  }`}
+                />
+                {cepError && (
+                  <p className="text-red-500 dark:text-red-400 text-sm mt-1">{cepError}</p>
+                )}
+              </div>
+
+              {/* Price Summary */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700 dark:text-gray-300">Subtotal:</span>
+                  <span className="text-gray-900 dark:text-gray-100">{formatFullPrice(subtotal)}</span>
+                </div>
+                
+                {couponCode && discount > 0 && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-green-600 dark:text-green-400">Desconto (10%):</span>
+                    <span className="text-green-600 dark:text-green-400">-{formatFullPrice(discount)}</span>
+                  </div>
+                )}
+                
+                <div className="flex justify-between items-center border-t dark:border-gray-600 pt-2">
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">Total:</span>
+                  <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
+                    {formatFullPrice(total)}
+                  </span>
+                </div>
               </div>
             </div>
             
-            <a
-              href={generateWhatsAppMessage()}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleWhatsAppClick}
-              className="block w-full bg-green-600 dark:bg-green-700 text-white text-center py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors"
-            >
-              Finalizar no WhatsApp
-            </a>
+            {/* Fixed Checkout Button */}
+            <div className="p-4 pt-0">
+              <a
+                href={generateWhatsAppMessage()}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleWhatsAppClick}
+                className="block w-full bg-green-600 dark:bg-green-700 text-white text-center py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors font-semibold shadow-lg"
+              >
+                Finalizar no WhatsApp
+              </a>
+            </div>
           </div>
         )}
       </div>
