@@ -47,24 +47,23 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
     return true;
   };
 
-  const generateWhatsAppMessage = () => {
-    const message = `Olá! Gostaria de fazer o seguinte pedido:\n${items
-      .map(
-        (item) => {
-          const variantInfo = item.selectedVariant ? ` (${item.selectedVariant.description})` : '';
-          return `• ${item.quantity}x ${item.product.name}${variantInfo} - ${formatFullPrice(
-            item.product.price * item.quantity
-          )}`;
-        }
-      )
-      .join('\n')}\n\nSubtotal: ${formatFullPrice(subtotal)}${
-      couponCode ? `\nCupom: ${couponCode} (-10%): -${formatFullPrice(discount)}` : ''
-    }\nCEP: ${cep}\nTotal: ${formatFullPrice(total)}`;
+const generateWhatsAppMessage = () => {
+  const message = `Olá! Gostaria de fazer o seguinte pedido:\n${items
+    .map((item) => {
+      const variantInfo = item.selectedVariant ? ` (${item.selectedVariant.description})` : '';
+      return `• ${item.quantity}x ${item.product.name}${variantInfo} - ${formatFullPrice(
+        item.product.price * item.quantity
+      )}`;
+    })
+    .join('\n')}\n\nSubtotal: ${formatFullPrice(subtotal)}${
+    couponCode ? `\nCupom: ${couponCode} (-10%): -${formatFullPrice(discount)}` : ''
+  }\n\nCEP: ${cep}\n Frete será calculado via WhatsApp\n\nTotal: ${formatFullPrice(total)}`;
 
-    const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = '5511945993793';
-    return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-  };
+
+  const encodedMessage = encodeURIComponent(message);
+  const phoneNumber = '5511945993793';
+  return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+};
 
   const handleApplyCoupon = () => {
     const couponToValidate = couponInput.trim().toUpperCase();
