@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Dog, ShoppingCart, Heart, ChevronDown, Menu, X } from 'lucide-react';
+import { Dog, ShoppingCart, Heart, ChevronDown, Menu, X, User, LogOut } from 'lucide-react';
 import CartModal from './CartModal';
 import FavoritesModal from './FavoritesModal';
 import DarkModeToggle from './DarkModeToggle';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
+import { useAuthStore } from '../store/useAuthStore';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,8 +15,10 @@ const Header: React.FC = () => {
   const [isProductsMenuOpen, setIsProductsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const items = useCartStore((state) => state.items);
   const favorites = useFavoritesStore((state) => state.favorites);
+  const { customer, isAuthenticated, logout } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,31 +37,44 @@ const Header: React.FC = () => {
       const target = event.target as Element;
       const productsMenu = document.getElementById('products-menu');
       const productsButton = document.getElementById('products-button');
+      const userMenu = document.getElementById('user-menu');
+      const userButton = document.getElementById('user-button');
       
       if (productsMenu && productsButton && 
           !productsMenu.contains(target) && 
           !productsButton.contains(target)) {
         setIsProductsMenuOpen(false);
       }
+
+      if (userMenu && userButton && 
+          !userMenu.contains(target) && 
+          !userButton.contains(target)) {
+        setIsUserMenuOpen(false);
+      }
     };
 
-    if (isProductsMenuOpen) {
+    if (isProductsMenuOpen || isUserMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isProductsMenuOpen]);
+  }, [isProductsMenuOpen, isUserMenuOpen]);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsProductsMenuOpen(false);
     setIsMobileProductsOpen(false);
+    setIsUserMenuOpen(false);
   };
 
   const handleProductsMenuClick = () => {
     setIsProductsMenuOpen(!isProductsMenuOpen);
+  };
+
+  const handleUserMenuClick = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
   };
 
   const handleMobileProductsClick = () => {
@@ -67,6 +83,12 @@ const Header: React.FC = () => {
 
   const handleProductsMenuItemClick = () => {
     setIsProductsMenuOpen(false);
+    closeMobileMenu();
+  };
+
+  const handleLogout = () => {
+    logout();
+    setIsUserMenuOpen(false);
     closeMobileMenu();
   };
 
@@ -239,6 +261,38 @@ const Header: React.FC = () => {
                   )}
                 </button>
               </li>
+              {/* User Menu */}
+              {isAuthenticated && customer ? (
+                <li className="relative">
+                  <button
+                    id="user-button"
+                    className="flex items-center space-x-2 text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors p-2 rounded-lg hover:bg-green-50 dark:hover:bg-gray-700"
+                    onClick={handleUserMenuClick}
+                  >
+                    <User className="h-5 w-5" />
+                    <span className="hidden lg:block">{customer.nome.split(' ')[0]}</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {isUserMenuOpen && (
+                    <div
+                      id="user-menu"
+                      className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 border dark:border-gray-700 z-50"
+                    >
+                      <div className="px-4 py-2 border-b dark:border-gray-700">
+                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{customer.nome}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{customer.email}</p>
+                      </div>
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center space-x-2 w-full px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        <span>Sair</span>
+                      </button>
+                    </div>
+                  )}
+                </li>
+              ) : null}
             </ul>
           </nav>
         </div>
@@ -307,6 +361,26 @@ const Header: React.FC = () => {
                   Sobre
                 </button>
               </li>
+              {/* Mobile User Info */}
+              {isAuthenticated && customer ? (
+                <>
+                  <li className="border-t dark:border-gray-600 mt-2 pt-2">
+                    <div className="px-4 py-2">
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{customer.nome}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{customer.email}</p>
+                    </div>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center space-x-2 w-full px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      <span>Sair</span>
+                    </button>
+                  </li>
+                </>
+              ) : null}
             </ul>
           </nav>
         )}
