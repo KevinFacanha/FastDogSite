@@ -11,7 +11,7 @@ export class CustomerService {
         .from('customers')
         .select('email')
         .eq('email', customerData.email)
-        .single();
+        .maybeSingle();
 
       if (existingCustomer) {
         return { success: false, error: 'E-mail já cadastrado' };
@@ -22,7 +22,7 @@ export class CustomerService {
         .from('customers')
         .select('telefone')
         .eq('telefone', customerData.telefone)
-        .single();
+        .maybeSingle();
 
       if (existingPhone) {
         return { success: false, error: 'Telefone já cadastrado' };
