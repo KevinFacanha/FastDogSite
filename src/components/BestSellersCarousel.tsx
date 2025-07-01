@@ -34,7 +34,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const calculatePixPrice = (price: number) => price - 1.26;
 
   // Check if product is out of stock
-  const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+  const isOutOfStock = product.details?.toLowerCase().includes('estoque indisponível') || false;
 
   const getBrandName = (brand: string) => {
     switch (brand) {
@@ -50,6 +50,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
         return brand;
     }
   };
+
+  // Garantir que sempre temos pelo menos uma imagem
+  const productImages = product.images && product.images.length > 0 ? product.images : [product.image];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -67,13 +70,17 @@ const ProductModal: React.FC<ProductModalProps> = ({
           <div className="p-6 space-y-4">
             <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-50 dark:bg-gray-700">
               <img
-                src={product.images[selectedImage]}
+                src={productImages[selectedImage]}
                 alt={product.name}
                 className="w-full h-full object-contain"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = product.image; // Fallback para imagem principal
+                }}
               />
             </div>
             <div className="flex justify-center space-x-2">
-              {product.images.map((image, index) => (
+              {productImages.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
@@ -87,6 +94,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
                     src={image}
                     alt={`${product.name} view ${index + 1}`}
                     className="w-full h-full object-contain bg-gray-50 dark:bg-gray-700"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = product.image; // Fallback para imagem principal
+                    }}
                   />
                 </button>
               ))}
@@ -101,7 +112,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
                 {product.name}
               </h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">{product.details}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{product.details || product.description}</p>
               
               <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                 <Package className="h-4 w-4" />
@@ -246,6 +257,9 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   const addItem = useCartStore((state) => state.addItem);
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
 
+  // Verificar se products existe e tem itens
+  const safeProducts = products || [];
+
   useEffect(() => {
     const updateProductsPerPage = () => {
       if (window.innerWidth <= 767) {
@@ -262,7 +276,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
     return () => window.removeEventListener('resize', updateProductsPerPage);
   }, []);
 
-  const maxIndex = Math.max(0, products.length - productsPerPage);
+  const maxIndex = Math.max(0, safeProducts.length - productsPerPage);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -278,7 +292,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
     }
     
     // Check if product is out of stock
-    const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+    const isOutOfStock = product.details?.toLowerCase().includes('estoque indisponível') || false;
     if (isOutOfStock) {
       toast.error('Não é possível favoritar produtos indisponíveis');
       return;
@@ -316,6 +330,11 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
     }
   };
 
+  // Se não há produtos, não renderizar a seção
+  if (safeProducts.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 bg-white dark:bg-gray-800 transition-colors duration-200">
       <div className="container mx-auto px-4">
@@ -330,8 +349,8 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                 transform: `translateX(-${(currentIndex * 100) / productsPerPage}%)`,
               }}
             >
-              {products.map((product) => {
-                const isOutOfStock = product.details.toLowerCase().includes('estoque indisponível');
+              {safeProducts.map((product) => {
+                const isOutOfStock = product.details?.toLowerCase().includes('estoque indisponível') || false;
                 
                 return (
                   <div
@@ -346,6 +365,10 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                             src={product.image}
                             alt={product.name}
                             className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-110"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none'; // Esconder imagem quebrada
+                            }}
                           />
                         </div>
                         <button
@@ -438,9 +461,9 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
         </div>
 
         {/* Indicadores de navegação para mobile */}
-        {productsPerPage === 1 && products.length > 1 && (
+        {productsPerPage === 1 && safeProducts.length > 1 && (
           <div className="flex justify-center mt-6 space-x-2">
-            {Array.from({ length: products.length }, (_, index) => (
+            {Array.from({ length: safeProducts.length }, (_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}

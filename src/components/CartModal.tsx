@@ -47,23 +47,23 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
     return true;
   };
 
-const generateWhatsAppMessage = () => {
-  const message = `Olá! Gostaria de fazer o seguinte pedido:\n${items
-    .map((item) => {
-      const variantInfo = item.selectedVariant ? ` (${item.selectedVariant.description})` : '';
-      return `• ${item.quantity}x ${item.product.name}${variantInfo} - ${formatFullPrice(
-        item.product.price * item.quantity
-      )}`;
-    })
-    .join('\n')}\n\nSubtotal: ${formatFullPrice(subtotal)}${
-    couponCode ? `\nCupom: ${couponCode} (-10%): -${formatFullPrice(discount)}` : ''
-  }\n\nCEP: ${cep}\n Frete será calculado via WhatsApp\n\nTotal: ${formatFullPrice(total)}`;
+  const generateWhatsAppMessage = () => {
+    const message = `Olá! Gostaria de fazer o seguinte pedido:\n${items
+      .map((item) => {
+        const variantInfo = item.selectedVariant ? ` (${item.selectedVariant.description})` : '';
+        const itemPrice = item.product?.price || 0;
+        return `• ${item.quantity}x ${item.product?.name || 'Produto'}${variantInfo} - ${formatFullPrice(
+          itemPrice * item.quantity
+        )}`;
+      })
+      .join('\n')}\n\nSubtotal: ${formatFullPrice(subtotal)}${
+      couponCode ? `\nCupom: ${couponCode} (-10%): -${formatFullPrice(discount)}` : ''
+    }\n\nCEP: ${cep}\n Frete será calculado via WhatsApp\n\nTotal: ${formatFullPrice(total)}`;
 
-
-  const encodedMessage = encodeURIComponent(message);
-  const phoneNumber = '5511945993793';
-  return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-};
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = '5511945993793';
+    return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  };
 
   const handleApplyCoupon = () => {
     const couponToValidate = couponInput.trim().toUpperCase();
@@ -115,56 +115,67 @@ const generateWhatsAppMessage = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                {items.map((item, index) => (
-                  <div
-                    key={`${item.product.id}-${item.selectedVariant?.size || 'default'}-${index}`}
-                    className="flex items-center justify-between border-b dark:border-gray-700 pb-4"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <img
-                        src={item.product.image}
-                        alt={item.product.name}
-                        className="w-16 h-16 object-cover rounded"
-                      />
-                      <div>
-                        <h3 className="font-medium text-gray-900 dark:text-gray-100">{item.product.name}</h3>
-                        {item.selectedVariant && (
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
-                            {item.selectedVariant.description}
+                {items.map((item, index) => {
+                  // Verificar se o produto existe
+                  if (!item.product) {
+                    return null;
+                  }
+
+                  return (
+                    <div
+                      key={`${item.product.id}-${item.selectedVariant?.size || 'default'}-${index}`}
+                      className="flex items-center justify-between border-b dark:border-gray-700 pb-4"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <img
+                          src={item.product.image}
+                          alt={item.product.name}
+                          className="w-16 h-16 object-cover rounded"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                        />
+                        <div>
+                          <h3 className="font-medium text-gray-900 dark:text-gray-100">{item.product.name}</h3>
+                          {item.selectedVariant && (
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              {item.selectedVariant.description}
+                            </p>
+                          )}
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {formatFullPrice(item.product.price || 0)}
                           </p>
-                        )}
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {formatFullPrice(item.product.price)}
-                        </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.product.id, Math.max(0, item.quantity - 1))
+                          }
+                          className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <span className="w-8 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.product.id, item.quantity + 1)
+                          }
+                          className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => removeItem(item.product.id)}
+                          className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 ml-4"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() =>
-                          updateQuantity(item.product.id, Math.max(0, item.quantity - 1))
-                        }
-                        className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                      >
-                        <Minus className="h-4 w-4" />
-                      </button>
-                      <span className="w-8 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
-                      <button
-                        onClick={() =>
-                          updateQuantity(item.product.id, item.quantity + 1)
-                        }
-                        className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                      >
-                        <Plus className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => removeItem(item.product.id)}
-                        className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 ml-4"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

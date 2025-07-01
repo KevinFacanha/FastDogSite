@@ -5,14 +5,15 @@ import BestSellersCarousel from '../components/BestSellersCarousel';
 import { products } from '../data/products';
 
 const HomePage: React.FC = () => {
-  // Seleciona os primeiros 10 produtos para a seção "Mais Vendidos"
-  const bestSellers = products.slice(0, 10);
+  // Verificar se products existe e tem itens antes de usar slice
+  const safeProducts = products || [];
+  const bestSellers = safeProducts.length > 0 ? safeProducts.slice(0, 10) : [];
 
   return (
     <>
       <HeroSection />
       <DogSizeBanners />
-      <BestSellersCarousel products={bestSellers} />
+      {bestSellers.length > 0 && <BestSellersCarousel products={bestSellers} />}
     </>
   );
 };

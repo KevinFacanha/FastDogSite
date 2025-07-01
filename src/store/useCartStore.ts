@@ -18,6 +18,12 @@ export const useCartStore = create<CartStore>((set, get) => ({
   couponCode: null,
   addItem: (product, variant) =>
     set((state) => {
+      // Verificar se o produto existe
+      if (!product || !product.id) {
+        console.error('Produto inválido:', product);
+        return state;
+      }
+
       // Para produtos com variantes, consideramos o ID + tamanho como identificador único
       const itemKey = variant ? `${product.id}-${variant.size}` : product.id;
       const existingItem = state.items.find(
@@ -53,7 +59,11 @@ export const useCartStore = create<CartStore>((set, get) => ({
       }
 
       const newSubtotal = newItems.reduce(
-        (total, item) => total + item.product.price * item.quantity,
+        (total, item) => {
+          const price = item.product?.price || 0;
+          const quantity = item.quantity || 0;
+          return total + (price * quantity);
+        },
         0
       );
 
@@ -70,10 +80,14 @@ export const useCartStore = create<CartStore>((set, get) => ({
     }),
   removeItem: (productId) =>
     set((state) => {
-      const newItems = state.items.filter((item) => item.product.id !== productId);
+      const newItems = state.items.filter((item) => item.product?.id !== productId);
       
       const newSubtotal = newItems.reduce(
-        (total, item) => total + item.product.price * item.quantity,
+        (total, item) => {
+          const price = item.product?.price || 0;
+          const quantity = item.quantity || 0;
+          return total + (price * quantity);
+        },
         0
       );
 
@@ -91,11 +105,15 @@ export const useCartStore = create<CartStore>((set, get) => ({
   updateQuantity: (productId, quantity) =>
     set((state) => {
       const newItems = state.items.map((item) =>
-        item.product.id === productId ? { ...item, quantity } : item
-      );
+        item.product?.id === productId ? { ...item, quantity: Math.max(0, quantity) } : item
+      ).filter(item => item.quantity > 0); // Remove itens com quantidade 0
 
       const newSubtotal = newItems.reduce(
-        (total, item) => total + item.product.price * item.quantity,
+        (total, item) => {
+          const price = item.product?.price || 0;
+          const itemQuantity = item.quantity || 0;
+          return total + (price * itemQuantity);
+        },
         0
       );
 
@@ -113,7 +131,11 @@ export const useCartStore = create<CartStore>((set, get) => ({
   setCouponCode: (code) =>
     set((state) => {
       const newSubtotal = state.items.reduce(
-        (total, item) => total + item.product.price * item.quantity,
+        (total, item) => {
+          const price = item.product?.price || 0;
+          const quantity = item.quantity || 0;
+          return total + (price * quantity);
+        },
         0
       );
 
@@ -129,7 +151,11 @@ export const useCartStore = create<CartStore>((set, get) => ({
     }),
   get subtotal() {
     return get().items.reduce(
-      (total, item) => total + item.product.price * item.quantity,
+      (total, item) => {
+        const price = item.product?.price || 0;
+        const quantity = item.quantity || 0;
+        return total + (price * quantity);
+      },
       0
     );
   },

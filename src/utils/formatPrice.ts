@@ -4,6 +4,10 @@
  * @returns String formatada com vírgula (ex: "35,90")
  */
 export const formatPrice = (price: number): string => {
+  // Verificar se price é um número válido
+  if (typeof price !== 'number' || isNaN(price)) {
+    return '0,00';
+  }
   return price.toFixed(2).replace('.', ',');
 };
 
