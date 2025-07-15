@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Dog, ShoppingCart, Heart, ChevronDown, Menu, X } from 'lucide-react';
+import { Dog, ShoppingCart, Heart, ChevronDown, Menu, X, User, LogOut } from 'lucide-react';
 import CartModal from './CartModal';
 import FavoritesModal from './FavoritesModal';
+import AuthModal from './AuthModal';
 import DarkModeToggle from './DarkModeToggle';
 import { useCartStore } from '../store/useCartStore';
 import { useFavoritesStore } from '../store/useFavoritesStore';
+import { useAuthStore } from '../store/useAuthStore';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isProductsMenuOpen, setIsProductsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const items = useCartStore((state) => state.items);
   const favorites = useFavoritesStore((state) => state.favorites);
+  const { isAuthenticated, customer, logout, checkAuth } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Verificar autenticação ao carregar
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,12 +43,20 @@ const Header: React.FC = () => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
       const productsMenu = document.getElementById('products-menu');
+      const userMenu = document.getElementById('user-menu');
       const productsButton = document.getElementById('products-button');
       
       if (productsMenu && productsButton && 
           !productsMenu.contains(target) && 
           !productsButton.contains(target)) {
         setIsProductsMenuOpen(false);
+      }
+
+      const userButton = document.getElementById('user-button');
+      if (userMenu && userButton && 
+          !userMenu.contains(target) && 
+          !userButton.contains(target)) {
+        setIsUserMenuOpen(false);
       }
     };
 
@@ -49,6 +67,12 @@ const Header: React.FC = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+  }, [isProductsMenuOpen, isUserMenuOpen]);
+
+  const handleLogout = async () => {
+    await logout();
+    setIsUserMenuOpen(false);
+    navigate('/');
   }, [isProductsMenuOpen]);
 
   const closeMobileMenu = () => {
@@ -56,6 +80,7 @@ const Header: React.FC = () => {
     setIsProductsMenuOpen(false);
     setIsMobileProductsOpen(false);
   };
+    setIsUserMenuOpen(false);
 
   const handleProductsMenuClick = () => {
     setIsProductsMenuOpen(!isProductsMenuOpen);
@@ -63,6 +88,10 @@ const Header: React.FC = () => {
 
   const handleMobileProductsClick = () => {
     setIsMobileProductsOpen(!isMobileProductsOpen);
+  };
+
+  const handleUserMenuClick = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
   };
 
   const handleProductsMenuItemClick = () => {
@@ -213,6 +242,47 @@ const Header: React.FC = () => {
               <li>
                 <DarkModeToggle />
               </li>
+              <li className="relative">
+                {isAuthenticated ? (
+                  <>
+                    <button
+                      id="user-button"
+                      onClick={handleUserMenuClick}
+                      className="flex items-center space-x-2 text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors p-2"
+                    >
+                      <User className="h-5 w-5" />
+                      <span className="hidden lg:inline">{customer?.nome?.split(' ')[0] || 'Usuário'}</span>
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isUserMenuOpen && (
+                      <div
+                        id="user-menu"
+                        className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 border dark:border-gray-700 z-50"
+                      >
+                        <div className="px-4 py-2 border-b dark:border-gray-700">
+                          <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{customer?.nome}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">{customer?.email}</p>
+                        </div>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center space-x-2"
+                        >
+                          <LogOut className="h-4 w-4" />
+                          <span>Sair</span>
+                        </button>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <button
+                    onClick={() => setIsAuthOpen(true)}
+                    className="flex items-center space-x-2 text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors p-2"
+                  >
+                    <User className="h-5 w-5" />
+                    <span className="hidden lg:inline">Entrar</span>
+                  </button>
+                )}
+              </li>
               <li>
                 <button
                   onClick={() => setIsFavoritesOpen(true)}
@@ -307,12 +377,27 @@ const Header: React.FC = () => {
                   Sobre
                 </button>
               </li>
+              <li>
+                {!isAuthenticated && (
+                  <button
+                    onClick={() => setIsAuthOpen(true)}
+                    className="block w-full text-left px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    Entrar / Cadastrar
+                  </button>
+                )}
+              </li>
             </ul>
           </nav>
         )}
       </div>
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <FavoritesModal isOpen={isFavoritesOpen} onClose={() => setIsFavoritesOpen(false)} />
+      <AuthModal 
+        isOpen={isAuthOpen} 
+        onClose={() => setIsAuthOpen(false)} 
+        onSuccess={() => setIsAuthOpen(false)}
+      />
     </header>
   );
 };

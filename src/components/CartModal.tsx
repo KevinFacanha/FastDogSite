@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { X, Minus, Plus, ShoppingBag, Tag, MapPin } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
+import { useAuthStore } from '../store/useAuthStore';
 import { formatPrice, formatFullPrice } from '../utils/formatPrice';
+import AuthModal from './AuthModal';
 import toast from 'react-hot-toast';
 
 interface CartModalProps {
@@ -11,6 +13,9 @@ interface CartModalProps {
 
 const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   const { items, subtotal, discount, total, removeItem, updateQuantity, couponCode, setCouponCode } = useCartStore();
+  const { isAuthenticated, customer } = useAuthStore();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [pendingCheckout, setPendingCheckout] = useState(false);
   const [couponInput, setCouponInput] = useState('');
   const [cep, setCep] = useState('');
   const [cepError, setCepError] = useState('');
@@ -48,7 +53,18 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   };
 
   const generateWhatsAppMessage = () => {
-    const message = `Olá! Gostaria de fazer o seguinte pedido:\n${items
+    const customerInfo = customer ? `
+👤 *Dados do Cliente:*
+Nome: ${customer.nome}
+Email: ${customer.email}
+Telefone: ${customer.telefone}
+
+` : '';
+
+    const message = `Olá! Gostaria de fazer o seguinte pedido:
+
+${customerInfo}📦 *Itens do Pedido:*
+${items
       .map((item) => {
         const variantInfo = item.selectedVariant ? ` (${item.selectedVariant.description})` : '';
         const itemPrice = item.product?.price || 0;
@@ -56,13 +72,32 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
           itemPrice * item.quantity
         )}`;
       })
-      .join('\n')}\n\nSubtotal: ${formatFullPrice(subtotal)}${
+      .join('\n')}
+
+💰 *Resumo do Pedido:*
+Subtotal: ${formatFullPrice(subtotal)}${
       couponCode ? `\nCupom: ${couponCode} (-10%): -${formatFullPrice(discount)}` : ''
     }\n\nCEP: ${cep}\n Frete será calculado via WhatsApp\n\nTotal: ${formatFullPrice(total)}`;
 
     const encodedMessage = encodeURIComponent(message);
     const phoneNumber = '5511945993793';
     return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  };
+
+  const handleCheckout = () => {
+    if (!isAuthenticated) {
+      setPendingCheckout(true);
+      setShowAuthModal(true);
+      return;
+    }
+
+    if (!validateCEP()) {
+      toast.error('Por favor, insira um CEP válido');
+      return;
+    }
+
+    // Prosseguir com o WhatsApp
+    window.open(generateWhatsAppMessage(), '_blank');
   };
 
   const handleApplyCoupon = () => {
@@ -82,11 +117,15 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleWhatsAppClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!validateCEP()) {
-      e.preventDefault();
-      toast.error('Por favor, insira um CEP válido');
+  const handleAuthSuccess = () => {
+    if (pendingCheckout) {
+      setPendingCheckout(false);
+      // Pequeno delay para garantir que o estado foi atualizado
+      setTimeout(() => {
+        handleCheckout();
+      }, 100);
     }
+    setShowAuthModal(false);
   };
 
   if (!isOpen) return null;
@@ -276,18 +315,24 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
             
             {/* Fixed Checkout Button */}
             <div className="p-4 pt-0">
-              <a
-                href={generateWhatsAppMessage()}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleWhatsAppClick}
-                className="block w-full bg-green-600 dark:bg-green-700 text-white text-center py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors font-semibold shadow-lg"
+              <button
+                onClick={handleCheckout}
+                className="w-full bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors font-semibold shadow-lg"
               >
-                Finalizar no WhatsApp
-              </a>
+                {isAuthenticated ? 'Finalizar no WhatsApp' : 'Entrar e Finalizar'}
+              </button>
             </div>
           </div>
         )}
+
+        <AuthModal
+          isOpen={showAuthModal}
+          onClose={() => {
+            setShowAuthModal(false);
+            setPendingCheckout(false);
+          }}
+          onSuccess={handleAuthSuccess}
+        />
       </div>
     </div>
   );
