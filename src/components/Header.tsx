@@ -73,14 +73,14 @@ const Header: React.FC = () => {
     await logout();
     setIsUserMenuOpen(false);
     navigate('/');
-  }, [isProductsMenuOpen]);
+  };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsProductsMenuOpen(false);
     setIsMobileProductsOpen(false);
-  };
     setIsUserMenuOpen(false);
+  };
 
   const handleProductsMenuClick = () => {
     setIsProductsMenuOpen(!isProductsMenuOpen);
