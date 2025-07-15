@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
@@ -11,8 +12,15 @@ import MediumDogsPage from './pages/MediumDogsPage';
 import LargeDogsPage from './pages/LargeDogsPage';
 import FooterSection from './components/FooterSection';
 import WhatsAppButton from './components/WhatsAppButton';
+import { useAuthStore } from './store/useAuthStore';
 
 function App() {
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-cream dark:bg-gray-900 transition-colors duration-200">
