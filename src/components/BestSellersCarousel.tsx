@@ -258,7 +258,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
   const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
 
   // Verificar se products existe e tem itens
-  const safeProducts = products || [];
+  const safeProducts = Array.isArray(products) ? products : [];
 
   useEffect(() => {
     const updateProductsPerPage = () => {

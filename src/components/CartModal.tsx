@@ -54,10 +54,8 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
 
   const generateWhatsAppMessage = () => {
     const customerInfo = customer ? `
-👤 *Dados do Cliente:*
+🧑 *Dados do Cliente:*
 Nome: ${customer.nome}
-Email: ${customer.email}
-Telefone: ${customer.telefone}
 
 ` : '';
 
@@ -74,10 +72,14 @@ ${items
       })
       .join('\n')}
 
-💰 *Resumo do Pedido:*
+🧾 *Resumo do Pedido:*
 Subtotal: ${formatFullPrice(subtotal)}${
       couponCode ? `\nCupom: ${couponCode} (-10%): -${formatFullPrice(discount)}` : ''
-    }\n\nCEP: ${cep}\n Frete será calculado via WhatsApp\n\nTotal: ${formatFullPrice(total)}`;
+    }
+CEP: ${cep}
+Frete será calculado via WhatsApp
+
+Total: ${formatFullPrice(total)}`;
 
     const encodedMessage = encodeURIComponent(message);
     const phoneNumber = '5511945993793';

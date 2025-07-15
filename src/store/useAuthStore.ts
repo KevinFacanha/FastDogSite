@@ -37,6 +37,12 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true })
         
         try {
+          if (!supabase) {
+            toast.error('Serviço indisponível no momento');
+            set({ isLoading: false });
+            return false;
+          }
+
           // Primeiro, fazer login no Supabase Auth
           const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
             email,
@@ -81,6 +87,12 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true })
         
         try {
+          if (!supabase) {
+            toast.error('Serviço indisponível no momento');
+            set({ isLoading: false });
+            return false;
+          }
+
           // Primeiro, criar usuário no Supabase Auth
           const { data: authData, error: authError } = await supabase.auth.signUp({
             email,
@@ -139,7 +151,9 @@ export const useAuthStore = create<AuthStore>()(
 
       logout: async () => {
         try {
+          if (supabase) {
           await supabase.auth.signOut()
+          }
           set({
             user: null,
             customer: null,
@@ -153,27 +167,53 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       checkAuth: async () => {
+        set({ isLoading: true });
         try {
+          if (!supabase) {
+            set({
+              user: null,
+              customer: null,
+              isAuthenticated: false,
+              isLoading: false,
+            });
+            return;
+          }
+
           const { data: { user } } = await supabase.auth.getUser()
           
           if (user) {
             // Buscar dados do cliente
-            const { data: customerData } = await supabase
+            const { data: customerData, error: customerError } = await supabase
               .from('customers')
               .select('*')
               .eq('id', user.id)
               .single()
 
+            if (customerError) {
+              console.warn('Cliente não encontrado na tabela customers:', customerError);
+              // Se o usuário existe no Auth mas não na tabela customers, fazer logout
+              await supabase.auth.signOut();
+              set({
+                user: null,
+                customer: null,
+                isAuthenticated: false,
+                isLoading: false,
+              });
+              return;
+            }
+
             set({
               user,
               customer: customerData,
               isAuthenticated: true,
+              isLoading: false,
             })
           } else {
             set({
               user: null,
               customer: null,
               isAuthenticated: false,
+              isLoading: false,
             })
           }
         } catch (error) {
@@ -182,13 +222,14 @@ export const useAuthStore = create<AuthStore>()(
             user: null,
             customer: null,
             isAuthenticated: false,
+            isLoading: false,
           })
         }
       },
 
       updateCustomer: async (data: Partial<Customer>) => {
         const { customer } = get()
-        if (!customer) return false
+        if (!customer || !supabase) return false
 
         try {
           const { data: updatedData, error } = await supabase
