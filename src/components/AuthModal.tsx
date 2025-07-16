@@ -56,11 +56,15 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess }) => 
     
     if (!validateForm()) return;
 
+    console.log('Submetendo formulário:', { isLogin, email: formData.email });
+
     let success = false;
 
     if (isLogin) {
+      console.log('Tentando fazer login...');
       success = await login(formData.email, formData.password);
     } else {
+      console.log('Tentando registrar...');
       success = await register(
         formData.nome,
         formData.email,
@@ -68,6 +72,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess }) => 
         formData.password
       );
     }
+
+    console.log('Resultado da operação:', success);
 
     if (success) {
       onSuccess();
