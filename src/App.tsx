@@ -17,23 +17,45 @@ import { useAuthStore } from './store/useAuthStore';
 function App() {
   const { checkAuth, isLoading } = useAuthStore();
   const [isInitialized, setIsInitialized] = useState(false);
+  const [initError, setInitError] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const initializeAuth = async () => {
       try {
+        console.log('Inicializando autenticação...');
         await checkAuth();
+        console.log('Autenticação inicializada com sucesso');
       } catch (error) {
         console.error('Erro ao inicializar autenticação:', error);
+        setInitError(true);
       } finally {
-        setIsInitialized(true);
+        if (isMounted) {
+          setIsInitialized(true);
+        }
       }
     };
     
+    // Timeout para evitar loading infinito
+    const timeout = setTimeout(() => {
+      if (isMounted && !isInitialized) {
+        console.warn('Timeout na inicialização da auth, continuando sem autenticação');
+        setIsInitialized(true);
+        setInitError(true);
+      }
+    }, 5000);
+    
     initializeAuth();
-  }, [checkAuth]);
+    
+    return () => {
+      isMounted = false;
+      clearTimeout(timeout);
+    };
+  }, []);
 
-  // Mostrar loading enquanto inicializa
-  if (!isInitialized || isLoading) {
+  // Loading screen com timeout
+  if (!isInitialized) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-cream dark:bg-gray-900">
         <div className="text-center">
@@ -43,6 +65,11 @@ function App() {
         </div>
       </div>
     );
+  }
+
+  // Error fallback
+  if (initError) {
+    console.warn('Aplicação iniciada com erro de autenticação, mas continuando normalmente');
   }
 
   return (

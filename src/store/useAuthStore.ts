@@ -240,7 +240,14 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       checkAuth: async () => {
+        // Evitar múltiplas chamadas simultâneas
+        if (get().isLoading) {
+          console.log('checkAuth já está executando, ignorando...');
+          return;
+        }
+
         set({ isLoading: true });
+        
         try {
           if (!supabase) {
             console.warn('Supabase client não configurado')

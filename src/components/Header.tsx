@@ -24,30 +24,6 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Verificar autenticação ao carregar
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
-
-  // Mostrar loading enquanto verifica autenticação
-  if (isLoading) {
-    return (
-      <header className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900 shadow-md py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-16 w-auto" />
-              <span className="text-2xl font-bold text-green-700 dark:text-green-400">FastDog</span>
-            </div>
-            <div className="animate-pulse">
-              <div className="h-8 w-20 bg-gray-200 dark:bg-gray-700 rounded"></div>
-            </div>
-          </div>
-        </div>
-      </header>
-    );
-  }
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
