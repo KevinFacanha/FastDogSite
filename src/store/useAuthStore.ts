@@ -260,10 +260,34 @@ export const useAuthStore = create<AuthStore>()(
             return;
           }
 
+          // Verificar se o cliente está funcionando
+          try {
+            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+            if (sessionError) {
+              console.warn('Erro ao obter sessão:', sessionError);
+              set({
+                user: null,
+                customer: null,
+                isAuthenticated: false,
+                isLoading: false,
+              });
+              return;
+            }
+          } catch (sessionErr) {
+            console.warn('Erro na verificação de sessão:', sessionErr);
+            set({
+              user: null,
+              customer: null,
+              isAuthenticated: false,
+              isLoading: false,
+            });
+            return;
+          }
+
           const { data: { user }, error } = await supabase.auth.getUser()
           
           if (error) {
-            console.error('Erro ao verificar usuário:', error)
+            console.warn('Erro ao verificar usuário:', error)
             set({
               user: null,
               customer: null,
