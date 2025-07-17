@@ -42,7 +42,7 @@ export const useAuthStore = create<AuthStore>()(
           // Verificar se o Supabase está configurado
           if (!supabase) {
             console.error('Supabase client não está configurado')
-            toast.error('Erro de configuração do sistema')
+            toast.error('Sistema de autenticação não configurado. Entre em contato com o suporte.')
             set({ isLoading: false })
             return false
           }
@@ -145,7 +145,7 @@ export const useAuthStore = create<AuthStore>()(
           // Verificar se o Supabase está configurado
           if (!supabase) {
             console.error('Supabase client não está configurado')
-            toast.error('Erro de configuração do sistema')
+            toast.error('Sistema de autenticação não configurado. Entre em contato com o suporte.')
             set({ isLoading: false })
             return false
           }
