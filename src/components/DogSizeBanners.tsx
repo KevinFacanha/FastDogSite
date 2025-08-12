@@ -65,7 +65,7 @@ const DogSizeBanners: React.FC = () => {
                 <p className="text-white/90 mb-6 text-lg drop-shadow-md">
                   {banner.description}
                 </p>
-                <button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 text-white font-semibold px-8 py-3 rounded-full shadow-lg transform transition-all duration-200 hover:scale-105">
+                <button className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transform transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                   Ver Produtos
                 </button>
               </div>

@@ -3,7 +3,7 @@ import { Dog, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 
 const FooterSection: React.FC = () => {
   return (
-    <footer id="about" className="bg-green-800 text-white py-12">
+    <footer id="about" className="bg-green-600 text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -62,7 +62,7 @@ const FooterSection: React.FC = () => {
           </div>
         </div>
         
-        <div className="border-t border-green-700 mt-8 pt-8 text-center">
+        <div className="border-t border-green-500 mt-8 pt-8 text-center">
           <p>&copy; {new Date().getFullYear()} FastDog. Todos os direitos reservados.</p>
         </div>
       </div>

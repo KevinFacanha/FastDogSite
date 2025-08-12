@@ -211,7 +211,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                     onAddToCart(quantity, selectedVariant);
                     toast.success('Produto adicionado ao carrinho');
                   }}
-                  className="flex-1 bg-green-600 dark:bg-green-700 text-white py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                  className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex items-center justify-center font-semibold"
                 >
                   <Plus className="h-5 w-5 mr-2" />
                   Adicionar ao Carrinho
@@ -423,7 +423,7 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                               addItem(product);
                               toast.success('Produto adicionado ao carrinho');
                             }}
-                            className="w-full bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-all duration-200 transform hover:scale-105 flex items-center justify-center"
+                            className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg shadow-md transform transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex items-center justify-center font-semibold"
                           >
                             <Plus className="h-5 w-5 mr-2" />
                             Adicionar

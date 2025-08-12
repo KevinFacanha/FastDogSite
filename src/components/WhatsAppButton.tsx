@@ -27,7 +27,7 @@ const WhatsAppButton: React.FC = () => {
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center bg-green-500 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transform transition-transform hover:scale-105"
+        className="flex items-center bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-xl transform transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         onMouseEnter={() => setIsTooltipVisible(true)}
         onClick={() => setIsTooltipVisible(false)}
       >

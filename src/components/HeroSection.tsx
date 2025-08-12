@@ -40,7 +40,7 @@ const HeroSection: React.FC = () => {
             </p>
             <button
               onClick={scrollToBestSellers}
-              className="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition-all hover:scale-105"
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             >
               {buttonText}
             </button>
