@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from '../components/HeroSection';
+import CarouselBanner from '../components/CarouselBanner';
 import DogSizeBanners from '../components/DogSizeBanners';
 import BestSellersCarousel from '../components/BestSellersCarousel';
 import { products } from '../data/products';
@@ -11,7 +11,13 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <HeroSection />
+      <CarouselBanner
+        slides={[
+          {
+            image: 'https://drive.google.com/uc?export=view&id=1a-76S9qtuRj_oQ54lUV-RGA-bklLi98W',
+          },
+        ]}
+      />
       <DogSizeBanners />
       {bestSellers.length > 0 && <BestSellersCarousel products={bestSellers} />}
     </>
