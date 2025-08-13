@@ -13,6 +13,8 @@ import LargeDogsPage from './pages/LargeDogsPage';
 import FooterSection from './components/FooterSection';
 import WhatsAppButton from './components/WhatsAppButton';
 import { useAuthStore } from './store/useAuthStore';
+import PetiscosDeAgradoPage from './pages/PetiscosDeAgradoPage';
+import PetiscosMastigaveisPage from './pages/PetiscosMastigaveisPage';
 
 function App() {
   const { checkAuth, isLoading } = useAuthStore();
@@ -86,6 +88,8 @@ function App() {
             <Route path="/porte-pequeno" element={<SmallDogsPage />} />
             <Route path="/porte-medio" element={<MediumDogsPage />} />
             <Route path="/porte-grande" element={<LargeDogsPage />} />
+            <Route path="/produtos/Petiscos de Agrado" element={<PetiscosDeAgradoPage />} />
+            <Route path="/produtos/Petiscos Mastigáveis" element={<PetiscosMastigaveisPage />} />
           </Routes>
         </main>
         <FooterSection />

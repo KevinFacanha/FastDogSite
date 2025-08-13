@@ -66,23 +66,23 @@ const BenefitsRow: React.FC = () => {
   }, [nextSlide]);
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-800 py-12 md:py-16" aria-label="Benefícios">
+    <section className="bg-gray-50 dark:bg-gray-800 py-2 md:py-8" aria-label="Benefícios">
       <div className="container mx-auto px-4">
         {/* Desktop/Tablet: Single line with 4 items */}
-        <div className="hidden md:flex justify-center items-start gap-8 lg:gap-12">
+        <div className="hidden md:flex justify-center items-start gap-2 md:gap-6">
           {benefits.map((benefit) => (
             <div
               key={benefit.id}
-              className="flex flex-col items-center text-center flex-1 max-w-[200px]"
+              className="flex flex-col items-center text-center flex-1 max-w-[200px] p-2 md:p-5 rounded-xl shadow-sm"
               role="listitem"
             >
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md mb-4 hover:shadow-lg transition-shadow duration-200">
+              <div className="w-6 h-6 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center shadow-md mb-2 md:mb-4 hover:shadow-lg transition-shadow duration-200">
                 {benefit.icon}
               </div>
-              <h3 className="text-sm lg:text-base font-bold text-gray-900 dark:text-gray-100 mb-1 leading-tight">
+              <h3 className="text-sm md:text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1 md:mb-2 leading-tight">
                 {benefit.title}
               </h3>
-              <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 leading-tight">
+              <p className="text-[11px] md:text-sm text-gray-600 dark:text-gray-400 leading-tight">
                 {benefit.subtitle}
               </p>
             </div>
@@ -104,13 +104,13 @@ const BenefitsRow: React.FC = () => {
                   className="w-full flex-shrink-0 flex flex-col items-center text-center px-4"
                   role="listitem"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg mb-4">
+                  <div className="w-6 h-6 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center shadow-lg mb-2 md:mb-4">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2 leading-tight">
+                  <h3 className="text-sm md:text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1 md:mb-2 leading-tight">
                     {benefit.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-tight max-w-xs">
+                  <p className="text-[11px] md:text-sm text-gray-600 dark:text-gray-400 leading-tight max-w-xs">
                     {benefit.subtitle}
                   </p>
                 </div>
@@ -118,22 +118,24 @@ const BenefitsRow: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-colors z-10"
-            aria-label="Benefício anterior"
-          >
-            <ChevronLeft className="h-5 w-5 text-gray-700" />
-          </button>
+          {/* Navigation Arrows - Only visible on md+ */}
+          <div className="hidden md:flex">
+            <button
+              onClick={prevSlide}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-colors z-10"
+              aria-label="Benefício anterior"
+            >
+              <ChevronLeft className="h-5 w-5 text-gray-700" />
+            </button>
 
-          <button
-            onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-colors z-10"
-            aria-label="Próximo benefício"
-          >
-            <ChevronRight className="h-5 w-5 text-gray-700" />
-          </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-colors z-10"
+              aria-label="Próximo benefício"
+            >
+              <ChevronRight className="h-5 w-5 text-gray-700" />
+            </button>
+          </div>
 
           {/* Dots Navigation */}
           <div className="flex justify-center mt-6 space-x-2">

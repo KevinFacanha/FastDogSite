@@ -6,35 +6,37 @@ export interface BannerSlide {
   ctaLabel: string;
   ctaHref: string;
   brand?: string;
+  alt?: string;
 }
 
 export const bannersA: BannerSlide[] = [
   {
     id: 'banner-a-1',
-    image: 'https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'SEU DOG MERECE MAIS SAÚDE!',
-    subtitle: 'Petiscos 100% naturais, direto na sua porta',
-    ctaLabel: 'GARANTA JÁ!',
+    image: '/banners/petiscodeagrado.png',
+    title: '',
+    subtitle: '',
+    ctaLabel: 'Confira hoje',
+    // Updated to match route for TreatsPage
     ctaHref: '/treats',
-    brand: 'natuka'
+    alt: 'Petiscos de agrado'
   },
   {
     id: 'banner-a-2',
-    image: 'https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2',
-    title: 'PROMOÇÃO RELÂMPAGO',
-    subtitle: 'Até 20% OFF para deixar seu cão feliz',
-    ctaLabel: 'COMPRE AGORA!',
+    image: '/banners/petiscosmastigaveis.png',
+    title: '',
+    subtitle: '',
+    ctaLabel: 'Compre agora',
     ctaHref: '/chewables',
-    brand: 'luv'
+    alt: 'Petiscos mastigáveis'
   },
   {
     id: 'banner-a-3',
-    image: 'https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2',
-    title: 'MAIS ENERGIA, MAIS AMOR',
-    subtitle: 'Descubra os petiscos favoritos dos cães',
-    ctaLabel: 'CONFIRA HOJE!',
-    ctaHref: '/catalogos',
-    brand: 'good-lovin'
+    image: '/banners/mordedores.png',
+    title: '',
+    subtitle: '',
+    ctaLabel: 'Compre agora',
+    ctaHref: '/chewers',
+    alt: 'Mordedores'
   }
 ];
 
