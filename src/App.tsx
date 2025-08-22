@@ -15,6 +15,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import { useAuthStore } from './store/useAuthStore';
 import PetiscosDeAgradoPage from './pages/PetiscosDeAgradoPage';
 import PetiscosMastigaveisPage from './pages/PetiscosMastigaveisPage';
+import OndeEstamosPage from './pages/OndeEstamosPage';
 
 function App() {
   const { checkAuth, isLoading } = useAuthStore();
@@ -90,6 +91,7 @@ function App() {
             <Route path="/porte-grande" element={<LargeDogsPage />} />
             <Route path="/produtos/Petiscos de Agrado" element={<PetiscosDeAgradoPage />} />
             <Route path="/produtos/Petiscos Mastigáveis" element={<PetiscosMastigaveisPage />} />
+            <Route path="/onde-estamos" element={<OndeEstamosPage />} />
           </Routes>
         </main>
         <FooterSection />

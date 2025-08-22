@@ -110,6 +110,32 @@ const chewers: Product[] = [
       './catalogs/pet crush.JPG'
     ],
     details: 'Feito com 100% de pele bovina enrolada e desidratada, sem conservantes, corantes ou aditivos. Alta resistência para proporcionar longas sessões de mastigação, auxiliando na limpeza dental e alívio de estresse. Recomendado para cães de todos os portes, especialmente os com mordida potente. Cada embalagem contém 1 unidade. Oferecer sempre sob supervisão.'
+  },
+  {
+    id: 'chewer-8',
+    brand: 'alecrim',
+    name: 'Mordedor Natural Supimpa',
+    description: 'Mordedor natural resistente, feito 100% de pele bovina desidratada. Auxilia na higiene dental e no alívio do estresse',
+    price: 13.90,
+    image: './catalogs/mordedores/casco supimpa.JPG',
+    images: [
+      './catalogs/mordedores/casco supimpa.JPG',
+      './catalogs/mordedores/casco supimpaa.JPG'
+    ],
+    details: 'Mordedor natural feito 100% de pele bovina enrolada e desidratada, sem conservantes ou aditivos. Resistente e duradouro, auxilia na higiene bucal, alivia o estresse e proporciona enriquecimento ambiental. Embalagem com 1 unidade.'
+  },
+  {
+    id: 'chewer-9',
+    brand: 'alecrim',
+    name: 'Mordedor Natural Para Cães - Cisca-Cisca (Pé de Galinha Desidratado)',
+    description: 'Mordedor natural de pé de galinha desidratado, crocante e nutritivo. Auxilia na limpeza dental e proporciona entretenimento saudável.',
+    price: 22.90,
+    image: './catalogs/mordedores/cisca cisca.JPG',
+    images: [
+      './catalogs/mordedores/cisca cisca.JPG',
+      './catalogs/mordedores/cisca cisca pé.JPG'
+    ],
+    details: 'Feito com 100% de pés de galinha desidratados, sem conservantes, corantes ou aditivos. Rico em cálcio, condroitina e glucosamina, contribui para articulações saudáveis e auxilia na saúde dental. Textura crocante que promove enriquecimento ambiental e ajuda no alívio do estresse. Embalagem com 1 unidade. Oferecer sempre sob supervisão.'
   }
 
 
