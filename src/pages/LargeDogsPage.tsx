@@ -222,6 +222,19 @@ const largeDogProducts: Product[] = [
     ],
     details: 'Feito com 100% de pele bovina enrolada e desidratada, sem conservantes, corantes ou aditivos. Alta resistência para proporcionar longas sessões de mastigação, auxiliando na limpeza dental e alívio de estresse. Recomendado para cães de todos os portes, especialmente os com mordida potente. Cada embalagem contém 1 unidade. Oferecer sempre sob supervisão.'
   },
+  {
+    id: 'chewable-18',
+    brand: 'alecrim',
+    name: 'Palatabilizante Natural Lambe-Lambe Frango',
+    description: 'Petisco natural de frango em pasta',
+    price: 35.90,
+    image: './banners/lambe lambe frango.JPG',
+    images: [
+      './banners/lambe lambe frango.JPG',
+      './banners/lambe frango.JPG'
+    ],
+    details: 'Petisco 100% natural feito de traqueia bovina desidratada lentamente em baixa temperatura. Seu formato redondo dificulta a posição de mordida, tornando a mastigação mais eficiente na limpeza dos dentes caninos. Rico em glucosamina e condroitina, auxilia na saúde articular e na higiene bucal. Dificuldade: fácil; indicado para cães saudáveis de todos os portes. Embalagem com 1 unidade.'
+  }
 
 ];
 

@@ -98,6 +98,32 @@ const treats: Product[] = [
     ],
     details: 'Petisco feito 100% de filé de peito de frango desidratado, rico em proteínas, auxilia na higiene bucal, alivia o estresse e oferece enriquecimento ambiental. Embalagem com 60g.'
   },
+  {
+    id: 'treat-8',
+    brand: 'natuka',
+    name: 'Pepita de treino',
+    description: 'Petisco natural de pepita de treino',
+    price: 30.50,
+    image: './catalogs/petiscosAgrado/pepita de treino.JPG',
+    images: [
+      './catalogs/petiscosAgrado/pepita de treino.JPG',
+      './catalogs/petiscosAgrado/pepita de treinoo.JPG'
+    ],
+    details: 'Petisco natural de peito de frango desidratado, crocante e leve, ideal para treinos e recompensas. 100% proteína animal, fácil de fragmentar, indicado para cães e gatos de todas as idades. Embalagem com 70g.'
+  },
+  {
+    id: 'treat-9',
+    brand: 'natuka',
+    name: 'Natuka Blend Bovino',
+    description: 'Petisco natural crocante de carne bovina, ideal para treinos e recompensas',
+    price: 37.90,
+    image: './catalogs/petiscosAgrado/blend bovino.JPG',
+    images: [
+      './catalogs/petiscosAgrado/blend bovino.JPG',
+      './catalogs/petiscosAgrado/blend.jpeg'
+    ],
+    details: 'Feito com 100% de carne bovina desidratada, rico em proteínas e sem aditivos artificiais. Textura crocante e fácil de fragmentar, ideal para treinos e como agrado diário. Indicado para cães e gatos de todas as idades. Embalagem com 70g.'
+  },
 
 ];
 

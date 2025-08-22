@@ -235,6 +235,14 @@ const Header: React.FC = () => {
                 </button>
               </li>
               <li>
+                <Link
+                  to="/onde-estamos"
+                  className="text-green-800 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 font-medium transition-colors"
+                >
+                  Onde Encontrar
+                </Link>
+              </li>
+              <li>
                 <DarkModeToggle />
               </li>
               <li className="relative">
@@ -371,6 +379,15 @@ const Header: React.FC = () => {
                 >
                   Sobre
                 </button>
+              </li>
+              <li>
+                <Link
+                  to="/onde-estamos"
+                  className="block px-4 py-2 text-green-800 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  Onde Encontrar
+                </Link>
               </li>
               <li>
                 {!isAuthenticated && (
