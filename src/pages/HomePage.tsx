@@ -1,11 +1,12 @@
-import React from 'react';
-import CarouselBanner from '../components/CarouselBanner';
+import React, { Suspense, lazy } from 'react';
+import DeferredInView from '../components/DeferredInView';
 import BenefitsRow from '../components/BenefitsSection';
 import DogSizeBanners from '../components/DogSizeBanners';
 import BestSellersCarousel from '../components/BestSellersCarousel';
 import CustomerFeedback from '../components/CustomerFeedback';
 import { products } from '../data/products';
-import { bannersA, bannersB, bannersC } from '../data/homeBanners';
+import { bannersA } from '../data/homeBanners';
+const CarouselBanner = lazy(() => import('../components/CarouselBanner'));
 
 const HomePage: React.FC = () => {
   // Verificar se products existe e tem itens antes de usar slice
@@ -15,7 +16,11 @@ const HomePage: React.FC = () => {
   return (
     <>
       {/* Main Carousel Banner */}
-      <CarouselBanner slides={bannersA} autoplay={true} delay={5000} />
+      <Suspense fallback={null}>
+        <DeferredInView rootMargin="400px">
+          <CarouselBanner slides={bannersA} autoplay delay={5000} />
+        </DeferredInView>
+      </Suspense>
       
       {/* Benefits Row */}
       <BenefitsRow />
@@ -46,8 +51,12 @@ const HomePage: React.FC = () => {
           <img
             src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
             alt="Cachorro feliz em um ambiente acolhedor"
+            width={1974}
+            height={1316}
             className="w-full h-full object-cover"
-            loading="eager"
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
           />
           {/* Dark overlay with gradient - now more subtle */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
@@ -60,7 +69,7 @@ const HomePage: React.FC = () => {
               Onde nos encontrar
             </h2>
             <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-2xl mx-auto drop-shadow-md px-4">
-              Clique abaixo e veja nossas unidades físicas em São Paulo.
+              Clique abaixo e veja nossas unidades fisicas em Sao Paulo.
             </p>
             <a 
               href="/onde-estamos"
@@ -90,3 +99,5 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+

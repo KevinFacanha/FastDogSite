@@ -171,6 +171,10 @@ Total: ${formatFullPrice(total)}`;
                         <img
                           src={item.product.image}
                           alt={item.product.name}
+                          width={64}
+                          height={64}
+                          loading="lazy"
+                          decoding="async"
                           className="w-16 h-16 object-cover rounded"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;

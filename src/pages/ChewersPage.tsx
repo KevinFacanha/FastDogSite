@@ -181,6 +181,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <img
                 src={product.images[selectedImage]}
                 alt={product.name}
+                width={600}
+                height={600}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -198,6 +202,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   <img
                     src={image}
                     alt={`${product.name} view ${index + 1}`}
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain"
                   />
                 </button>
@@ -413,6 +421,10 @@ const ChewersPage: React.FC = () => {
                       <img
                         src={product.image}
                         alt={product.name}
+                        width={320}
+                        height={256}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-110"
                       />
                       <button

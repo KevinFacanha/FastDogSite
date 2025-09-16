@@ -128,7 +128,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
-            <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-16 w-auto" />
+            <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-16 w-auto" width={160} height={64} loading="eager" decoding="async" />
             <span className="text-2xl font-bold text-green-700 dark:text-green-400">FastDog</span>
           </Link>
 

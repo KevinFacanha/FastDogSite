@@ -21,6 +21,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
         <img
           src={product.image}
           alt={product.name}
+          width={640}
+          height={384}
+          loading="lazy"
+          decoding="async"
           className="w-full h-48 object-cover rounded-lg mb-4"
         />
         <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
@@ -75,6 +79,10 @@ const ProductSection: React.FC = () => {
                     <img
                       src={product.image}
                       alt={product.name}
+                      width={320}
+                      height={192}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-48 object-cover"
                     />
                     <div className="p-4">

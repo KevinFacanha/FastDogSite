@@ -8,7 +8,7 @@ const FooterSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
           <div className="flex items-center space-x-2 mb-4">
-            <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-10 w-10" />
+            <img src="/catalogs/fastdog-logo2.png" alt="FastDog Logo" className="h-10 w-10" width={40} height={40} loading="lazy" decoding="async" />
             <span className="text-2xl font-bold">FastDog</span>
             </div>
             <p className="max-w-xs mb-4">

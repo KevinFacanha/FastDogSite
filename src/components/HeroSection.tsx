@@ -47,14 +47,28 @@ const HeroSection: React.FC = () => {
           </div>
           <div className="md:w-1/2 flex justify-center">
             <div className="relative w-full max-w-lg h-80 rounded-2xl overflow-hidden shadow-xl">
-              <img
-                src="https://images.pexels.com/photos/1139793/pexels-photo-1139793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Cachorro feliz com petisco"
-                className="w-full h-full object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet="/banners/fastdogimg-640.avif 640w, /banners/fastdogimg-1280.avif 1280w, /banners/fastdogimg-1920.avif 1920w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px"
+                />
+                <source
+                  type="image/webp"
+                  srcSet="/banners/fastdogimg-640.webp 640w, /banners/fastdogimg-1280.webp 1280w, /banners/fastdogimg-1920.webp 1920w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px"
+                />
+                <img
+                  src="/banners/fastdogimg.jpeg"
+                  alt="Cachorro feliz com petisco"
+                  width={1280}
+                  height={720}
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </picture>
             </div>
           </div>
         </div>

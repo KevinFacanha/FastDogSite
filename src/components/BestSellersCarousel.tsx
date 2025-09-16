@@ -72,6 +72,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <img
                 src={productImages[selectedImage]}
                 alt={product.name}
+                width={600}
+                height={600}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-contain"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -93,6 +97,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   <img
                     src={image}
                     alt={`${product.name} view ${index + 1}`}
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain bg-gray-50 dark:bg-gray-700"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -364,6 +372,10 @@ const BestSellersCarousel: React.FC<BestSellersCarouselProps> = ({ products }) =
                           <img
                             src={product.image}
                             alt={product.name}
+                            width={320}
+                            height={192}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-110"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;

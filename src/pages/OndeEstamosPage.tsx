@@ -68,8 +68,12 @@ const OndeEstamosPage: React.FC = () => {
                 <img
                   src="/banners/fastdogimg.jpeg"
                   alt="Cachorro feliz passeando"
+                  width={1280}
+                  height={720}
                   className="w-full h-full object-cover"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                 />
               </div>
             </div>

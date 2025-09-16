@@ -50,6 +50,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <img
                 src={productImages[selectedImage]}
                 alt={product.name}
+                width={600}
+                height={600}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -67,6 +71,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   <img
                     src={image}
                     alt={`${product.name} view ${index + 1}`}
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </button>
@@ -217,6 +225,10 @@ const BrandPage: React.FC = () => {
                 <img
                   src={product.image}
                   alt={product.name}
+                  width={320}
+                  height={192}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <button

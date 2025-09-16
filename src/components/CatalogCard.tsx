@@ -32,6 +32,10 @@ const CatalogCard: React.FC<CatalogCardProps> = ({
           <img
             src={image}
             alt={title}
+            width={640}
+            height={384}
+            loading="lazy"
+            decoding="async"
             className={`w-full h-full object-cover transition-transform duration-500 ${
               isHovered ? 'scale-110' : 'scale-100'
             }`}

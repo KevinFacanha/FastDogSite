@@ -139,6 +139,10 @@ const CustomerFeedback: React.FC = () => {
                     <img
                       src={review.avatar}
                       alt={`${review.name}`}
+                      width={48}
+                      height={48}
+                      loading="lazy"
+                      decoding="async"
                       className="w-12 h-12 rounded-full object-cover mr-4"
                     />
                   ) : (
