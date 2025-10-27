@@ -6,21 +6,21 @@ const DogSizeBanners: React.FC = () => {
     {
       id: 'small',
       title: 'Cachorros de Porte Pequeno',
-      image: '/banners/cachorro pequeno.png',
+      image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1761576008/img_fast3_j4vspd.jpg',
       description: 'Petiscos especiais para cães pequenos',
       route: '/porte-pequeno'
     },
     {
       id: 'medium',
       title: 'Cachorros de Porte Médio',
-      image: '/banners/cachorro médio.png',
+      image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1761575992/img_fast2_ouzdil.jpg',
       description: 'Produtos ideais para cães de porte médio',
       route: '/porte-medio'
     },
     {
       id: 'large',
       title: 'Cachorros de Porte Grande',
-      image: '/banners/cachorro grande.png',
+      image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1761575981/img_fast1_nukbvk.jpg',
       description: 'Petiscos resistentes para cães grandes',
       route: '/porte-grande'
     }

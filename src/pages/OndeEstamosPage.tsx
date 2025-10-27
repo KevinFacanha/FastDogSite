@@ -66,7 +66,7 @@ const OndeEstamosPage: React.FC = () => {
             <div className="md:w-1/2 flex justify-center">
               <div className="relative w-full max-w-lg h-80 rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/banners/fastdogimg.jpeg"
+                  src="https://res.cloudinary.com/dy36sfdb3/image/upload/v1761576493/img_fast4_fsm4gq.jpg"
                   alt="Cachorro feliz passeando"
                   width={1280}
                   height={720}
