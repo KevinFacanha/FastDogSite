@@ -12,7 +12,7 @@ export interface BannerSlide {
 export const bannersA: BannerSlide[] = [
   {
     id: 'banner-a-1',
-    image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1761577010/img_fast6_fgroxb.jpg',
+    image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1772040001/mordedores_jxj6te.png',
     title: '',
     subtitle: '',
     ctaLabel: 'Confira hoje',
@@ -22,7 +22,7 @@ export const bannersA: BannerSlide[] = [
   },
   {
     id: 'banner-a-2',
-    image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1761576971/img_fast5_mtlsyw.jpg',
+    image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1772040087/petiscosmastigaveis_eu06dr.png',
     title: '',
     subtitle: '',
     ctaLabel: 'Compre agora',
@@ -31,7 +31,7 @@ export const bannersA: BannerSlide[] = [
   },
   {
     id: 'banner-a-3',
-    image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1761577020/img_fast7_ujsaqe.jpg',
+    image: 'https://res.cloudinary.com/dy36sfdb3/image/upload/v1772040026/petiscodeagrado_axggdi.png',
     title: '',
     subtitle: '',
     ctaLabel: 'Compre agora',
